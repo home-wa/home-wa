@@ -2,10 +2,9 @@ backend:
   name: github
   repo: home-wa/home-wa
   branch: main
-  # TODO(OAuth): Decap's GitHub backend needs an OAuth helper (it cannot use
-  # Firebase Hosting alone). Deploy one (see README "CMS login") and set its URL:
-  base_url: https://TODO-OAUTH-HELPER.example.com
-  # auth_endpoint: auth   # uncomment/adjust if your helper uses a different path
+  # OAuth helper: Cloud Function "oauth" (functions/index.js), served via Hosting rewrite /api/**
+  base_url: https://home-wa.web.app
+  auth_endpoint: api/auth
 
 # Local editing without GitHub: run `npx decap-server` and open /admin on the dev server.
 local_backend: true
