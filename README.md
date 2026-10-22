@@ -13,15 +13,17 @@ npm run preview    # serve dist/ locally
 
 ## Editing content
 
-Content lives in YAML files, one per area:
+Content lives in two YAML files:
 
 - `src/content/settings.yml` holds the site info, Join It links, contact email, top menu and footer.
-- `src/content/sections/*.yml` has one file per page section (`hero`, `about`, `programs`, `benefits`, `events`, `faq`, `cta`). Each has a `show` switch to hide it.
+- `src/content/layout.yml` is the **page layout**: an ordered list of sections, each with a `type`.
+  - Section types: `hero`, `about`, `programs`, `benefits`, `events`, `faq`, `cta`, plus the generic `textphoto` (Text + photo) and `text` (Simple text) blocks.
+  - Each section has a `show` switch to hide it without deleting it.
 
-Section order and in-page anchors are fixed in `src/pages/index.astro` (`ORDER`). Styles are in `src/styles/global.css`. `npm run dev/build` copies that CSS to `public/admin/preview.css` so the CMS preview matches the site.
+Anchors are automatic. Known section types get fixed anchors (`top`, `about`, `programs`, `benefits`, `events`, `faq`, `join`), and repeats or generic blocks get `section-2`, `section-3` and so on. Menu links pointing at a section that isn't on the page are left out. Styles are in `src/styles/global.css`. `npm run dev/build` copies that CSS to `public/admin/preview.css` so the CMS preview matches the site.
 
-- **In the browser:** go to `https://home-wa.web.app/admin`, log in with GitHub, choose **Page sections** or **Site settings**, edit, and click Publish. Decap commits to `main`, which triggers a deploy (about 2 minutes).
-- **Preview:** `public/admin/preview.js` renders each section with the real site styles.
+- **In the browser:** go to `https://home-wa.web.app/admin`, log in with GitHub, choose **Page layout → Home page** to edit, add (Add section), drag to reorder, or remove sections, or **Site settings** for links, contact, menu and footer. Then click Publish. Decap commits to `main`, which triggers a deploy (about 2 minutes).
+- **Preview:** `public/admin/preview.js` renders the whole layout with the real site styles. `/admin/**` is served with `Cache-Control: no-cache`, so config changes show up right away.
 - **Locally without GitHub login:** run `npm run dev` and `npx decap-server` in two terminals, then open http://localhost:4321/admin/index.html.
 - **Images:** uploads go to `public/uploads/`.
 - **Join It links:** go to Site settings > Join It links. Values starting with `JOINIT_` render as `#`.

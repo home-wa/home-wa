@@ -1,19 +1,26 @@
 ---
 import settingsRaw from '../content/settings.yml?raw';
+import layoutRaw from '../content/layout.yml?raw';
 import yaml from 'js-yaml';
 import { marked } from 'marked';
 import '../styles/global.css';
 
 const { site, links, contact, header, footer }: any = yaml.load(settingsRaw);
 
-// One file per page section (src/content/sections/*.yml). Order and anchors are fixed here.
-const sectionFiles = import.meta.glob('../content/sections/*.yml', { query: '?raw', import: 'default', eager: true }) as Record<string, string>;
-const ORDER: [string, string][] = [['hero', 'top'], ['about', 'about'], ['programs', 'programs'], ['benefits', 'benefits'], ['events', 'events'], ['faq', 'faq'], ['cta', 'join']];
-const sections = ORDER.map(([type, anchor]) => {
-  const raw = sectionFiles[`../content/sections/${type}.yml`];
-  const data: any = raw ? yaml.load(raw) : null;
-  return data && data.show !== false ? { ...data, type, anchor } : null;
-}).filter(Boolean) as any[];
+// The page layout: an ordered list of sections (src/content/layout.yml).
+// Anchors are automatic: known section kinds get a fixed anchor (used by the menu),
+// repeats and generic blocks get a numbered one.
+const layout: any = yaml.load(layoutRaw);
+const BASE: Record<string, string> = { hero: 'top', about: 'about', programs: 'programs', benefits: 'benefits', events: 'events', faq: 'faq', cta: 'join', textphoto: 'section', text: 'section' };
+const used = new Set<string>();
+const sections = (layout?.sections ?? []).filter((x: any) => x && x.show !== false).map((x: any, i: number) => {
+  let anchor = BASE[x.type] ?? 'section';
+  if (used.has(anchor) || anchor === 'section') { let n = 2; while (used.has(`${anchor}-${n}`)) n++; anchor = `${anchor}-${n}`; }
+  used.add(anchor);
+  return { ...x, anchor };
+});
+// Menu links whose section is missing or hidden are left out.
+const nav = (header.nav ?? []).filter((n: any) => used.has(n.anchor));
 
 // Join It placeholders (or empty values) render as "#" so the layout can be previewed.
 const url = (u?: string) => (!u || /^JOINIT_/.test(u) ? '#' : u);
@@ -57,7 +64,7 @@ const svg = (n: string, size = 24) => `<svg width="${size}" height="${size}" vie
   <div class="wrap header-inner">
     <a href="#top" class="logo"><img src={site.logo} alt={site.logo_alt} width="1453" height="557" /></a>
     <nav aria-label="Main" class="nav-desktop">
-      {header.nav.map((n: any) => <a class="nav-link" href={`#${n.anchor}`}>{n.label}</a>)}
+      {nav.map((n: any) => <a class="nav-link" href={`#${n.anchor}`}>{n.label}</a>)}
     </nav>
     <div class="header-actions">
       <a class="text-link login-desktop" href={login}>{header.login_label}</a>
@@ -66,7 +73,7 @@ const svg = (n: string, size = 24) => `<svg width="${size}" height="${size}" vie
     </div>
   </div>
   <nav id="mobile-menu" class="mobile-menu" aria-label="Mobile" hidden>
-    {header.nav.map((n: any) => <a href={`#${n.anchor}`}>{n.label}</a>)}
+    {nav.map((n: any) => <a href={`#${n.anchor}`}>{n.label}</a>)}
     <a class="btn btn-secondary" href={login}>{header.login_label}</a>
   </nav>
 </header>
@@ -188,6 +195,29 @@ const svg = (n: string, size = 24) => `<svg width="${size}" height="${size}" vie
           <h2 id={hid}>{s.heading}</h2>
           <p>{s.body}</p>
           <a class="btn btn-green full-mobile" href={join}>{s.button_label}</a>
+        </div>
+      </section>);
+    case 'textphoto': return (
+      <section id={s.anchor} class={`section ${s.background === 'cloud' ? 'bg-cloud' : ''}`} aria-labelledby={hid}>
+        <div class={`wrap two-col block-tp ${s.photo_side === 'right' ? 'photo-right' : ''}`}>
+          <div class="tp-media">
+            {s.image && <img class="photo" src={s.image} alt={s.image_alt ?? ''} width="1168" height="784" loading="lazy" />}
+          </div>
+          <div>
+            {s.eyebrow && <p class="eyebrow">{s.eyebrow}</p>}
+            <h2 id={hid}>{s.heading}</h2>
+            <div class="prose" set:html={md(s.body)} />
+            {s.button_label && s.button_url && <a class="btn btn-primary" href={url(s.button_url)}>{s.button_label}</a>}
+          </div>
+        </div>
+      </section>);
+    case 'text': return (
+      <section id={s.anchor} class={`section ${s.background === 'cloud' ? 'bg-cloud' : ''}`} aria-labelledby={hid}>
+        <div class={`wrap block-text ${s.centered ? 'center' : ''}`}>
+          {s.eyebrow && <p class="eyebrow">{s.eyebrow}</p>}
+          <h2 id={hid}>{s.heading}</h2>
+          <div class="prose" set:html={md(s.body)} />
+          {s.button_label && s.button_url && <a class="btn btn-primary" href={url(s.button_url)}>{s.button_label}</a>}
         </div>
       </section>);
     default: return null;

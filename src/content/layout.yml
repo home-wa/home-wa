@@ -1,0 +1,87 @@
+# Page layout: the sections of the home page, top to bottom.
+# Edited through the content manager at /admin (Page layout), or by hand.
+sections:
+  - type: hero
+    show: true
+    badge: Serving families since 1986
+    headline: Homeschool with confidence, together.
+    subhead: A warm, faith-based community where homeschooling families in North King and South Snohomish counties learn and thrive together.
+    image: /uploads/hero-tide-pools.webp
+    image_alt: Parents and children kneeling by a tide pool on a rocky Puget Sound beach, one girl sketching in a notebook
+    primary_label: Become a Member
+    secondary_label: Member Login
+  - type: about
+    show: true
+    eyebrow: Who we are
+    heading: A warm community for your homeschooling journey
+    body: |
+      Home Oriented Meaningful Education (H.O.M.E.) is here to support families on their homeschooling journey. We help parents explore homeschooling with confidence, encourage growth for both parents and kids, and offer a warm, faith-based community where families can learn and thrive together.
+
+      Since 1986, H.O.M.E. has welcomed hundreds of families across North King and South Snohomish counties. While our group is rooted in Christian values, everyone is welcome to join.
+
+      H.O.M.E. is led by a volunteer Board of Directors made up of homeschooling parents.
+    image: /uploads/about-classroom-stem.webp
+    image_alt: Students and parents gathered around a table building a model structure together during a H.O.M.E. class
+  - type: programs
+    show: true
+    eyebrow: What we offer
+    heading: Activities, field trips, and events for every age
+    link_label: Learn more
+    cards:
+      - icon: parents
+        title: Parents
+        body: Monthly parent meetings for encouragement and support — topics like Intro to Homeschooling and Homeschooling High School. Free for members; your first meeting is free as a guest, then $10 at the door.
+      - icon: kids
+        title: Kids
+        body: 'Kids’ Day outings about once a month for K–7th grade: the pumpkin patch in October, The Nutcracker in December, Edmonds Beach at low tide in spring, plus museums, hikes, swimming, and skating. Parents attend with their kids.'
+      - icon: teens
+        title: Teens
+        body: Social events and community service for members ages 14 and up, with traditions like the Corn Maze & Bonfire, Homecoming, and Spring Formal. Seniors also get monthly get-togethers with their graduating class.
+    extras:
+      - title: Student Leadership Team
+        body: Teens grow as leaders on a team that serves under the Board to support H.O.M.E., build leadership skills, foster godly character, and promote fellowship among students and families.
+        tone: sky
+      - title: Graduation
+        body: Each June, H.O.M.E. sponsors a graduation ceremony personalized to that year’s class — speakers, music, worship, and fellowship, followed by a reception and a surprise Grads Night Out.
+        tone: mint
+  - type: benefits
+    show: true
+    eyebrow: Member benefits
+    heading: What membership includes
+    cost: 'One membership covers your whole family: $55 per year, June 1 through May 31. Open to any homeschooling family.'
+    button_label: Become a Member
+    items:
+      - Free monthly parent meetings
+      - Kids’ Day and teen events at member pricing
+      - Borrow our Woodland Park Zoo card — free entry for two adults and their children
+      - Graduation ceremony, senior events, and the members-only Facebook group
+  - type: events
+    show: true
+    heading: Events and calendar
+    body: Our event calendar is for members, and events are hidden for safety and security reasons. Members can see and register for events through our member portal. Not a member yet but curious? Email us and we’ll tell you what’s coming up.
+    button_label: See Events (members)
+    email_label: Not a member? Email us for info
+  - type: faq
+    show: true
+    eyebrow: Good to know
+    heading: Questions families ask before joining
+    intro: Whether you’re just starting to think about homeschooling or have been at it for years, here’s what most families want to know first.
+    card_heading: Still have a question?
+    card_body: Send us a note and a board member will get back to you. Or come to your first parent meeting — it’s free, and it’s the easiest way to meet us.
+    card_button: Email us
+    items:
+      - question: Do I have to be a Christian to join?
+        answer: No. While our group is rooted in Christian values, everyone is welcome to join.
+      - question: Who can join, and what does it cost?
+        answer: Membership is open to any homeschooling family. It costs $55 per family per year and runs June 1 through May 31. Dues are non-refundable.
+      - question: Are Kids’ Days drop-off events?
+        answer: 'No. Kids’ Day events are not drop-off activities: parents attend with their children.'
+      - question: Can non-members come to events?
+        answer: Sometimes. Your first parent meeting is free, and after that it’s $10 at the door. Some Kids’ Day events are open to non-members for an extra fee. Event refunds are available only up to the registration deadline.
+      - question: I’m new to homeschooling in Washington. Where do I start?
+        answer: File a Declaration of Intent with your local school district by September 15 each year. The [Washington Homeschool Organization](https://washhomeschool.org) walks through the state requirements, and [HSLDA](https://hslda.org) covers legal questions. Our parent meetings are a great place to ask the rest.
+  - type: cta
+    show: true
+    heading: Ready to join our community?
+    body: Membership signup takes just a few minutes.
+    button_label: Become a Member

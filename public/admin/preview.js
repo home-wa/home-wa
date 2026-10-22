@@ -28,36 +28,36 @@
     }).join('');
   }
   function get(entry, path) { var v = entry.getIn(['data'].concat(path)); return v && v.toJS ? v.toJS() : v; }
-  function wrap(entry, el) {
-    var show = get(entry, ['show']) !== false;
+  function wrap(d, el) {
+    var show = d.show !== false;
     return h('div', null, show ? null : h('p', { className: 'pv-note' }, 'This section is hidden on the live page.'), h('div', { className: show ? '' : 'pv-hidden' }, el));
   }
-  function photo(props, field, ph, cls) {
-    var src = get(props.entry, [field]);
-    if (src) return h('img', { className: 'photo', src: props.getAsset(src).toString(), alt: get(props.entry, ['image_alt']) || '' });
+  function photo(d, p, cls) {
+    var src = d.image;
+    if (src) return h('img', { className: 'photo', src: p.getAsset(src).toString(), alt: d.image_alt || '' });
     return h('div', { className: 'photo placeholder ' + cls }, icon('image', 32), h('strong', null, 'No photo yet'));
   }
   function btn(cls, label) { return h('a', { className: 'btn ' + cls, href: '#' }, label); }
 
-  var Hero = createClass({ render: function () {
-    var e = this.props.entry, g = function (k) { return get(e, [k]); };
-    return wrap(e, h('section', { className: 'hero bg-cloud' }, h('div', { className: 'wrap two-col' },
-      h('div', { className: 'hero-media' }, photo(this.props, 'image', '', 'sky')),
+  function Hero(d, p) {
+    var g = function (k) { return d[k]; };
+    return wrap(d, h('section', { className: 'hero bg-cloud' }, h('div', { className: 'wrap two-col' },
+      h('div', { className: 'hero-media' }, photo(d, p, 'sky')),
       h('div', { className: 'hero-text' }, g('badge') ? h('span', { className: 'badge' }, g('badge')) : null,
         h('h1', null, g('headline')), h('p', { className: 'subhead' }, g('subhead')),
         h('div', { className: 'btn-row' }, btn('btn-primary', g('primary_label')), btn('btn-secondary', g('secondary_label')))))));
-  } });
+  }
 
-  var About = createClass({ render: function () {
-    var e = this.props.entry, g = function (k) { return get(e, [k]); };
-    return wrap(e, h('section', { className: 'section' }, h('div', { className: 'wrap two-col about' },
-      h('div', { className: 'about-media' }, photo(this.props, 'image', '', 'mint')),
-      h('div', null, h('p', { className: 'eyebrow' }, g('eyebrow')), h('h2', null, g('heading')), h('div', { className: 'prose' }, this.props.widgetFor('body'))))));
-  } });
+  function About(d, p) {
+    var g = function (k) { return d[k]; };
+    return wrap(d, h('section', { className: 'section' }, h('div', { className: 'wrap two-col about' },
+      h('div', { className: 'about-media' }, photo(d, p, 'mint')),
+      h('div', null, h('p', { className: 'eyebrow' }, g('eyebrow')), h('h2', null, g('heading')), h('div', { className: 'prose' }, h('div', { dangerouslySetInnerHTML: { __html: md(d.body) } }))))));
+  }
 
-  var Programs = createClass({ render: function () {
-    var e = this.props.entry, g = function (k) { return get(e, [k]); };
-    return wrap(e, h('section', { className: 'section bg-cloud' }, h('div', { className: 'wrap' },
+  function Programs(d, p) {
+    var g = function (k) { return d[k]; };
+    return wrap(d, h('section', { className: 'section bg-cloud' }, h('div', { className: 'wrap' },
       h('p', { className: 'eyebrow' }, g('eyebrow')), h('h2', { className: 'narrow' }, g('heading')),
       h('div', { className: 'cards' }, (g('cards') || []).map(function (c, i) {
         return h('article', { className: 'card', key: i }, icon(c.icon, 24, 'icon-tile icon-' + c.icon), h('h3', null, c.title), h('p', { className: 'card-body' }, c.body), h('a', { className: 'text-link', href: '#' }, (g('link_label') || '') + ' →'));
@@ -65,37 +65,37 @@
       h('div', { className: 'extras' }, (g('extras') || []).map(function (x, i) {
         return h('div', { className: 'extra ' + x.tone, key: i }, h('h3', null, x.title), h('p', null, x.body));
       })))));
-  } });
+  }
 
-  var Benefits = createClass({ render: function () {
-    var e = this.props.entry, g = function (k) { return get(e, [k]); };
-    return wrap(e, h('section', { className: 'section' }, h('div', { className: 'wrap two-col benefits' },
+  function Benefits(d, p) {
+    var g = function (k) { return d[k]; };
+    return wrap(d, h('section', { className: 'section' }, h('div', { className: 'wrap two-col benefits' },
       h('div', null, h('p', { className: 'eyebrow' }, g('eyebrow')), h('h2', null, g('heading')), h('p', { className: 'lead' }, g('cost')), btn('btn-primary full-mobile', g('button_label'))),
       h('ul', { className: 'checklist' }, (g('items') || []).map(function (t, i) { return h('li', { key: i }, icon('check', 20), t); })))));
-  } });
+  }
 
-  var Events = createClass({ render: function () {
-    var e = this.props.entry, g = function (k) { return get(e, [k]); };
-    return wrap(e, h('section', { className: 'events bg-sky' }, h('div', { className: 'wrap events-inner' },
+  function Events(d, p) {
+    var g = function (k) { return d[k]; };
+    return wrap(d, h('section', { className: 'events bg-sky' }, h('div', { className: 'wrap events-inner' },
       icon('calendar', 24, 'icon-tile white'),
       h('div', { className: 'events-text' }, h('h2', null, g('heading')), h('p', null, g('body'))),
       h('div', { className: 'events-actions' }, btn('btn-primary full-mobile', g('button_label')), h('a', { className: 'text-link', href: '#' }, g('email_label'))))));
-  } });
+  }
 
-  var Faq = createClass({ render: function () {
-    var e = this.props.entry, g = function (k) { return get(e, [k]); };
+  function Faq(d, p) {
+    var g = function (k) { return d[k]; };
     var card = h('div', { className: 'ask-card', style: { marginTop: '32px' } }, icon('chat', 24, 'icon-tile white'), h('h3', null, g('card_heading')), h('p', null, g('card_body')), btn('btn-secondary btn-sm', g('card_button')));
-    return wrap(e, h('section', { className: 'section' }, h('div', { className: 'wrap two-col faq' },
+    return wrap(d, h('section', { className: 'section' }, h('div', { className: 'wrap two-col faq' },
       h('div', null, h('p', { className: 'eyebrow' }, g('eyebrow')), h('h2', null, g('heading')), h('p', { className: 'lead' }, g('intro')), card),
       h('div', { className: 'faq-list' }, (g('items') || []).map(function (q, i) {
         return h('details', { key: i, open: true }, h('summary', null, h('h3', null, q.question), icon('chevron', 20, 'chev')), h('div', { className: 'answer', dangerouslySetInnerHTML: { __html: md(q.answer) } }));
       })))));
-  } });
+  }
 
-  var Cta = createClass({ render: function () {
-    var e = this.props.entry, g = function (k) { return get(e, [k]); };
-    return wrap(e, h('section', { className: 'cta' }, h('div', { className: 'wrap center' }, h('h2', null, g('heading')), h('p', null, g('body')), btn('btn-green full-mobile', g('button_label')))));
-  } });
+  function Cta(d, p) {
+    var g = function (k) { return d[k]; };
+    return wrap(d, h('section', { className: 'cta' }, h('div', { className: 'wrap center' }, h('h2', null, g('heading')), h('p', null, g('body')), btn('btn-green full-mobile', g('button_label')))));
+  }
 
   var Settings = createClass({ render: function () {
     var p = this.props, e = p.entry, g = function (k) { return get(e, k) || {}; };
@@ -117,12 +117,32 @@
         h('p', { className: 'muted' }, '© ' + new Date().getFullYear() + ' ' + (footer.copyright || '')))));
   } });
 
-  CMS.registerPreviewTemplate('hero', Hero);
-  CMS.registerPreviewTemplate('about', About);
-  CMS.registerPreviewTemplate('programs', Programs);
-  CMS.registerPreviewTemplate('benefits', Benefits);
-  CMS.registerPreviewTemplate('events', Events);
-  CMS.registerPreviewTemplate('faq', Faq);
-  CMS.registerPreviewTemplate('cta', Cta);
+  function TextPhoto(d, p) {
+    var bg = d.background === 'cloud' ? ' bg-cloud' : '';
+    return wrap(d, h('section', { className: 'section' + bg }, h('div', { className: 'wrap two-col block-tp' + (d.photo_side === 'right' ? ' photo-right' : '') },
+      h('div', { className: 'tp-media' }, d.image ? photo(d, p, 'mint') : null),
+      h('div', null, d.eyebrow ? h('p', { className: 'eyebrow' }, d.eyebrow) : null, h('h2', null, d.heading),
+        h('div', { className: 'prose', dangerouslySetInnerHTML: { __html: md(d.body) } }),
+        d.button_label && d.button_url ? btn('btn-primary', d.button_label) : null))));
+  }
+  function Text(d) {
+    var bg = d.background === 'cloud' ? ' bg-cloud' : '';
+    return wrap(d, h('section', { className: 'section' + bg }, h('div', { className: 'wrap block-text' + (d.centered ? ' center' : '') },
+      d.eyebrow ? h('p', { className: 'eyebrow' }, d.eyebrow) : null, h('h2', null, d.heading),
+      h('div', { className: 'prose', dangerouslySetInnerHTML: { __html: md(d.body) } }),
+      d.button_label && d.button_url ? btn('btn-primary', d.button_label) : null)));
+  }
+  var RENDER = { hero: Hero, about: About, programs: Programs, benefits: Benefits, events: Events, faq: Faq, cta: Cta, textphoto: TextPhoto, text: Text };
+
+  var Layout = createClass({ render: function () {
+    var p = this.props, list = get(p.entry, ['sections']) || [];
+    if (!list.length) return h('p', { className: 'pv-note' }, 'No sections yet. Use "Add section" on the left.');
+    return h('main', null, list.map(function (d, i) {
+      var r = d && RENDER[d.type];
+      return h('div', { key: i }, r ? r(d, p) : h('p', { className: 'pv-note' }, 'Unknown section type'));
+    }));
+  } });
+
+  CMS.registerPreviewTemplate('home', Layout);
   CMS.registerPreviewTemplate('settings', Settings);
 })();

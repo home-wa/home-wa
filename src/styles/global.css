@@ -112,3 +112,7 @@ details[open] .chev{transform:rotate(180deg)}
   .footer-grid{grid-template-columns:2fr 1fr 1fr 1fr}
   .f-contact{align-items:flex-end;text-align:right}
 }
+/* generic blocks */
+.block-text{max-width:760px}.block-text.center{text-align:center;margin:0 auto}
+.block-tp .prose{margin-bottom:24px}.block-tp .prose:last-child{margin-bottom:0}
+@media (min-width:900px){.block-tp.photo-right .tp-media{order:2}}
