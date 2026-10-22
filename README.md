@@ -39,3 +39,16 @@ Setup required once:
 - Add repo secret `FIREBASE_SERVICE_ACCOUNT_HOME_WA` with the JSON key of a service account that has the **Firebase Hosting Admin** role (plus *Service Account User* / *API Keys Viewer* as the action's docs recommend). Easiest: `firebase init hosting:github`, or create the key and `gh secret set FIREBASE_SERVICE_ACCOUNT_HOME_WA -R home-wa/home-wa < key.json`, then delete the key file.
 
 The project runs on the free Spark plan. The custom domain (home-wa.org) is not connected yet; add it later in Firebase console → Hosting → Add custom domain.
+
+## CMS login helper (Cloud Function) — final steps
+
+The OAuth helper lives in `functions/` (function `oauth`, us-central1), served at `/api/auth` and `/api/callback` via the Hosting rewrite. Project `home-wa` is on Blaze and the required APIs are enabled.
+
+1. Create a GitHub OAuth App owned by the `home-wa` org with callback `https://home-wa.web.app/api/callback`.
+2. Set the secrets (paste the value on stdin, never on the command line):
+   `firebase functions:secrets:set GITHUB_OAUTH_CLIENT_ID --project home-wa` and
+   `firebase functions:secrets:set GITHUB_OAUTH_CLIENT_SECRET --project home-wa`
+3. `firebase deploy --only functions,hosting --project home-wa`
+4. Set image cleanup: `firebase functions:artifacts:setpolicy --location us-central1 --days 1 --project home-wa --force`
+   (a keep-latest-2 count policy needs `gcloud artifacts repositories set-cleanup-policies`).
+5. Merge this branch into `main`.
