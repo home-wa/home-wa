@@ -2,7 +2,7 @@
 # Edited through Decap CMS at /admin, or by hand.
 site:
   title: "H.O.M.E. | Home Oriented Meaningful Education"
-  description: "A warm, faith-based homeschool community serving families in North King and South Snohomish counties, WA, since 1986."
+  description: "Home Oriented Meaningful Education (H.O.M.E.) is a faith-based member organization for homeschooling families, families in North King and South Snohomish counties, WA, since 1986."
   logo: /uploads/home-logo.png
   logo_alt: "H.O.M.E. — Home Oriented Meaningful Education"
 links:
@@ -41,7 +41,7 @@ sections:
 
       H.O.M.E. is led by a volunteer Board of Directors made up of homeschooling parents.
     image: /uploads/about-classroom-stem.webp
-    image_alt: Students and parents gathered around a table building a model structure together during a co-op class
+    image_alt: Students and parents gathered around a table building a model structure together during a H.O.M.E. class
   - type: programs
     anchor: programs
     eyebrow: What we offer
