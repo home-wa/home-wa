@@ -1,0 +1,190 @@
+backend:
+  name: github
+  repo: home-wa/home-wa
+  branch: main
+  # TODO(OAuth): Decap's GitHub backend needs an OAuth helper (it cannot use
+  # Firebase Hosting alone). Deploy one (see README "CMS login") and set its URL:
+  base_url: https://TODO-OAUTH-HELPER.example.com
+  # auth_endpoint: auth   # uncomment/adjust if your helper uses a different path
+
+# Local editing without GitHub: run `npx decap-server` and open /admin on the dev server.
+local_backend: true
+
+media_folder: public/uploads
+public_folder: /uploads
+site_url: https://home-wa.org
+display_url: https://home-wa.org
+
+collections:
+  - name: pages
+    label: Pages
+    files:
+      - name: home
+        label: Landing page
+        file: src/content/home/index.yml
+        format: yaml
+        fields:
+          - label: Site
+            name: site
+            widget: object
+            collapsed: true
+            fields:
+              - { label: Browser tab title, name: title, widget: string }
+              - { label: Search description, name: description, widget: text }
+              - { label: Logo, name: logo, widget: image }
+              - { label: Logo alt text, name: logo_alt, widget: string }
+          - label: Join It links
+            name: links
+            widget: object
+            hint: "Copy from Join It: Member Portal > Portal Widgets > Button or Link Widget. Placeholders starting with JOINIT_ render as #."
+            fields:
+              - { label: Join / membership checkout URL, name: join, widget: string }
+              - { label: Member login URL, name: login, widget: string }
+              - { label: Member portal / events URL, name: portal, widget: string }
+          - label: Contact
+            name: contact
+            widget: object
+            fields:
+              - { label: Contact email, name: email, widget: string, hint: "Used in Events, FAQ card and footer" }
+          - label: Header
+            name: header
+            widget: object
+            collapsed: true
+            fields:
+              - { label: Member login label, name: login_label, widget: string }
+              - { label: Join button label, name: join_label, widget: string }
+              - label: Navigation
+                name: nav
+                widget: list
+                summary: "{{fields.label}}"
+                fields:
+                  - { label: Label, name: label, widget: string }
+                  - { label: Section anchor, name: anchor, widget: string, hint: "Must match a section's anchor" }
+          - label: Page sections
+            name: sections
+            widget: list
+            hint: Drag to reorder sections, or add/remove them.
+            typeKey: type
+            summary: "{{fields.anchor}}"
+            types:
+              - label: Hero
+                name: hero
+                widget: object
+                fields:
+                  - { label: Anchor, name: anchor, widget: string, default: top }
+                  - { label: Badge, name: badge, widget: string, required: false }
+                  - { label: Headline, name: headline, widget: string }
+                  - { label: Subhead, name: subhead, widget: text }
+                  - { label: Photo, name: image, widget: image, required: false }
+                  - { label: Photo alt text, name: image_alt, widget: string }
+                  - { label: Placeholder text (shown when no photo), name: image_placeholder, widget: string, required: false }
+                  - { label: Primary button label, name: primary_label, widget: string }
+                  - { label: Secondary button label, name: secondary_label, widget: string }
+              - label: About
+                name: about
+                widget: object
+                fields:
+                  - { label: Anchor, name: anchor, widget: string, default: about }
+                  - { label: Eyebrow, name: eyebrow, widget: string }
+                  - { label: Heading, name: heading, widget: string }
+                  - { label: Body, name: body, widget: markdown, buttons: [bold, italic, link], editor_components: [], modes: [rich_text] }
+                  - { label: Photo, name: image, widget: image, required: false }
+                  - { label: Photo alt text, name: image_alt, widget: string }
+                  - { label: Placeholder text (shown when no photo), name: image_placeholder, widget: string, required: false }
+              - label: Programs
+                name: programs
+                widget: object
+                fields:
+                  - { label: Anchor, name: anchor, widget: string, default: programs }
+                  - { label: Eyebrow, name: eyebrow, widget: string }
+                  - { label: Heading, name: heading, widget: string }
+                  - { label: Card link label, name: link_label, widget: string }
+                  - label: Cards
+                    name: cards
+                    widget: list
+                    summary: "{{fields.title}}"
+                    fields:
+                      - { label: Icon, name: icon, widget: select, options: [parents, kids, teens] }
+                      - { label: Title, name: title, widget: string }
+                      - { label: Body, name: body, widget: text }
+                  - label: Highlight strip
+                    name: extras
+                    widget: list
+                    summary: "{{fields.title}}"
+                    fields:
+                      - { label: Title, name: title, widget: string }
+                      - { label: Body, name: body, widget: text }
+                      - { label: Color, name: tone, widget: select, options: [sky, mint] }
+              - label: Member benefits
+                name: benefits
+                widget: object
+                fields:
+                  - { label: Anchor, name: anchor, widget: string, default: benefits }
+                  - { label: Eyebrow, name: eyebrow, widget: string }
+                  - { label: Heading, name: heading, widget: string }
+                  - { label: Cost line, name: cost, widget: text }
+                  - { label: Button label, name: button_label, widget: string }
+                  - { label: Benefits, name: items, widget: list, field: { label: Benefit, name: item, widget: string } }
+              - label: Events
+                name: events
+                widget: object
+                fields:
+                  - { label: Anchor, name: anchor, widget: string, default: events }
+                  - { label: Heading, name: heading, widget: string }
+                  - { label: Body, name: body, widget: text }
+                  - { label: Button label, name: button_label, widget: string }
+                  - { label: Email link label, name: email_label, widget: string }
+              - label: FAQ
+                name: faq
+                widget: object
+                fields:
+                  - { label: Anchor, name: anchor, widget: string, default: faq }
+                  - { label: Eyebrow, name: eyebrow, widget: string }
+                  - { label: Heading, name: heading, widget: string }
+                  - { label: Intro, name: intro, widget: text }
+                  - { label: Question card heading, name: card_heading, widget: string }
+                  - { label: Question card text, name: card_body, widget: text }
+                  - { label: Question card button, name: card_button, widget: string }
+                  - label: Questions
+                    name: items
+                    widget: list
+                    summary: "{{fields.question}}"
+                    fields:
+                      - { label: Question, name: question, widget: string }
+                      - { label: Answer, name: answer, widget: markdown, buttons: [bold, italic, link], editor_components: [] }
+              - label: Final call to action
+                name: cta
+                widget: object
+                fields:
+                  - { label: Anchor, name: anchor, widget: string, default: join }
+                  - { label: Heading, name: heading, widget: string }
+                  - { label: Body, name: body, widget: string }
+                  - { label: Button label, name: button_label, widget: string }
+          - label: Footer
+            name: footer
+            widget: object
+            collapsed: true
+            fields:
+              - { label: Nonprofit line, name: nonprofit, widget: string }
+              - { label: EIN, name: ein, widget: string }
+              - { label: Serving line, name: serving, widget: string }
+              - { label: Copyright text (after year), name: copyright, widget: string }
+              - { label: Social heading, name: social_heading, widget: string }
+              - label: Social links
+                name: social
+                widget: list
+                hint: Leave a URL empty to hide that item.
+                summary: "{{fields.label}}"
+                fields:
+                  - { label: Label, name: label, widget: string }
+                  - { label: Sublabel, name: sublabel, widget: string, required: false }
+                  - { label: Icon, name: icon, widget: select, options: [facebook, instagram] }
+                  - { label: URL, name: url, widget: string, required: false }
+              - { label: Resources heading, name: resources_heading, widget: string }
+              - label: Resource links
+                name: resources
+                widget: list
+                summary: "{{fields.label}}"
+                fields:
+                  - { label: Label, name: label, widget: string }
+                  - { label: URL, name: url, widget: string }
