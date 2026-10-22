@@ -26,9 +26,8 @@ sections:
     badge: Serving families since 1986
     headline: Homeschool with confidence, together.
     subhead: A warm, faith-based community where homeschooling families in North King and South Snohomish counties learn and thrive together.
-    image: ""
-    image_alt: Parents and students building a model together at a H.O.M.E. co-op class
-    image_placeholder: Hero photo
+    image: /uploads/hero-tide-pools.webp
+    image_alt: Parents and children kneeling by a tide pool on a rocky Puget Sound beach, one girl sketching in a notebook
     primary_label: Become a Member
     secondary_label: Member Login
   - type: about
@@ -41,9 +40,8 @@ sections:
       Since 1986, H.O.M.E. has welcomed hundreds of families across North King and South Snohomish counties. While our group is rooted in Christian values, everyone is welcome to join.
 
       H.O.M.E. is led by a volunteer Board of Directors made up of homeschooling parents.
-    image: ""
-    image_alt: Families exploring tide pools together on a H.O.M.E. beach day
-    image_placeholder: Section photo
+    image: /uploads/about-classroom-stem.webp
+    image_alt: Students and parents gathered around a table building a model structure together during a co-op class
   - type: programs
     anchor: programs
     eyebrow: What we offer

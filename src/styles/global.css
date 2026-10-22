@@ -42,7 +42,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var
 .badge{display:inline-block;background:var(--mint);color:var(--green-text);font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:.08em;padding:6px 14px;border-radius:999px;margin-bottom:16px}
 .subhead{font-size:18px;line-height:1.5;color:var(--ink-soft)}
 .btn-row{display:flex;flex-direction:column;gap:12px;margin-top:24px}
-.photo{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:18px}
+.photo{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:18px}
 .placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border:1px dashed #b9c4dc}
 .placeholder.sky{background:var(--sky);color:var(--blue)}.placeholder.mint{background:var(--mint);color:var(--green-text);border-color:#b5d8bb}
 .about .about-media{order:2}
