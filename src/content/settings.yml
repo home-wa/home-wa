@@ -1,0 +1,52 @@
+# Site-wide settings: site info, Join It links, contact, header and footer.
+# Edited through the content manager at /admin, or by hand.
+site:
+  title: H.O.M.E. | Home Oriented Meaningful Education
+  description: Home Oriented Meaningful Education (H.O.M.E.) is a faith-based member organization serving homeschooling families in North King and South Snohomish counties, WA, since 1986.
+  logo: /uploads/home-logo.png
+  logo_alt: H.O.M.E. — Home Oriented Meaningful Education
+links:
+  join: JOINIT_JOIN_URL
+  login: JOINIT_LOGIN_URL
+  portal: JOINIT_PORTAL_URL
+contact:
+  email: membership@home-wa.org
+header:
+  login_label: Member Login
+  join_label: Join H.O.M.E.
+  nav:
+    - label: About
+      anchor: about
+    - label: Programs
+      anchor: programs
+    - label: Benefits
+      anchor: benefits
+    - label: Events
+      anchor: events
+    - label: FAQ
+      anchor: faq
+footer:
+  nonprofit: H.O.M.E. is a registered nonprofit organization committed to serving our community.
+  ein: 91-1731504
+  serving: Serving North King and South Snohomish counties since 1986
+  copyright: H.O.M.E. All rights reserved.
+  social_heading: Follow along
+  social:
+    - label: Facebook group
+      sublabel: Members only
+      icon: facebook
+      url: https://www.facebook.com/groups/785129662222053/
+    - label: '@homeeducation2021'
+      sublabel: Instagram
+      icon: instagram
+      url: https://www.instagram.com/homeeducation2021/
+    - label: '@homestudentleadership'
+      sublabel: Teens on Instagram
+      icon: instagram
+      url: https://www.instagram.com/homestudentleadership/
+  resources_heading: Resources
+  resources:
+    - label: Washington Homeschool Organization
+      url: https://washhomeschool.org
+    - label: Home School Legal Defense Association
+      url: https://hslda.org

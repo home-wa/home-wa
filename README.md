@@ -13,12 +13,18 @@ npm run preview    # serve dist/ locally
 
 ## Editing content
 
-All text, images and links live in **`src/content/home/index.yml`**. The page template (`src/pages/index.astro`) renders the `sections` list in order, so sections can be reordered, removed or duplicated. Styles are in `src/styles/global.css`.
+Content lives in YAML files, one per area:
 
-- **In the browser:** go to `https://<site>/admin`, log in with GitHub, edit "Pages → Landing page", and Publish. Decap commits to `main`, which triggers a deploy.
-- **Locally without GitHub login:** run `npm run dev` and `npx decap-server` in two terminals, then open http://localhost:4321/admin.
-- **Images:** uploads go to `public/uploads/`. The hero and About photos are empty until real photos are added (a placeholder box shows instead).
-- **Join It links:** set `links.join`, `links.login`, `links.portal` (Join It dashboard → Member Portal → Portal Widgets → Button or Link Widget). Values starting with `JOINIT_` render as `#`.
+- `src/content/settings.yml` holds the site info, Join It links, contact email, top menu and footer.
+- `src/content/sections/*.yml` has one file per page section (`hero`, `about`, `programs`, `benefits`, `events`, `faq`, `cta`). Each has a `show` switch to hide it.
+
+Section order and in-page anchors are fixed in `src/pages/index.astro` (`ORDER`). Styles are in `src/styles/global.css`. `npm run dev/build` copies that CSS to `public/admin/preview.css` so the CMS preview matches the site.
+
+- **In the browser:** go to `https://home-wa.web.app/admin`, log in with GitHub, choose **Page sections** or **Site settings**, edit, and click Publish. Decap commits to `main`, which triggers a deploy (about 2 minutes).
+- **Preview:** `public/admin/preview.js` renders each section with the real site styles.
+- **Locally without GitHub login:** run `npm run dev` and `npx decap-server` in two terminals, then open http://localhost:4321/admin/index.html.
+- **Images:** uploads go to `public/uploads/`.
+- **Join It links:** go to Site settings > Join It links. Values starting with `JOINIT_` render as `#`.
 
 ## CMS login (GitHub OAuth helper) — TODO
 

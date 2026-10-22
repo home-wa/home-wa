@@ -2,9 +2,12 @@ backend:
   name: github
   repo: home-wa/home-wa
   branch: main
-  # OAuth helper: Cloud Function "cmsauth" (functions/index.js), served via Hosting rewrite /api/**
+  # Login helper: Cloud Function "cmsauth" (functions/index.js), served at /api/** via Hosting
   base_url: https://home-wa.web.app
   auth_endpoint: api/auth
+  commit_messages:
+    update: "Update {{collection}}: {{slug}}"
+    uploadMedia: "Upload photo {{path}}"
 
 # Local editing without GitHub: run `npx decap-server` and open /admin on the dev server.
 local_backend: true
@@ -12,178 +15,206 @@ local_backend: true
 media_folder: public/uploads
 public_folder: /uploads
 site_url: https://home-wa.org
-display_url: https://home-wa.org
+display_url: https://home-wa.web.app
+logo_url: /uploads/home-logo.png
 
 collections:
-  - name: pages
-    label: Pages
+  # ---------------------------------------------------------------- Page sections
+  - name: sections
+    label: "Page sections"
+    label_singular: "Page section"
+    description: "How to edit: pick a section below (listed top of the page first). Change the text or photo, check the preview on the right, then click Publish. The live site updates about 2 minutes later."
+    editor: { preview: true }
     files:
-      - name: home
-        label: Landing page
-        file: src/content/home/index.yml
-        format: yaml
+      - name: hero
+        label: "1. Top banner (Hero)"
+        file: src/content/sections/hero.yml
         fields:
-          - label: Site
-            name: site
-            widget: object
-            collapsed: true
+          - { label: "Show this section", name: show, widget: boolean, default: true, hint: "Turn off to hide this section from the page." }
+          - { label: "Small label above the headline", name: badge, widget: string, required: false, hint: "Short text in a green pill, e.g. 'Serving families since 1986'. Leave empty to hide." }
+          - { label: "Headline", name: headline, widget: string, hint: "The big title visitors see first. Keep it short." }
+          - { label: "Intro sentence", name: subhead, widget: text, hint: "One or two sentences under the headline." }
+          - { label: "Photo", name: image, widget: image, required: false, choose_url: false, hint: "A wide, landscape photo works best. It is cropped slightly to fit." }
+          - { label: "Photo description", name: image_alt, widget: string, hint: "Describe the photo for people using screen readers, e.g. 'Families exploring tide pools'." }
+          - { label: "Text shown if there is no photo", name: image_placeholder, widget: hidden, required: false }
+          - { label: "Main button text", name: primary_label, widget: string, hint: "Blue button. It opens the Join It membership signup." }
+          - { label: "Second button text", name: secondary_label, widget: string, hint: "Outlined button. It opens the Join It member login." }
+
+      - name: about
+        label: "2. About us"
+        file: src/content/sections/about.yml
+        fields:
+          - { label: "Show this section", name: show, widget: boolean, default: true }
+          - { label: "Small label above the heading", name: eyebrow, widget: string, hint: "Short green text, e.g. 'Who we are'." }
+          - { label: "Heading", name: heading, widget: string }
+          - { label: "Text", name: body, widget: markdown, buttons: [bold, italic, link], editor_components: [], modes: [rich_text], hint: "Press Enter twice to start a new paragraph." }
+          - { label: "Photo", name: image, widget: image, required: false, choose_url: false, hint: "Landscape photo. It is cropped slightly to fit." }
+          - { label: "Photo description", name: image_alt, widget: string, hint: "Describe the photo for people using screen readers." }
+          - { label: "Text shown if there is no photo", name: image_placeholder, widget: hidden, required: false }
+
+      - name: programs
+        label: "3. What we offer (Programs)"
+        file: src/content/sections/programs.yml
+        fields:
+          - { label: "Show this section", name: show, widget: boolean, default: true }
+          - { label: "Small label above the heading", name: eyebrow, widget: string }
+          - { label: "Heading", name: heading, widget: string }
+          - { label: "Link text on each card", name: link_label, widget: string, hint: "Shown at the bottom of each card. It opens the Join It member portal." }
+          - label: "Cards"
+            name: cards
+            widget: list
+            collapsed: false
+            label_singular: card
+            summary: "{{fields.title}}"
+            hint: "Three cards side by side: Parents, Kids, Teens."
             fields:
-              - { label: Browser tab title, name: title, widget: string }
-              - { label: Search description, name: description, widget: text }
-              - { label: Logo, name: logo, widget: image }
-              - { label: Logo alt text, name: logo_alt, widget: string }
-          - label: Join It links
+              - { label: "Icon", name: icon, widget: select, options: [{ label: "Parents (two people)", value: parents }, { label: "Kids (smiley face)", value: kids }, { label: "Teens (graduation cap)", value: teens }] }
+              - { label: "Title", name: title, widget: string }
+              - { label: "Description", name: body, widget: text }
+          - label: "Highlight boxes below the cards"
+            name: extras
+            widget: list
+            collapsed: false
+            label_singular: box
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Title", name: title, widget: string }
+              - { label: "Description", name: body, widget: text }
+              - { label: "Background color", name: tone, widget: select, options: [{ label: "Light blue", value: sky }, { label: "Light green", value: mint }] }
+
+      - name: benefits
+        label: "4. Member benefits"
+        file: src/content/sections/benefits.yml
+        fields:
+          - { label: "Show this section", name: show, widget: boolean, default: true }
+          - { label: "Small label above the heading", name: eyebrow, widget: string }
+          - { label: "Heading", name: heading, widget: string }
+          - { label: "Price and membership term", name: cost, widget: text, hint: "Update this if the membership price or dates change." }
+          - { label: "Button text", name: button_label, widget: string, hint: "Opens the Join It membership signup." }
+          - { label: "Benefits list", name: items, widget: list, collapsed: false, label_singular: benefit, field: { label: "Benefit", name: item, widget: string }, hint: "Three to seven short items work best." }
+
+      - name: events
+        label: "5. Events"
+        file: src/content/sections/events.yml
+        fields:
+          - { label: "Show this section", name: show, widget: boolean, default: true }
+          - { label: "Heading", name: heading, widget: string }
+          - { label: "Text", name: body, widget: text }
+          - { label: "Button text", name: button_label, widget: string, hint: "Opens the Join It member portal." }
+          - { label: "Email link text", name: email_label, widget: string, hint: "Opens an email to the contact address in Site settings." }
+
+      - name: faq
+        label: "6. Questions (FAQ)"
+        file: src/content/sections/faq.yml
+        fields:
+          - { label: "Show this section", name: show, widget: boolean, default: true }
+          - { label: "Small label above the heading", name: eyebrow, widget: string }
+          - { label: "Heading", name: heading, widget: string }
+          - { label: "Intro text", name: intro, widget: text }
+          - label: "Questions and answers"
+            name: items
+            widget: list
+            collapsed: true
+            label_singular: question
+            summary: "{{fields.question}}"
+            hint: "Click a question to edit it. Drag to change the order. The first one shows open on the page."
+            fields:
+              - { label: "Question", name: question, widget: string }
+              - { label: "Answer", name: answer, widget: markdown, buttons: [bold, italic, link], editor_components: [], modes: [rich_text] }
+          - { label: "Contact box: heading", name: card_heading, widget: string }
+          - { label: "Contact box: text", name: card_body, widget: text }
+          - { label: "Contact box: button text", name: card_button, widget: string, hint: "Opens an email to the contact address in Site settings." }
+
+      - name: cta
+        label: "7. Final call to action"
+        file: src/content/sections/cta.yml
+        fields:
+          - { label: "Show this section", name: show, widget: boolean, default: true }
+          - { label: "Heading", name: heading, widget: string }
+          - { label: "Text", name: body, widget: string }
+          - { label: "Button text", name: button_label, widget: string, hint: "Green button. It opens the Join It membership signup." }
+
+  # ---------------------------------------------------------------- Site settings
+  - name: settings
+    label: "Site settings"
+    description: "Join It links, contact email, menu, footer and search-engine text. These apply to the whole page."
+    editor: { preview: true }
+    files:
+      - name: settings
+        label: "Site settings"
+        file: src/content/settings.yml
+        fields:
+          - label: "Join It links"
             name: links
             widget: object
-            hint: "Copy from Join It: Member Portal > Portal Widgets > Button or Link Widget. Placeholders starting with JOINIT_ render as #."
+            collapsed: false
+            hint: "Copy these from your Join It dashboard (Member Portal > Portal Widgets > Button or Link Widget). Until they are filled in, buttons go nowhere."
             fields:
-              - { label: Join / membership checkout URL, name: join, widget: string }
-              - { label: Member login URL, name: login, widget: string }
-              - { label: Member portal / events URL, name: portal, widget: string }
-          - label: Contact
+              - { label: "Membership signup link", name: join, widget: string, hint: "Used by every 'Join' and 'Become a Member' button." }
+              - { label: "Member login link", name: login, widget: string, hint: "Used by every 'Member Login' link." }
+              - { label: "Member portal / events link", name: portal, widget: string, hint: "Used by 'See Events' and the 'Learn more' links on the cards." }
+          - label: "Contact"
             name: contact
             widget: object
+            collapsed: false
             fields:
-              - { label: Contact email, name: email, widget: string, hint: "Used in Events, FAQ card and footer" }
-          - label: Header
+              - { label: "Contact email", name: email, widget: string, hint: "Shown in the Events and Questions sections and the footer." }
+          - label: "Top menu"
             name: header
             widget: object
             collapsed: true
             fields:
-              - { label: Member login label, name: login_label, widget: string }
-              - { label: Join button label, name: join_label, widget: string }
-              - label: Navigation
+              - { label: "Member login link text", name: login_label, widget: string }
+              - { label: "Join button text", name: join_label, widget: string }
+              - label: "Menu links"
                 name: nav
                 widget: list
+                allow_add: false
+                allow_delete: false
+                collapsed: true
                 summary: "{{fields.label}}"
+                hint: "You can rename or reorder the menu links. Each one jumps to its section of the page."
                 fields:
-                  - { label: Label, name: label, widget: string }
-                  - { label: Section anchor, name: anchor, widget: string, hint: "Must match a section's anchor" }
-          - label: Page sections
-            name: sections
-            widget: list
-            hint: Drag to reorder sections, or add/remove them.
-            typeKey: type
-            summary: "{{fields.anchor}}"
-            types:
-              - label: Hero
-                name: hero
-                widget: object
-                fields:
-                  - { label: Anchor, name: anchor, widget: string, default: top }
-                  - { label: Badge, name: badge, widget: string, required: false }
-                  - { label: Headline, name: headline, widget: string }
-                  - { label: Subhead, name: subhead, widget: text }
-                  - { label: Photo, name: image, widget: image, required: false }
-                  - { label: Photo alt text, name: image_alt, widget: string }
-                  - { label: Placeholder text (shown when no photo), name: image_placeholder, widget: string, required: false }
-                  - { label: Primary button label, name: primary_label, widget: string }
-                  - { label: Secondary button label, name: secondary_label, widget: string }
-              - label: About
-                name: about
-                widget: object
-                fields:
-                  - { label: Anchor, name: anchor, widget: string, default: about }
-                  - { label: Eyebrow, name: eyebrow, widget: string }
-                  - { label: Heading, name: heading, widget: string }
-                  - { label: Body, name: body, widget: markdown, buttons: [bold, italic, link], editor_components: [], modes: [rich_text] }
-                  - { label: Photo, name: image, widget: image, required: false }
-                  - { label: Photo alt text, name: image_alt, widget: string }
-                  - { label: Placeholder text (shown when no photo), name: image_placeholder, widget: string, required: false }
-              - label: Programs
-                name: programs
-                widget: object
-                fields:
-                  - { label: Anchor, name: anchor, widget: string, default: programs }
-                  - { label: Eyebrow, name: eyebrow, widget: string }
-                  - { label: Heading, name: heading, widget: string }
-                  - { label: Card link label, name: link_label, widget: string }
-                  - label: Cards
-                    name: cards
-                    widget: list
-                    summary: "{{fields.title}}"
-                    fields:
-                      - { label: Icon, name: icon, widget: select, options: [parents, kids, teens] }
-                      - { label: Title, name: title, widget: string }
-                      - { label: Body, name: body, widget: text }
-                  - label: Highlight strip
-                    name: extras
-                    widget: list
-                    summary: "{{fields.title}}"
-                    fields:
-                      - { label: Title, name: title, widget: string }
-                      - { label: Body, name: body, widget: text }
-                      - { label: Color, name: tone, widget: select, options: [sky, mint] }
-              - label: Member benefits
-                name: benefits
-                widget: object
-                fields:
-                  - { label: Anchor, name: anchor, widget: string, default: benefits }
-                  - { label: Eyebrow, name: eyebrow, widget: string }
-                  - { label: Heading, name: heading, widget: string }
-                  - { label: Cost line, name: cost, widget: text }
-                  - { label: Button label, name: button_label, widget: string }
-                  - { label: Benefits, name: items, widget: list, field: { label: Benefit, name: item, widget: string } }
-              - label: Events
-                name: events
-                widget: object
-                fields:
-                  - { label: Anchor, name: anchor, widget: string, default: events }
-                  - { label: Heading, name: heading, widget: string }
-                  - { label: Body, name: body, widget: text }
-                  - { label: Button label, name: button_label, widget: string }
-                  - { label: Email link label, name: email_label, widget: string }
-              - label: FAQ
-                name: faq
-                widget: object
-                fields:
-                  - { label: Anchor, name: anchor, widget: string, default: faq }
-                  - { label: Eyebrow, name: eyebrow, widget: string }
-                  - { label: Heading, name: heading, widget: string }
-                  - { label: Intro, name: intro, widget: text }
-                  - { label: Question card heading, name: card_heading, widget: string }
-                  - { label: Question card text, name: card_body, widget: text }
-                  - { label: Question card button, name: card_button, widget: string }
-                  - label: Questions
-                    name: items
-                    widget: list
-                    summary: "{{fields.question}}"
-                    fields:
-                      - { label: Question, name: question, widget: string }
-                      - { label: Answer, name: answer, widget: markdown, buttons: [bold, italic, link], editor_components: [] }
-              - label: Final call to action
-                name: cta
-                widget: object
-                fields:
-                  - { label: Anchor, name: anchor, widget: string, default: join }
-                  - { label: Heading, name: heading, widget: string }
-                  - { label: Body, name: body, widget: string }
-                  - { label: Button label, name: button_label, widget: string }
-          - label: Footer
+                  - { label: "Link text", name: label, widget: string }
+                  - { label: "Jumps to", name: anchor, widget: hidden }
+          - label: "Footer"
             name: footer
             widget: object
             collapsed: true
             fields:
-              - { label: Nonprofit line, name: nonprofit, widget: string }
-              - { label: EIN, name: ein, widget: string }
-              - { label: Serving line, name: serving, widget: string }
-              - { label: Copyright text (after year), name: copyright, widget: string }
-              - { label: Social heading, name: social_heading, widget: string }
-              - label: Social links
+              - { label: "Nonprofit statement", name: nonprofit, widget: string }
+              - { label: "Federal Tax ID (EIN)", name: ein, widget: string }
+              - { label: "Service area line", name: serving, widget: string }
+              - { label: "Copyright text (the year is added automatically)", name: copyright, widget: string }
+              - { label: "Social media heading", name: social_heading, widget: string }
+              - label: "Social media links"
                 name: social
                 widget: list
-                hint: Leave a URL empty to hide that item.
+                collapsed: true
+                label_singular: link
                 summary: "{{fields.label}}"
+                hint: "Leave the web address empty to hide a link."
                 fields:
-                  - { label: Label, name: label, widget: string }
-                  - { label: Sublabel, name: sublabel, widget: string, required: false }
-                  - { label: Icon, name: icon, widget: select, options: [facebook, instagram] }
-                  - { label: URL, name: url, widget: string, required: false }
-              - { label: Resources heading, name: resources_heading, widget: string }
-              - label: Resource links
+                  - { label: "Name", name: label, widget: string }
+                  - { label: "Small text below the name", name: sublabel, widget: string, required: false }
+                  - { label: "Icon", name: icon, widget: select, options: [{ label: Facebook, value: facebook }, { label: Instagram, value: instagram }] }
+                  - { label: "Web address", name: url, widget: string, required: false }
+              - { label: "Resources heading", name: resources_heading, widget: string }
+              - label: "Resource links"
                 name: resources
                 widget: list
+                collapsed: true
+                label_singular: link
                 summary: "{{fields.label}}"
                 fields:
-                  - { label: Label, name: label, widget: string }
-                  - { label: URL, name: url, widget: string }
+                  - { label: "Name", name: label, widget: string }
+                  - { label: "Web address", name: url, widget: string }
+          - label: "Logo and search-engine text"
+            name: site
+            widget: object
+            collapsed: true
+            fields:
+              - { label: "Page title (browser tab and Google)", name: title, widget: string }
+              - { label: "Short description for Google", name: description, widget: text }
+              - { label: "Logo", name: logo, widget: image, choose_url: false }
+              - { label: "Logo description", name: logo_alt, widget: string, hint: "For screen readers." }

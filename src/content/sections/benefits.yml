@@ -1,0 +1,12 @@
+# Page section: benefits
+# Edited through the content manager at /admin, or by hand.
+show: true
+eyebrow: Member benefits
+heading: What membership includes
+cost: 'One membership covers your whole family: $55 per year, June 1 through May 31. Open to any homeschooling family.'
+button_label: Become a Member
+items:
+  - Free monthly parent meetings
+  - Kids’ Day and teen events at member pricing
+  - Borrow our Woodland Park Zoo card — free entry for two adults and their children
+  - Graduation ceremony, senior events, and the members-only Facebook group

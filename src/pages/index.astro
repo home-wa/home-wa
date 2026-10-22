@@ -1,11 +1,19 @@
 ---
-import raw from '../content/home/index.yml?raw';
+import settingsRaw from '../content/settings.yml?raw';
 import yaml from 'js-yaml';
 import { marked } from 'marked';
 import '../styles/global.css';
 
-const data: any = yaml.load(raw);
-const { site, links, contact, header, sections = [], footer } = data;
+const { site, links, contact, header, footer }: any = yaml.load(settingsRaw);
+
+// One file per page section (src/content/sections/*.yml). Order and anchors are fixed here.
+const sectionFiles = import.meta.glob('../content/sections/*.yml', { query: '?raw', import: 'default', eager: true }) as Record<string, string>;
+const ORDER: [string, string][] = [['hero', 'top'], ['about', 'about'], ['programs', 'programs'], ['benefits', 'benefits'], ['events', 'events'], ['faq', 'faq'], ['cta', 'join']];
+const sections = ORDER.map(([type, anchor]) => {
+  const raw = sectionFiles[`../content/sections/${type}.yml`];
+  const data: any = raw ? yaml.load(raw) : null;
+  return data && data.show !== false ? { ...data, type, anchor } : null;
+}).filter(Boolean) as any[];
 
 // Join It placeholders (or empty values) render as "#" so the layout can be previewed.
 const url = (u?: string) => (!u || /^JOINIT_/.test(u) ? '#' : u);
