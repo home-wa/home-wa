@@ -35,7 +35,7 @@ Decap's `github` backend needs a small OAuth helper; Firebase Hosting alone cann
 `.github/workflows/deploy.yml` builds and deploys to Firebase Hosting on every push to `main` (and on manual dispatch) using `FirebaseExtended/action-hosting-deploy`.
 
 Setup required once:
-- Set the Firebase project id in `.firebaserc` and in `projectId:` in the workflow (currently `FIREBASE_PROJECT_ID` placeholder).
+- Set the Firebase project id in `.firebaserc` and in `projectId:` in the workflow (`home-wa`).
 - Add repo secret `FIREBASE_SERVICE_ACCOUNT_HOME_WA` with the JSON key of a service account that has the **Firebase Hosting Admin** role (plus *Service Account User* / *API Keys Viewer* as the action's docs recommend). Easiest: `firebase init hosting:github`, or create the key and `gh secret set FIREBASE_SERVICE_ACCOUNT_HOME_WA -R home-wa/home-wa < key.json`, then delete the key file.
 
 The project runs on the free Spark plan. The custom domain (home-wa.org) is not connected yet; add it later in Firebase console → Hosting → Add custom domain.
