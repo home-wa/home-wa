@@ -42,7 +42,7 @@ The project runs on the free Spark plan. The custom domain (home-wa.org) is not 
 
 ## CMS login helper (Cloud Function) — final steps
 
-The OAuth helper lives in `functions/` (function `oauth`, us-central1), served at `/api/auth` and `/api/callback` via the Hosting rewrite. Project `home-wa` is on Blaze and the required APIs are enabled.
+The OAuth helper lives in `functions/` (function `cmsauth`, us-central1), served at `/api/auth` and `/api/callback` via the Hosting rewrite. Project `home-wa` is on Blaze and the required APIs are enabled.
 
 1. Create a GitHub OAuth App owned by the `home-wa` org with callback `https://home-wa.web.app/api/callback`.
 2. Set the secrets (paste the value on stdin, never on the command line):

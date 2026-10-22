@@ -2,7 +2,7 @@ backend:
   name: github
   repo: home-wa/home-wa
   branch: main
-  # OAuth helper: Cloud Function "oauth" (functions/index.js), served via Hosting rewrite /api/**
+  # OAuth helper: Cloud Function "cmsauth" (functions/index.js), served via Hosting rewrite /api/**
   base_url: https://home-wa.web.app
   auth_endpoint: api/auth
 

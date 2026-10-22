@@ -23,7 +23,7 @@ const page = (status, content) => `<!doctype html><html><body><p>Completing logi
 })();
 </script></body></html>`;
 
-export const oauth = onRequest(
+export const cmsauth = onRequest(
   { region: 'us-central1', secrets: [CLIENT_ID, CLIENT_SECRET], maxInstances: 2, memory: '256MiB' },
   async (req, res) => {
     const path = req.path.replace(/^\/api/, '');
