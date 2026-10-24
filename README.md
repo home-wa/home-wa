@@ -13,20 +13,14 @@ npm run preview    # serve dist/ locally
 
 ## Editing content
 
-Content lives in two YAML files:
+All client-editable content is in **`src/content/landing.json`**: hero text and image, About text and image, the three program cards, the benefits cost line and list, contact email, the three Join It links, and social links. In `/admin` it shows up as a single **Landing page** collection, using Decap's default editor.
 
-- `src/content/settings.yml` holds the site info, Join It links, contact email, top menu and footer.
-- `src/content/layout.yml` is the **page layout**: an ordered list of sections, each with a `type`.
-  - Section types: `hero`, `about`, `programs`, `benefits`, `events`, `faq`, `cta`, plus the generic `textphoto` (Text + photo) and `text` (Simple text) blocks.
-  - Each section has a `show` switch to hide it without deleting it.
+Everything else is hard-coded in `src/pages/index.astro`: section headings, FAQ, the Student Leadership Team and Graduation blurbs, resource links, EIN and footer lines. Styles are in `src/styles/global.css`.
 
-Anchors are automatic. Known section types get fixed anchors (`top`, `about`, `programs`, `benefits`, `events`, `faq`, `join`), and repeats or generic blocks get `section-2`, `section-3` and so on. Menu links pointing at a section that isn't on the page are left out. Styles are in `src/styles/global.css`. `npm run dev/build` copies that CSS to `public/admin/preview.css` so the CMS preview matches the site.
-
-- **In the browser:** go to `https://home-wa.web.app/admin`, log in with GitHub, choose **Page layout → Home page** to edit, add (Add section), drag to reorder, or remove sections, or **Site settings** for links, contact, menu and footer. Then click Publish. Decap commits to `main`, which triggers a deploy (about 2 minutes).
-- **Preview:** `public/admin/preview.js` renders the whole layout with the real site styles. `/admin/**` is served with `Cache-Control: no-cache`, so config changes show up right away.
-- **Locally without GitHub login:** run `npm run dev` and `npx decap-server` in two terminals, then open http://localhost:4321/admin/index.html.
-- **Images:** uploads go to `public/uploads/`.
-- **Join It links:** go to Site settings > Join It links. Values starting with `JOINIT_` render as `#`.
+- **In the browser:** go to `https://home-wa.web.app/admin`, log in with GitHub, open **Landing page**, edit, and Publish. Decap commits to `main`, which triggers a deploy (about 2 minutes).
+- **Locally without GitHub login:** run `npm run dev` and `npx decap-server`, then open http://localhost:4321/admin/index.html.
+- **Images:** uploads go to `public/uploads/`. Swap the hero and About photos in the CMS; they are cropped to 5:4 (desktop hero) and 4:3.
+- **Join It links:** an empty value, or one starting with `JOINIT_`, renders as `#`, and the buttons stay visible.
 
 ## CMS login (GitHub OAuth helper) — TODO
 

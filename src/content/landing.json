@@ -1,0 +1,29 @@
+{
+  "hero_headline": "Homeschool with confidence, together.",
+  "hero_subhead": "A warm, faith-based community where homeschooling families in North King and South Snohomish counties learn and thrive together.",
+  "hero_image": "/uploads/about-classroom-stem.webp",
+  "hero_alt": "Parents and students building a model together at a H.O.M.E. class",
+  "about_body": "Home Oriented Meaningful Education (H.O.M.E.) is here to support families on their homeschooling journey. We host activities, field trips, and events for all ages to create opportunities for kids and families to have unique experiences alongside their individual homeschooling journeys.\n\nWe also support homeschooling parents by providing resources, connections, and encouragement in a warm, faith-based community where families can learn and thrive together.\n\nSince 1986, H.O.M.E. has welcomed hundreds of families across North King and South Snohomish counties. While our group is rooted in Christian values, everyone is welcome to join.",
+  "about_image": "/uploads/hero-tide-pools.webp",
+  "about_alt": "Families exploring tide pools together on a H.O.M.E. beach day",
+  "cards": [
+    { "title": "Parents", "body": "Parent meetings are planned for the encouragement and support of homeschooling parents, and occasionally their middle school or high school students are invited too. Topics vary — check the events page for the next one." },
+    { "title": "Kids", "body": "Fun, educational Kids’ Day events at least once a month — the pumpkin patch in October, The Nutcracker in December, Edmonds Beach at low tide in spring, plus museums, hikes, swimming, and skating, often with discounted entry. Parents attend with their kids." },
+    { "title": "Teens", "body": "Teen social events build the connection and community that make homeschooling easier to navigate. Events are fun and positive — and yes, homeschool teens get dances like Homecoming and Spring Formal too. For students ages 14 and up." }
+  ],
+  "benefits_cost": "Open to any homeschooling family. Sign up anytime for $55 per family; each membership is active until September 1.",
+  "benefits_items": [
+    "Parent meetings for encouragement and support",
+    "Kids’ Day events at least once a month, with discounted entry to theatre and field trips",
+    "Teen social events, including dances like Homecoming and Spring Formal",
+    "Woodland Park Zoo membership card to check out — free admission for two adults and their children",
+    "A homeschool graduation ceremony each June"
+  ],
+  "contact_email": "membership@home-wa.org",
+  "join_url": "#",
+  "login_url": "#",
+  "portal_url": "#",
+  "facebook_url": "https://www.facebook.com/groups/785129662222053/",
+  "instagram_url": "https://www.instagram.com/homeeducation2021/",
+  "teens_instagram_url": "https://www.instagram.com/homestudentleadership/"
+}
