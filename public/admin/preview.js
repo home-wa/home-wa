@@ -10,6 +10,8 @@
     parents: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
     kids: '<circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/>',
     teens: '<path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>',
+    music: '<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>',
+    paw: '<circle cx="11" cy="4" r="2"/><circle cx="18" cy="8" r="2"/><circle cx="20" cy="16" r="2"/><path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z"/>',
     calendar: '<rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>',
     chat: '<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>',
     image: '<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/>',
@@ -60,7 +62,7 @@
     return wrap(d, h('section', { className: 'section bg-cloud' }, h('div', { className: 'wrap' },
       h('p', { className: 'eyebrow' }, g('eyebrow')), h('h2', { className: 'narrow' }, g('heading')),
       h('div', { className: 'cards' }, (g('cards') || []).map(function (c, i) {
-        return h('article', { className: 'card', key: i }, icon(c.icon, 24, 'icon-tile icon-' + c.icon), h('h3', null, c.title), h('p', { className: 'card-body' }, c.body), h('a', { className: 'text-link', href: '#' }, (g('link_label') || '') + ' →'));
+        return h('article', { className: 'card', key: i }, icon(c.icon, 24, 'icon-tile icon-' + c.icon), h('h3', null, c.title), h('div', { className: 'card-body', dangerouslySetInnerHTML: { __html: md(c.body) } }), (c.link_label && c.link_url) ? h('a', { className: 'text-link', href: '#' }, c.link_label + ' →') : (g('link_label') ? h('a', { className: 'text-link', href: '#' }, g('link_label') + ' →') : null));
       })),
       h('div', { className: 'extras' }, (g('extras') || []).map(function (x, i) {
         return h('div', { className: 'extra ' + x.tone, key: i }, h('h3', null, x.title), h('p', null, x.body));
@@ -69,9 +71,9 @@
 
   function Benefits(d, p) {
     var g = function (k) { return d[k]; };
-    return wrap(d, h('section', { className: 'section' }, h('div', { className: 'wrap two-col benefits' },
-      h('div', null, h('p', { className: 'eyebrow' }, g('eyebrow')), h('h2', null, g('heading')), h('p', { className: 'lead' }, g('cost')), btn('btn-primary full-mobile', g('button_label'))),
-      h('ul', { className: 'checklist' }, (g('items') || []).map(function (t, i) { return h('li', { key: i }, icon('check', 20), t); })))));
+    return wrap(d, h('section', { className: 'section' }, h('div', { className: (g('items') || []).length ? 'wrap two-col benefits' : 'wrap block-text' },
+      h('div', null, h('p', { className: 'eyebrow' }, g('eyebrow')), h('h2', null, g('heading')), h('div', { className: 'lead prose', dangerouslySetInnerHTML: { __html: md(g('cost')) } }), g('button_label') ? btn('btn-primary full-mobile', g('button_label')) : null),
+      (g('items') || []).length ? h('ul', { className: 'checklist' }, (g('items') || []).map(function (t, i) { return h('li', { key: i }, icon('check', 20), t); })) : null)));
   }
 
   function Events(d, p) {

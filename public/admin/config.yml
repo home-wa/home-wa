@@ -49,6 +49,10 @@ collections:
                     widget: boolean
                     default: true
                     hint: Turn off to hide this section without deleting it.
+                  - label: Menu link target
+                    name: anchor
+                    widget: hidden
+                    required: false
                   - label: Small label above the headline
                     name: badge
                     widget: string
@@ -90,6 +94,10 @@ collections:
                 summary: 'About us: {{fields.heading}}'
                 fields:
                   - *ref_0
+                  - label: Menu link target
+                    name: anchor
+                    widget: hidden
+                    required: false
                   - label: Small label above the heading
                     name: eyebrow
                     widget: string
@@ -123,11 +131,15 @@ collections:
                     widget: hidden
                     required: false
               - name: programs
-                label: What we offer (cards)
+                label: Cards (e.g. member benefits, programs)
                 widget: object
-                summary: 'What we offer: {{fields.heading}}'
+                summary: 'Cards: {{fields.heading}}'
                 fields:
                   - *ref_0
+                  - label: Menu link target
+                    name: anchor
+                    widget: hidden
+                    required: false
                   - label: Small label above the heading
                     name: eyebrow
                     widget: string
@@ -137,14 +149,15 @@ collections:
                   - label: Link text on each card
                     name: link_label
                     widget: string
-                    hint: Shown at the bottom of each card. It opens the Join It member portal.
+                    hint: Optional. If set, cards without their own link get this link to the Join It member portal.
+                    required: false
                   - label: Cards
                     name: cards
                     widget: list
                     collapsed: false
                     label_singular: card
                     summary: '{{fields.title}}'
-                    hint: 'Three cards side by side: Parents, Kids, Teens.'
+                    hint: Cards side by side, three per row on computers.
                     fields:
                       - label: Icon
                         name: icon
@@ -154,14 +167,35 @@ collections:
                             value: parents
                           - label: Kids (smiley face)
                             value: kids
-                          - label: Teens (graduation cap)
+                          - label: Teens / graduation (cap)
                             value: teens
+                          - label: Music / dances
+                            value: music
+                          - label: Zoo (paw print)
+                            value: paw
                       - label: Title
                         name: title
                         widget: string
                       - label: Description
                         name: body
-                        widget: text
+                        widget: markdown
+                        buttons:
+                          - bold
+                          - italic
+                          - link
+                        editor_components: []
+                        modes:
+                          - rich_text
+                      - label: Card link text (optional)
+                        name: link_label
+                        widget: string
+                        required: false
+                        hint: e.g. 'More about Teens'. Leave empty for no link.
+                      - label: Card link goes to (optional)
+                        name: link_url
+                        widget: string
+                        required: false
+                        hint: 'A section of this page, e.g. #teens, #kids-day, #graduation, #events, or a full web address.'
                   - label: Highlight boxes below the cards
                     name: extras
                     widget: list
@@ -183,27 +217,40 @@ collections:
                             value: sky
                           - label: Light green
                             value: mint
+                    required: false
               - name: benefits
-                label: Member benefits
+                label: Text with Join button (e.g. Join us)
                 widget: object
-                summary: 'Member benefits: {{fields.heading}}'
+                summary: 'Join: {{fields.heading}}'
                 fields:
                   - *ref_0
+                  - label: Menu link target
+                    name: anchor
+                    widget: hidden
+                    required: false
                   - label: Small label above the heading
                     name: eyebrow
                     widget: string
                   - label: Heading
                     name: heading
                     widget: string
-                  - label: Price and membership term
+                  - label: Text
                     name: cost
-                    widget: text
-                    hint: Update this if the membership price or dates change.
+                    widget: markdown
+                    hint: Membership details, price and term. Press Enter twice for a new paragraph.
+                    buttons:
+                      - bold
+                      - italic
+                      - link
+                    editor_components: []
+                    modes:
+                      - rich_text
                   - label: Button text
                     name: button_label
                     widget: string
                     hint: Opens the Join It membership signup.
-                  - label: Benefits list
+                    required: false
+                  - label: Checklist (optional)
                     name: items
                     widget: list
                     collapsed: false
@@ -212,13 +259,18 @@ collections:
                       label: Benefit
                       name: item
                       widget: string
-                    hint: Three to seven short items work best.
+                    hint: Short items shown as a checklist. Leave empty to hide.
+                    required: false
               - name: events
                 label: Events
                 widget: object
                 summary: 'Events: {{fields.heading}}'
                 fields:
                   - *ref_0
+                  - label: Menu link target
+                    name: anchor
+                    widget: hidden
+                    required: false
                   - label: Heading
                     name: heading
                     widget: string
@@ -239,6 +291,10 @@ collections:
                 summary: 'Questions: {{fields.heading}}'
                 fields:
                   - *ref_0
+                  - label: Menu link target
+                    name: anchor
+                    widget: hidden
+                    required: false
                   - label: Small label above the heading
                     name: eyebrow
                     widget: string
@@ -285,6 +341,10 @@ collections:
                 summary: 'Call to action: {{fields.heading}}'
                 fields:
                   - *ref_0
+                  - label: Menu link target
+                    name: anchor
+                    widget: hidden
+                    required: false
                   - label: Heading
                     name: heading
                     widget: string
@@ -301,6 +361,10 @@ collections:
                 summary: 'Text + photo: {{fields.heading}}'
                 fields:
                   - *ref_0
+                  - label: Menu link target
+                    name: anchor
+                    widget: hidden
+                    required: false
                   - label: Small label above the heading (optional)
                     name: eyebrow
                     widget: string
@@ -359,13 +423,17 @@ collections:
                     name: button_url
                     widget: string
                     required: false
-                    hint: A full web address, e.g. https://… Leave empty for no button.
+                    hint: A full web address, or a Join It link. Placeholders starting with JOINIT_ are not live yet. The button shows only when both the button text and link are filled in.
               - name: text
                 label: Simple text
                 widget: object
                 summary: 'Text: {{fields.heading}}'
                 fields:
                   - *ref_0
+                  - label: Menu link target
+                    name: anchor
+                    widget: hidden
+                    required: false
                   - label: Small label above the heading (optional)
                     name: eyebrow
                     widget: string

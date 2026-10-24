@@ -116,3 +116,7 @@ details[open] .chev{transform:rotate(180deg)}
 .block-text{max-width:760px}.block-text.center{text-align:center;margin:0 auto}
 .block-tp .prose{margin-bottom:24px}.block-tp .prose:last-child{margin-bottom:0}
 @media (min-width:900px){.block-tp.photo-right .tp-media{order:2}}
+.card-body p{margin:0 0 .75em}.card-body a,.lead a,.prose a{color:var(--blue);font-weight:600}
+.lead.prose p{margin:0 0 1em}.benefits .lead.prose{margin-bottom:24px}
+.icon-music,.icon-paw{background:var(--sky);color:var(--blue)}
+.prose h3{margin-top:1.25em}

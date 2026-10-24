@@ -14,8 +14,10 @@ const layout: any = yaml.load(layoutRaw);
 const BASE: Record<string, string> = { hero: 'top', about: 'about', programs: 'programs', benefits: 'benefits', events: 'events', faq: 'faq', cta: 'join', textphoto: 'section', text: 'section' };
 const used = new Set<string>();
 const sections = (layout?.sections ?? []).filter((x: any) => x && x.show !== false).map((x: any, i: number) => {
-  let anchor = BASE[x.type] ?? 'section';
-  if (used.has(anchor) || anchor === 'section') { let n = 2; while (used.has(`${anchor}-${n}`)) n++; anchor = `${anchor}-${n}`; }
+  // An optional per-section anchor (set in the content file) wins, so menu links can target it.
+  const custom = typeof x.anchor === 'string' ? x.anchor.trim().toLowerCase().replace(/[^a-z0-9-]+/g, '-') : '';
+  let anchor = custom || (BASE[x.type] ?? 'section');
+  if (used.has(anchor) || (!custom && anchor === 'section')) { let n = 2; while (used.has(`${anchor}-${n}`)) n++; anchor = `${anchor}-${n}`; }
   used.add(anchor);
   return { ...x, anchor };
 });
@@ -34,6 +36,8 @@ const icons: Record<string, string> = {
   parents: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
   kids: '<circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/>',
   teens: '<path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>',
+  music: '<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>',
+  paw: '<circle cx="11" cy="4" r="2"/><circle cx="18" cy="8" r="2"/><circle cx="20" cy="16" r="2"/><path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z"/>',
   calendar: '<rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>',
   chat: '<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>',
   image: '<rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/>',
@@ -124,8 +128,9 @@ const svg = (n: string, size = 24) => `<svg width="${size}" height="${size}" vie
               <article class="card">
                 <span class={`icon-tile icon-${c.icon}`} set:html={svg(c.icon)} />
                 <h3>{c.title}</h3>
-                <p class="card-body">{c.body}</p>
-                <a class="text-link" href={portal}>{s.link_label} →</a>
+                <div class="card-body" set:html={md(c.body)} />
+                {c.link_label && c.link_url ? <a class="text-link" href={url(c.link_url)}>{c.link_label} →</a>
+                  : s.link_label ? <a class="text-link" href={portal}>{s.link_label} →</a> : null}
               </article>))}
           </div>
           <div class="extras">
@@ -136,16 +141,16 @@ const svg = (n: string, size = 24) => `<svg width="${size}" height="${size}" vie
       </section>);
     case 'benefits': return (
       <section id={s.anchor} class="section" aria-labelledby={hid}>
-        <div class="wrap two-col benefits">
+        <div class={(s.items ?? []).length > 0 ? 'wrap two-col benefits' : 'wrap block-text'}>
           <div>
             <p class="eyebrow">{s.eyebrow}</p>
             <h2 id={hid}>{s.heading}</h2>
-            <p class="lead">{s.cost}</p>
-            <a class="btn btn-primary full-mobile" href={join}>{s.button_label}</a>
+            <div class="lead prose" set:html={md(s.cost)} />
+            {s.button_label && <a class="btn btn-primary full-mobile" href={join}>{s.button_label}</a>}
           </div>
-          <ul class="checklist">
+          {(s.items ?? []).length > 0 && <ul class="checklist">
             {(s.items ?? []).map((i: string) => <li><span set:html={svg('check', 20)} />{i}</li>)}
-          </ul>
+          </ul>}
         </div>
       </section>);
     case 'events': return (

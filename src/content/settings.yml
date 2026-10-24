@@ -17,14 +17,18 @@ header:
   nav:
     - label: About
       anchor: about
-    - label: Programs
-      anchor: programs
     - label: Benefits
       anchor: benefits
+    - label: Kids' Day
+      anchor: kids-day
+    - label: Teens
+      anchor: teens
+    - label: Graduation
+      anchor: graduation
+    - label: Join
+      anchor: join-us
     - label: Events
       anchor: events
-    - label: FAQ
-      anchor: faq
 footer:
   nonprofit: H.O.M.E. is a registered nonprofit organization committed to serving our community.
   ein: 91-1731504

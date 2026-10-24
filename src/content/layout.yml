@@ -14,47 +14,102 @@ sections:
     show: true
     eyebrow: Who we are
     heading: A warm community for your homeschooling journey
-    body: |
-      Home Oriented Meaningful Education (H.O.M.E.) is here to support families on their homeschooling journey. We help parents explore homeschooling with confidence, encourage growth for both parents and kids, and offer a warm, faith-based community where families can learn and thrive together.
+    body: |-
+      Home Oriented Meaningful Education (H.O.M.E.) is here to support families on their homeschooling journey. We host activities, field trips, and events for all ages to create opportunities for kids and families to have unique experiences alongside their individual homeschooling journeys.
+
+      We also support homeschooling parents by providing resources, connections, and encouragement in a warm, faith-based community where families can learn and thrive together.
 
       Since 1986, H.O.M.E. has welcomed hundreds of families across North King and South Snohomish counties. While our group is rooted in Christian values, everyone is welcome to join.
 
-      H.O.M.E. is led by a volunteer Board of Directors made up of homeschooling parents.
+      Want to know more? Visit our [Member Benefits](#benefits) section to discover everything H.O.M.E. has to offer.
+
+      H.O.M.E. is a registered nonprofit organization committed to serving our community. Federal Tax ID (EIN): 91-1731504.
     image: /uploads/about-classroom-stem.webp
     image_alt: Students and parents gathered around a table building a model structure together during a H.O.M.E. class
   - type: programs
     show: true
-    eyebrow: What we offer
-    heading: Activities, field trips, and events for every age
-    link_label: Learn more
-    cards:
-      - icon: parents
-        title: Parents
-        body: Monthly parent meetings for encouragement and support — topics like Intro to Homeschooling and Homeschooling High School. Free for members; your first meeting is free as a guest, then $10 at the door.
-      - icon: kids
-        title: Kids
-        body: 'Kids’ Day outings about once a month for K–7th grade: the pumpkin patch in October, The Nutcracker in December, Edmonds Beach at low tide in spring, plus museums, hikes, swimming, and skating. Parents attend with their kids.'
-      - icon: teens
-        title: Teens
-        body: Social events and community service for members ages 14 and up, with traditions like the Corn Maze & Bonfire, Homecoming, and Spring Formal. Seniors also get monthly get-togethers with their graduating class.
-    extras:
-      - title: Student Leadership Team
-        body: Teens grow as leaders on a team that serves under the Board to support H.O.M.E., build leadership skills, foster godly character, and promote fellowship among students and families.
-        tone: sky
-      - title: Graduation
-        body: Each June, H.O.M.E. sponsors a graduation ceremony personalized to that year’s class — speakers, music, worship, and fellowship, followed by a reception and a surprise Grads Night Out.
-        tone: mint
-  - type: benefits
-    show: true
+    anchor: benefits
     eyebrow: Member benefits
     heading: What membership includes
-    cost: 'One membership covers your whole family: $55 per year, June 1 through May 31. Open to any homeschooling family.'
+    link_label: ''
+    cards:
+      - icon: parents
+        title: Parent Meetings
+        body: Parent meetings are planned for the encouragement and support of homeschooling parents, and occasionally their middle school or high school students will be invited. Topics vary. Check out the [events](#events) section for info on our next parent meeting!
+      - icon: kids
+        title: Kids' Day Activities
+        body: A mix of fun and educational events are planned at least once a month for kids to provide enrichment and social experiences. This is a great opportunity to get access to discounted entry to theatre arts events and educational field trips. H.O.M.E. makes these opportunities possible for homeschool students to experience for themselves, and with friends!
+        link_label: More about Kids' Day
+        link_url: '#kids-day'
+      - icon: music
+        title: Teen Events
+        body: Teen social events create the connection and community needed to navigate the unique journey of homeschooling. H.O.M.E. provides events that are fun and facilitate positive experiences with peers. How fantastic that homeschool teens can also experience dances like Homecoming and Spring Formal! Check out the [events](#events) section for the next Teen event.
+        link_label: More about Teens
+        link_url: '#teens'
+      - icon: paw
+        title: Woodland Park Zoo Membership
+        body: H.O.M.E. members have access to a Woodland Park Zoo membership card that can be checked out for free admission to the zoo for two adults and their children. Please email [membership@home-wa.org](mailto:membership@home-wa.org) to reserve the card. Allow 48 hours for a response. Include your name, two date & time choices, and the number of people in your party. We will email or text you a digital card to show for entry. Enter between 9:30 a.m. and 1:30 p.m. any day of the week.
+      - icon: teens
+        title: Homeschool Graduation
+        body: H.O.M.E. sponsors a graduation ceremony each year in June, personalized to the students who are in that particular graduating class.
+        link_label: More about Graduation
+        link_url: '#graduation'
+    extras: []
+  - type: text
+    show: true
+    anchor: kids-day
+    eyebrow: Kids' Day
+    heading: Kids Day Events
+    background: cloud
+    centered: false
+    body: |-
+      A mix of fun and educational events are planned at least once a month for kids to provide enrichment and social experiences. This is a great opportunity to get access to discounted entry to theatre arts events and educational field trips. H.O.M.E. makes these opportunities possible for homeschool students to experience for themselves, and with friends!
+
+      Traditional activities include visiting the pumpkin patch in October, attending The Nutcracker in December, and visiting Edmonds Beach at low tide in the spring. We also offer various opportunities to visit museums, go for hikes, meet up for swimming or skating. Check out our [events](#events) section for the next Kids Day event!
+
+      **Please note:** Kids' Day events are not drop-off activities; we expect parents to attend with their children as a family event.
+
+      Email [kidsday@home-wa.org](mailto:kidsday@home-wa.org) for more information.
+  - type: text
+    show: true
+    anchor: teens
+    eyebrow: Teens
+    heading: Teen Events
+    background: white
+    centered: false
+    body: |-
+      Teen social events create the connection and community needed to navigate the unique journey of homeschooling. H.O.M.E. provides events that are fun and facilitate positive experiences with peers. How fantastic that homeschool teens can also experience dances like Homecoming and Spring Formal!
+
+      **Age requirements:** Teen events are for students ages 14 and up. If you have additional questions, contact [teens@home-wa.org](mailto:teens@home-wa.org).
+
+      Please note the H.O.M.E. Dress Code for all events:
+
+      **General Dress Code**
+
+      Clothing should reflect modesty and follow these general guidelines: Shorts, skirts, and rips in jeans should be below fingertip level with arms straight down at the sides (wearing tights or nylons under shorter lengths is not sufficient). Shirts and dresses should be modest, and not show midriffs, chests or cleavage. No strapless dresses or shirts are allowed. No underwear should be exposed. No vulgar graphics are allowed that depict sexually suggestive expressions or actions, profanity, drugs, alcohol, or tobacco, or which degrade the integrity of individual groups.
+  - type: text
+    show: true
+    anchor: graduation
+    eyebrow: Graduation
+    heading: Homeschool Graduation
+    background: cloud
+    centered: false
+    body: H.O.M.E. sponsors a graduation ceremony each year in June, personalized to the students who are in that particular graduating class. It is a special rite of passage and H.O.M.E. helps homeschooling families give this occasion the honor and significance it deserves!
+    button_label: ''
+    button_url: JOINIT_GRADUATION_URL
+  - type: benefits
+    show: true
+    anchor: join-us
+    eyebrow: Join us
+    heading: Join H.O.M.E.
     button_label: Become a Member
-    items:
-      - Free monthly parent meetings
-      - Kids’ Day and teen events at member pricing
-      - Borrow our Woodland Park Zoo card — free entry for two adults and their children
-      - Graduation ceremony, senior events, and the members-only Facebook group
+    items: []
+    cost: |-
+      H.O.M.E. membership is open to any homeschooling family who would like to join. We would love to have you as part of this great community.
+
+      You can sign up anytime throughout the year for access to the events that would best support your family: parent meetings, kids and teen events, dances, and graduation.
+
+      The cost for an annual membership is $55 per family. Each membership is active until Sep. 1 and there is no automatic renewal. Membership dues are non-refundable.
   - type: events
     show: true
     heading: Events and calendar
@@ -73,7 +128,7 @@ sections:
       - question: Do I have to be a Christian to join?
         answer: No. While our group is rooted in Christian values, everyone is welcome to join.
       - question: Who can join, and what does it cost?
-        answer: Membership is open to any homeschooling family. It costs $55 per family per year and runs June 1 through May 31. Dues are non-refundable.
+        answer: H.O.M.E. membership is open to any homeschooling family who would like to join. The cost for an annual membership is $55 per family. Each membership is active until Sep. 1 and there is no automatic renewal. Membership dues are non-refundable.
       - question: Are Kids’ Days drop-off events?
         answer: 'No. Kids’ Day events are not drop-off activities: parents attend with their children.'
       - question: Can non-members come to events?
