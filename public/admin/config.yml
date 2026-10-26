@@ -46,3 +46,35 @@ collections:
           - { label: Facebook URL, name: facebook_url, widget: string, required: false }
           - { label: Instagram URL, name: instagram_url, widget: string, required: false }
           - { label: Teens Instagram URL, name: teens_instagram_url, widget: string, required: false }
+          - label: Theme (colors & fonts)
+            name: theme
+            widget: object
+            collapsed: true
+            hint: "Pick a preset, then optionally override single colors. Leave overrides empty to use the preset. Tip: preview presets instantly on the live site with ?palette=a, b, c or d (and &font=sora, jakarta, grotesk)."
+            fields:
+              - label: Color preset
+                name: preset
+                widget: select
+                default: current
+                options:
+                  - { label: "Current (today's look)", value: current }
+                  - { label: "A · Brand Classic", value: a }
+                  - { label: "B · Light & Airy", value: b }
+                  - { label: "C · Bold Modern", value: c }
+                  - { label: "D · Mint Header", value: d }
+              - label: Heading font
+                name: heading_font
+                widget: select
+                default: nunito
+                options:
+                  - { label: "Nunito (current)", value: nunito }
+                  - { label: "Sora", value: sora }
+                  - { label: "Plus Jakarta Sans", value: jakarta }
+                  - { label: "Space Grotesk", value: grotesk }
+              - { label: Primary color (headings, buttons), name: primary, widget: color, required: false }
+              - { label: Secondary color, name: secondary, widget: color, required: false }
+              - { label: Accent color (green button, highlights), name: accent, widget: color, required: false }
+              - { label: Header background, name: header_bg, widget: color, required: false }
+              - { label: Header text, name: header_text, widget: color, required: false }
+              - { label: Light background, name: light_bg, widget: color, required: false }
+              - { label: Dark text, name: dark_text, widget: color, required: false }

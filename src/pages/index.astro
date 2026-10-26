@@ -4,6 +4,7 @@
 import data from '../content/landing.json';
 import { marked } from 'marked';
 import '../styles/global.css';
+import { PRESETS, FONTS, fontHref, themeVars, toCss } from '../theme';
 
 // Join It links: render "#" until real URLs are entered in the CMS.
 const link = (u?: string) => (!u || /^JOINIT_/.test(u) ? '#' : u);
@@ -12,6 +13,15 @@ const email = data.contact_email || 'membership@home-wa.org';
 const mailto = `mailto:${email}`;
 const aboutHtml = marked.parse(data.about_body || '') as string;
 const year = new Date().getFullYear();
+
+// Theme (Decap "Theme" group). Preset "current" with no overrides emits nothing, so the default look is unchanged.
+const theme = (data as any).theme || {};
+const rootCss = toCss(themeVars(theme));
+const headFont = FONTS[theme.heading_font] ? theme.heading_font : 'nunito';
+// Live demo: ?palette=a|b|c|d|current&font=nunito|sora|jakarta|grotesk applies a preset in the browser only.
+const demoJs = `(function(){var q=new URLSearchParams(location.search),P=${JSON.stringify(PRESETS)},F=${JSON.stringify(FONTS)},r=document.documentElement.style,p=q.get('palette'),f=q.get('font');
+if(p&&P[p]){if(p==='current'){document.addEventListener('DOMContentLoaded',function(){var s=document.getElementById('theme-vars');if(s)s.remove();});}for(var k in P[p])r.setProperty('--'+k,P[p][k]);}
+if(f&&F[f]){var l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family='+F[f].css+'&display=swap';document.head.appendChild(l);r.setProperty('--head',"'"+F[f].family+"',system-ui,sans-serif");}})();`;
 
 const nav = [['about', 'About'], ['programs', 'Programs'], ['benefits', 'Benefits'], ['events', 'Events'], ['faq', 'FAQ']];
 const cardStyle = [
@@ -33,7 +43,7 @@ const social = [
   [data.instagram_url, '@homeeducation2021', 'Instagram', ig],
   [data.teens_instagram_url, '@homestudentleadership', 'Teens on Instagram', ig],
 ].filter(([u]) => u);
-const check = '<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1E7A2E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg>';
+const check = '<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" style="stroke:var(--green-text)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg>';
 const chev = '<svg class="chev" aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg>';
 const logoAlt = 'H.O.M.E. — Home Oriented Meaningful Education';
 const logo = '/uploads/home-logo.png';
@@ -51,6 +61,9 @@ const logo = '/uploads/home-logo.png';
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet" />
+  {headFont !== 'nunito' && <link href={fontHref(headFont)} rel="stylesheet" />}
+  {rootCss && <style is:inline id="theme-vars" set:html={`:root{${rootCss}}`}></style>}
+  <script is:inline set:html={demoJs}></script>
   {data.hero_image && <link rel="preload" as="image" href={data.hero_image} fetchpriority="high" />}
 </head>
 <body>

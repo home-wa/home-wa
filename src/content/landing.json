@@ -7,9 +7,18 @@
   "about_image": "/uploads/hero-tide-pools.webp",
   "about_alt": "Families exploring tide pools together on a H.O.M.E. beach day",
   "cards": [
-    { "title": "Parents", "body": "Parent meetings are planned for the encouragement and support of homeschooling parents, and occasionally their middle school or high school students are invited too. Topics vary — check the events page for the next one." },
-    { "title": "Kids", "body": "Fun, educational Kids’ Day events at least once a month — the pumpkin patch in October, The Nutcracker in December, Edmonds Beach at low tide in spring, plus museums, hikes, swimming, and skating, often with discounted entry. Parents attend with their kids." },
-    { "title": "Teens", "body": "Teen social events build the connection and community that make homeschooling easier to navigate. Events are fun and positive — and yes, homeschool teens get dances like Homecoming and Spring Formal too. For students ages 14 and up." }
+    {
+      "title": "Parents",
+      "body": "Parent meetings are planned for the encouragement and support of homeschooling parents, and occasionally their middle school or high school students are invited too. Topics vary — check the events page for the next one."
+    },
+    {
+      "title": "Kids",
+      "body": "Fun, educational Kids’ Day events at least once a month — the pumpkin patch in October, The Nutcracker in December, Edmonds Beach at low tide in spring, plus museums, hikes, swimming, and skating, often with discounted entry. Parents attend with their kids."
+    },
+    {
+      "title": "Teens",
+      "body": "Teen social events build the connection and community that make homeschooling easier to navigate. Events are fun and positive — and yes, homeschool teens get dances like Homecoming and Spring Formal too. For students ages 14 and up."
+    }
   ],
   "benefits_cost": "Open to any homeschooling family. Sign up anytime for $55 per family; each membership is active until September 1.",
   "benefits_items": [
@@ -25,5 +34,9 @@
   "portal_url": "#",
   "facebook_url": "https://www.facebook.com/groups/785129662222053/",
   "instagram_url": "https://www.instagram.com/homeeducation2021/",
-  "teens_instagram_url": "https://www.instagram.com/homestudentleadership/"
+  "teens_instagram_url": "https://www.instagram.com/homestudentleadership/",
+  "theme": {
+    "preset": "current",
+    "heading_font": "nunito"
+  }
 }
