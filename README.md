@@ -21,6 +21,7 @@ Everything else is hard-coded in `src/pages/index.astro`: section headings, FAQ,
 - **Locally without GitHub login:** run `npm run dev` and `npx decap-server`, then open http://localhost:4321/admin/index.html.
 - **Images:** uploads go to `public/uploads/`. Swap the hero and About photos in the CMS; they are cropped to 5:4 (desktop hero) and 4:3.
 - **Theme:** in **Landing page → Theme (colors & fonts)**, pick a *Color preset* (Current, A–D) and a *Heading font*. The optional color pickers override single roles. Presets live in `src/theme.ts`, and every color is a CSS variable in `global.css`. With *Current* and no overrides, the page is unchanged. For instant demos with no deploy, use `?palette=a|b|c|d|current&font=nunito|sora|jakarta|grotesk`.
+- **Admin preview:** `public/admin/preview.js` loads the built page plus its CSS into Decap's preview and fills in the fields being edited (elements tagged `data-cms*` in `index.astro`). It applies the Theme group from the same `public/theme-presets.json` the site uses.
 - **Join It links:** an empty value, or one starting with `JOINIT_`, renders as `#`, and the buttons stay visible.
 
 ## CMS login (GitHub OAuth helper) — TODO

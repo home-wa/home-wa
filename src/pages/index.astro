@@ -91,11 +91,11 @@ const logo = '/uploads/home-logo.png';
 <main>
   <section id="top" class="hero" aria-labelledby="hero-h">
     <div class="wrap hero-grid">
-      <img class="photo hero-photo" src={data.hero_image} alt={data.hero_alt} width="1168" height="784" fetchpriority="high" />
+      <img class="photo hero-photo" src={data.hero_image} alt={data.hero_alt} data-cms-img="hero_image" data-cms-alt="hero_alt" width="1168" height="784" fetchpriority="high" />
       <div class="hero-text">
         <span class="badge">Serving families since 1986</span>
-        <h1 id="hero-h">{data.hero_headline}</h1>
-        <p class="subhead">{data.hero_subhead}</p>
+        <h1 id="hero-h" data-cms="hero_headline">{data.hero_headline}</h1>
+        <p class="subhead" data-cms="hero_subhead">{data.hero_subhead}</p>
         <div class="btn-row">
           <a href={join} class="btn btn-primary btn-lg">Become a Member</a>
           <a href={login} class="btn btn-secondary btn-lg">Member Login</a>
@@ -109,9 +109,9 @@ const logo = '/uploads/home-logo.png';
       <div class="about-text">
         <span class="eyebrow">Who we are</span>
         <h2 id="about-h">A warm community for your homeschooling journey</h2>
-        <div class="prose" set:html={aboutHtml} />
+        <div class="prose" data-cms-md="about_body" set:html={aboutHtml} />
       </div>
-      <img class="photo about-photo" src={data.about_image} alt={data.about_alt} width="1168" height="784" loading="lazy" decoding="async" />
+      <img class="photo about-photo" src={data.about_image} alt={data.about_alt} data-cms-img="about_image" data-cms-alt="about_alt" width="1168" height="784" loading="lazy" decoding="async" />
     </div>
   </section>
 
@@ -125,8 +125,8 @@ const logo = '/uploads/home-logo.png';
         {data.cards.slice(0, 3).map((c, i) => (
           <article class="card">
             <div aria-hidden="true" class={`tile ${cardStyle[i].tile}`}><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" set:html={cardStyle[i].icon} /></div>
-            <h3>{c.title}</h3>
-            <p class="grow">{c.body}</p>
+            <h3 data-cms={`cards.${i}.title`}>{c.title}</h3>
+            <p class="grow" data-cms={`cards.${i}.body`}>{c.body}</p>
             <a href={portal} class="textlink card-link">Learn more →</a>
           </article>))}
       </div>
@@ -149,9 +149,9 @@ const logo = '/uploads/home-logo.png';
       <div class="b-head">
         <span class="eyebrow">Member benefits</span>
         <h2 id="benefits-h">What membership includes</h2>
-        <p class="b-cost">{data.benefits_cost}</p>
+        <p class="b-cost" data-cms="benefits_cost">{data.benefits_cost}</p>
       </div>
-      <ul class="checklist">
+      <ul class="checklist" data-cms-list="benefits_items">
         {data.benefits_items.map((t) => <li><Fragment set:html={check} /><span>{t}</span></li>)}
       </ul>
       <a href={join} class="btn btn-primary b-btn">Become a Member</a>
@@ -227,7 +227,7 @@ const logo = '/uploads/home-logo.png';
       <a href="https://hslda.org" class="textlink f-row" target="_blank" rel="noopener">Home School Legal Defense Association</a>
     </div>
     <div class="f-contact">
-      <a href={mailto} class="textlink f-row">{email}</a>
+      <a href={mailto} class="textlink f-row" data-cms="contact_email">{email}</a>
       <a href={login} class="textlink f-row">Member Login</a>
     </div>
     <span class="f-copy">© {year} H.O.M.E. All rights reserved.</span>
