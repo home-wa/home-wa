@@ -13,6 +13,7 @@
     return { body: doc.body.innerHTML, styles: styles, T: res[1] };
   });
 
+  function bodyKey(T, t) { return T.bodyFonts[t.body_font] ? t.body_font : ((T.fonts[t.heading_font] || {}).body || 'source'); }
   // Same logic as themeVars() in src/theme.ts.
   function themeVars(T, t) {
     t = t || {};
@@ -21,6 +22,8 @@
       if (t[k] && /^#[0-9a-f]{3,8}$/i.test(t[k])) Object.keys(T.roles[k]).forEach(function (v) { out[v] = T.roles[k][v].split('$').join(t[k]); });
     });
     if (t.heading_font && t.heading_font !== 'nunito' && T.fonts[t.heading_font]) out.head = "'" + T.fonts[t.heading_font].family + "',system-ui,sans-serif";
+    var bk = bodyKey(T, t); if (bk !== 'source') out.body = "'" + T.bodyFonts[bk].family + "',system-ui,sans-serif";
+    if (t.button_shape && t.button_shape !== 'rounded' && T.buttons[t.button_shape]) out['btn-radius'] = T.buttons[t.button_shape];
     return out;
   }
   function get(o, path) { return path.split('.').reduce(function (a, k) { return a == null ? a : a[k]; }, o); }
@@ -66,11 +69,11 @@
       (this.set || []).forEach(function (k) { root.style.removeProperty('--' + k); });
       this.set = Object.keys(vars);
       Object.keys(vars).forEach(function (k) { root.style.setProperty('--' + k, vars[k]); });
-      var f = p.T.fonts[t.heading_font];
-      if (f && !d.querySelector('link[data-font="' + t.heading_font + '"]')) {
-        var l = d.createElement('link'); l.rel = 'stylesheet'; l.setAttribute('data-font', t.heading_font);
-        l.href = 'https://fonts.googleapis.com/css2?family=' + f.css + '&display=swap'; d.head.appendChild(l);
-      }
+      [[p.T.fonts[t.heading_font], 'h-' + t.heading_font], [p.T.bodyFonts[bodyKey(p.T, t)], 'b-' + bodyKey(p.T, t)]].forEach(function (x) {
+        if (!x[0] || d.querySelector('link[data-font="' + x[1] + '"]')) return;
+        var l = d.createElement('link'); l.rel = 'stylesheet'; l.setAttribute('data-font', x[1]);
+        l.href = 'https://fonts.googleapis.com/css2?family=' + x[0].css + '&display=swap'; d.head.appendChild(l);
+      });
     },
     render: function () { var self = this; return h('div', { ref: function (el) { self.el = el; }, className: 'home-preview' }); },
   });

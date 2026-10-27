@@ -4,7 +4,7 @@
 import data from '../content/landing.json';
 import { marked } from 'marked';
 import '../styles/global.css';
-import { PRESETS, FONTS, fontHref, themeVars, toCss } from '../theme';
+import { PRESETS, FONTS, BODY_FONTS, BUTTONS, fontLinks, themeVars, toCss } from '../theme';
 
 // Join It links: render "#" until real URLs are entered in the CMS.
 const link = (u?: string) => (!u || /^JOINIT_/.test(u) ? '#' : u);
@@ -17,11 +17,15 @@ const year = new Date().getFullYear();
 // Theme (Decap "Theme" group). Preset "current" with no overrides emits nothing, so the default look is unchanged.
 const theme = (data as any).theme || {};
 const rootCss = toCss(themeVars(theme));
-const headFont = FONTS[theme.heading_font] ? theme.heading_font : 'nunito';
-// Live demo: ?palette=a|b|c|d|current&font=nunito|sora|jakarta|grotesk applies a preset in the browser only.
-const demoJs = `(function(){var q=new URLSearchParams(location.search),P=${JSON.stringify(PRESETS)},F=${JSON.stringify(FONTS)},r=document.documentElement.style,p=q.get('palette'),f=q.get('font');
-if(p&&P[p]){if(p==='current'){document.addEventListener('DOMContentLoaded',function(){var s=document.getElementById('theme-vars');if(s)s.remove();});}for(var k in P[p])r.setProperty('--'+k,P[p][k]);}
-if(f&&F[f]){var l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family='+F[f].css+'&display=swap';document.head.appendChild(l);r.setProperty('--head',"'"+F[f].family+"',system-ui,sans-serif");}})();`;
+const extraFonts = fontLinks(theme);
+// Live demo: ?palette=a|b|c|d|current&font=<heading key>&body=<body key>&buttons=pill|rounded|square applies in the browser only.
+// ?font= also switches the body font to that heading's recommended pairing unless &body= is given.
+const demoJs = `(function(){var q=new URLSearchParams(location.search),P=${JSON.stringify(PRESETS)},F=${JSON.stringify(FONTS)},B=${JSON.stringify(BODY_FONTS)},S=${JSON.stringify(BUTTONS)},r=document.documentElement.style,p=q.get('palette'),f=q.get('font'),b=q.get('body'),s=q.get('buttons');
+function L(c){var l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family='+c+'&display=swap';document.head.appendChild(l);}
+if(p&&P[p]){if(p==='current'){document.addEventListener('DOMContentLoaded',function(){var e=document.getElementById('theme-vars');if(e)e.remove();});}for(var k in P[p])r.setProperty('--'+k,P[p][k]);}
+if(f&&F[f]){L(F[f].css);r.setProperty('--head',"'"+F[f].family+"',system-ui,sans-serif");if(!b)b=F[f].body;}
+if(b&&B[b]){L(B[b].css);r.setProperty('--body',"'"+B[b].family+"',system-ui,sans-serif");}
+if(s&&S[s])r.setProperty('--btn-radius',S[s]);})();`;
 
 const nav = [['about', 'About'], ['programs', 'Programs'], ['benefits', 'Benefits'], ['events', 'Events'], ['faq', 'FAQ']];
 const cardStyle = [
@@ -61,7 +65,7 @@ const logo = '/uploads/home-logo.png';
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet" />
-  {headFont !== 'nunito' && <link href={fontHref(headFont)} rel="stylesheet" />}
+  {extraFonts.map((h) => <link href={h} rel="stylesheet" />)}
   {rootCss && <style is:inline id="theme-vars" set:html={`:root{${rootCss}}`}></style>}
   <script is:inline set:html={demoJs}></script>
   {data.hero_image && <link rel="preload" as="image" href={data.hero_image} fetchpriority="high" />}

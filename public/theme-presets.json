@@ -1,5 +1,5 @@
 {
- "_comment": "Single source of truth for theme presets. Used by src/theme.ts (site build + ?palette= demo) and public/admin/preview.js (Decap preview). 'current' = CSS defaults in global.css.",
+ "_comment": "Single source of truth for theme presets, fonts and button shapes. Used by src/theme.ts (site build + ?palette=/?font=/?body=/?buttons= demo) and public/admin/preview.js (Decap preview). 'current'/'nunito'/'source'/'rounded' = CSS defaults in global.css.",
  "presets": {
   "current": {},
   "a": {
@@ -94,19 +94,45 @@
  "fonts": {
   "nunito": {
    "family": "Nunito",
-   "css": "Nunito:wght@700;800"
-  },
-  "sora": {
-   "family": "Sora",
-   "css": "Sora:wght@600;700;800"
-  },
-  "jakarta": {
-   "family": "Plus Jakarta Sans",
-   "css": "Plus+Jakarta+Sans:wght@600;700;800"
+   "css": "Nunito:wght@700;800",
+   "body": "source",
+   "label": "Nunito (original, rounded)"
   },
   "grotesk": {
    "family": "Space Grotesk",
-   "css": "Space+Grotesk:wght@600;700"
+   "css": "Space+Grotesk:wght@600;700",
+   "body": "inter",
+   "label": "Space Grotesk"
+  },
+  "sora": {
+   "family": "Sora",
+   "css": "Sora:wght@600;700;800",
+   "body": "inter",
+   "label": "Sora"
+  },
+  "jakarta": {
+   "family": "Plus Jakarta Sans",
+   "css": "Plus+Jakarta+Sans:wght@600;700;800",
+   "body": "inter",
+   "label": "Plus Jakarta Sans"
+  },
+  "archivo": {
+   "family": "Archivo",
+   "css": "Archivo:wght@700;800",
+   "body": "plex",
+   "label": "Archivo"
+  },
+  "barlow": {
+   "family": "Barlow Semi Condensed",
+   "css": "Barlow+Semi+Condensed:wght@600;700",
+   "body": "barlow",
+   "label": "Barlow Semi Condensed"
+  },
+  "redhat": {
+   "family": "Red Hat Display",
+   "css": "Red+Hat+Display:wght@700;800",
+   "body": "redhat",
+   "label": "Red Hat Display"
   }
  },
  "roles": {
@@ -137,5 +163,37 @@
    "ink": "$",
    "ink-soft": "$"
   }
+ },
+ "bodyFonts": {
+  "source": {
+   "family": "Source Sans 3",
+   "css": "Source+Sans+3:wght@400;600",
+   "label": "Source Sans 3 (original)"
+  },
+  "inter": {
+   "family": "Inter",
+   "css": "Inter:wght@400;600",
+   "label": "Inter"
+  },
+  "plex": {
+   "family": "IBM Plex Sans",
+   "css": "IBM+Plex+Sans:wght@400;600",
+   "label": "IBM Plex Sans"
+  },
+  "barlow": {
+   "family": "Barlow",
+   "css": "Barlow:wght@400;600",
+   "label": "Barlow"
+  },
+  "redhat": {
+   "family": "Red Hat Text",
+   "css": "Red+Hat+Text:wght@400;600",
+   "label": "Red Hat Text"
+  }
+ },
+ "buttons": {
+  "rounded": "10px",
+  "pill": "999px",
+  "square": "4px"
  }
 }

@@ -50,7 +50,7 @@ collections:
             name: theme
             widget: object
             collapsed: true
-            hint: "Pick a preset, then optionally override single colors. Leave overrides empty to use the preset. Tip: preview presets instantly on the live site with ?palette=a, b, c or d (and &font=sora, jakarta, grotesk)."
+            hint: "Pick a preset, then optionally override single colors. Leave overrides empty to use the preset. Tip: preview presets instantly on the live site with ?palette=a, b, c or d (and &font=grotesk, sora, jakarta, archivo, barlow, redhat; &buttons=pill, rounded, square)."
             fields:
               - label: Color preset
                 name: preset
@@ -66,11 +66,34 @@ collections:
                 name: heading_font
                 widget: select
                 default: nunito
+                hint: "Sharper, angular options per Alex's notes. Nunito is the original rounded font."
                 options:
-                  - { label: "Nunito (current)", value: nunito }
+                  - { label: "Nunito (original, rounded)", value: nunito }
+                  - { label: "Space Grotesk", value: grotesk }
                   - { label: "Sora", value: sora }
                   - { label: "Plus Jakarta Sans", value: jakarta }
-                  - { label: "Space Grotesk", value: grotesk }
+                  - { label: "Archivo", value: archivo }
+                  - { label: "Barlow Semi Condensed", value: barlow }
+                  - { label: "Red Hat Display", value: redhat }
+              - label: Body font
+                name: body_font
+                widget: select
+                default: paired
+                options:
+                  - { label: "Recommended for the heading font", value: paired }
+                  - { label: "Source Sans 3 (original)", value: source }
+                  - { label: "Inter", value: inter }
+                  - { label: "IBM Plex Sans", value: plex }
+                  - { label: "Barlow", value: barlow }
+                  - { label: "Red Hat Text", value: redhat }
+              - label: Button shape
+                name: button_shape
+                widget: select
+                default: rounded
+                options:
+                  - { label: "Rounded rectangle (default)", value: rounded }
+                  - { label: "Pill", value: pill }
+                  - { label: "Square-ish", value: square }
               - { label: Primary color (headings, buttons), name: primary, widget: color, required: false }
               - { label: Secondary color, name: secondary, widget: color, required: false }
               - { label: Accent color (green button, highlights), name: accent, widget: color, required: false }
