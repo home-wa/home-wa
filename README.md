@@ -13,16 +13,15 @@ npm run preview    # serve dist/ locally
 
 ## Editing content
 
-All client-editable content is in **`src/content/landing.json`**: hero text and image, About text and image, the three program cards, the benefits cost line and list, contact email, the three Join It links, and social links. In `/admin` it shows up as a single **Landing page** collection, using Decap's default editor.
-
-Everything else is hard-coded in `src/pages/index.astro`: section headings, FAQ, the Student Leadership Team and Graduation blurbs, resource links, EIN and footer lines. Styles are in `src/styles/global.css`.
+All client-editable content is in **`src/content/landing.json`**: page copy (home intro, member benefits, Kids' Day, teens, Student Leadership, graduation, contact and board), the two optional photos, contact email, the Join It links, social and resource links, footer lines, and the theme. In `/admin` it shows up as a single **Landing page** collection. Styles are in `src/styles/global.css`. Section nav labels and button labels live in `src/pages/index.astro`.
 
 - **In the browser:** go to `https://home-wa.web.app/admin`, log in with GitHub, open **Landing page**, edit, and Publish. Decap commits to `main`, which triggers a deploy (about 2 minutes).
 - **Locally without GitHub login:** run `npm run dev` and `npx decap-server`, then open http://localhost:4321/admin/index.html.
-- **Images:** uploads go to `public/uploads/`. Swap the hero and About photos in the CMS; they are cropped to 5:4 (desktop hero) and 4:3.
-- **Theme:** in **Landing page → Theme (colors & fonts)**, pick a *Color preset* (Current, A–D) and a *Heading font*. The optional color pickers override single roles. Presets live in `src/theme.ts`, and every color is a CSS variable in `global.css`. With *Current* and no overrides, the page is unchanged. For instant demos with no deploy, use `?palette=current|a|b|c|d&font=grotesk|sora|jakarta|archivo|barlow|redhat|nunito&body=source|inter|plex|barlow|redhat&buttons=rounded|pill|square`. `font=` also switches to that font's recommended body font unless `body=` is given.
+- **Images:** uploads go to `public/uploads/`. Photo 1 sits beside the hero; photo 2 is a wide image above Kids' Day and Teens. Leave either field empty and that slot is not rendered (no broken image, no stock placeholder).
+- **Theme:** in **Landing page → Theme (colors & fonts)**, pick a *Color preset* (Current, A–D) and a *Heading font*. The default heading font is **Red Hat Display**, paired with Red Hat Text. The optional color pickers override single roles. Presets live in `public/theme-presets.json`, and every color is a CSS variable in `global.css`. With *Current*, Red Hat, and no overrides, the page uses the CSS defaults. For instant demos with no deploy, use `?palette=current|a|b|c|d&font=redhat|nunito|grotesk|sora|jakarta|archivo|barlow&body=redhat|source|inter|plex|barlow&buttons=rounded|pill|square`. `font=` also switches to that font's recommended body font unless `body=` is given.
 - **Admin preview:** `public/admin/preview.js` loads the built page plus its CSS into Decap's preview and fills in the fields being edited (elements tagged `data-cms*` in `index.astro`). It applies the Theme group from the same `public/theme-presets.json` the site uses.
-- **Join It links:** an empty value, or one starting with `JOINIT_`, renders as `#`, and the buttons stay visible.
+- **Join It links:** membership buttons use the signup URL (`https://app.joinit.com/o/home-wa/`). Member Login and Events use the members URL (`https://app.joinit.com/o/home-wa/members`). Both are editable. An empty value, or one starting with `JOINIT_`, renders as `#` on those buttons. Student Leadership and Graduation links stay as plain text until a URL is filled in.
+- **Deploys:** `.github/workflows/deploy.yml` publishes to the Firebase Hosting **live** channel only, on a push to `main`. There is no pull-request preview channel. Merging to `main` updates https://home-wa.web.app.
 
 ## CMS login (GitHub OAuth helper) — TODO
 

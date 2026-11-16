@@ -1,5 +1,5 @@
 {
- "_comment": "Single source of truth for theme presets, fonts and button shapes. Used by src/theme.ts (site build + ?palette=/?font=/?body=/?buttons= demo) and public/admin/preview.js (Decap preview). 'current'/'nunito'/'source'/'rounded' = CSS defaults in global.css.",
+ "_comment": "Single source of truth for theme presets, fonts and button shapes. Used by src/theme.ts (site build + ?palette=/?font=/?body=/?buttons= demo) and public/admin/preview.js (Decap preview). 'current'/'redhat' (Red Hat Display + Red Hat Text)/'rounded' = CSS defaults in global.css.",
  "presets": {
   "current": {},
   "a": {
