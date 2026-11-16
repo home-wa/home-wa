@@ -22,35 +22,110 @@ collections:
         label: Landing page
         file: src/content/landing.json
         fields:
+          - { label: Page title, name: meta_title, widget: string }
+          - { label: Meta description, name: meta_description, widget: text }
+          - { label: Hero badge, name: hero_badge, widget: string }
           - { label: Hero headline, name: hero_headline, widget: string }
           - { label: Hero subhead, name: hero_subhead, widget: text }
-          - { label: Hero image, name: hero_image, widget: image }
-          - { label: Hero image alt, name: hero_alt, widget: string }
+          - label: Photo 1 — home hero
+            name: hero_image
+            widget: image
+            required: false
+            hint: "Optional. The site shows nothing here until a photo is uploaded — no placeholder."
+          - { label: Photo 1 alt text, name: hero_alt, widget: string, required: false }
+          - { label: About heading, name: about_heading, widget: string }
           - { label: About text, name: about_body, widget: markdown, buttons: [bold, italic, link], editor_components: [] }
-          - { label: About image, name: about_image, widget: image }
-          - { label: About image alt, name: about_alt, widget: string }
-          - label: Program cards
-            name: cards
+          - { label: Nonprofit line, name: nonprofit_line, widget: string }
+          - { label: EIN line, name: ein_line, widget: string }
+          - label: Photo 2 — above Kids' Day and Teens
+            name: about_image
+            widget: image
+            required: false
+            hint: "Optional wide photo. Nothing is shown until a photo is uploaded. Landscape works best."
+          - { label: Photo 2 alt text, name: about_alt, widget: string, required: false }
+          - { label: Benefits heading, name: benefits_heading, widget: string }
+          - label: Member benefits
+            name: benefits
             widget: list
-            min: 3
-            max: 3
+            summary: "{{title}}"
             fields:
               - { label: Title, name: title, widget: string }
-              - { label: Blurb, name: body, widget: text }
-          - { label: Membership cost line, name: benefits_cost, widget: string }
-          - { label: Benefits, name: benefits_items, widget: list, field: { label: Benefit, name: item, widget: string } }
+              - { label: Text, name: body, widget: markdown, buttons: [bold, italic, link], editor_components: [] }
+          - { label: Join heading, name: join_heading, widget: string }
+          - { label: Join text, name: join_body, widget: markdown, buttons: [bold, italic, link], editor_components: [] }
+          - { label: Kids' Day heading, name: kids_heading, widget: string }
+          - { label: Kids' Day text, name: kids_body, widget: markdown, buttons: [bold, italic, link], editor_components: [] }
+          - { label: Teens heading, name: teens_heading, widget: string }
+          - { label: Teens text, name: teens_body, widget: markdown, buttons: [bold, italic, link], editor_components: [] }
+          - { label: Student Leadership heading, name: leadership_heading, widget: string }
+          - { label: Student Leadership intro, name: leadership_body, widget: markdown, buttons: [bold, italic, link], editor_components: [] }
+          - label: Student Leadership goals
+            name: leadership_points
+            widget: list
+            field: { label: Goal, name: goal, widget: string }
+          - { label: Application status, name: leadership_status, widget: string }
+          - { label: Application links heading, name: leadership_links_heading, widget: string }
+          - label: Application links
+            name: leadership_links
+            widget: list
+            summary: "{{label}}"
+            hint: "The title and note are shown on the site. The URL stays hidden until you fill it in — leave it blank rather than guessing."
+            fields:
+              - { label: Title, name: label, widget: string }
+              - { label: Note, name: note, widget: string, required: false }
+              - { label: URL, name: url, widget: string, required: false }
+          - { label: Graduation heading, name: graduation_heading, widget: string }
+          - { label: Graduation text, name: graduation_body, widget: markdown, buttons: [bold, italic, link], editor_components: [] }
+          - { label: Graduation link text, name: graduation_link_label, widget: string }
+          - label: Graduation link URL
+            name: graduation_link_url
+            widget: string
+            required: false
+            hint: "Leave blank to show the link text without a link. Do not invent a URL."
+          - { label: Contact heading, name: contact_heading, widget: string }
+          - { label: Contact intro, name: contact_body, widget: markdown, buttons: [bold, italic, link], editor_components: [] }
+          - label: Board
+            name: board
+            widget: list
+            summary: "{{name}} — {{role}}"
+            fields:
+              - { label: Name, name: name, widget: string }
+              - { label: Role, name: role, widget: string }
+              - { label: Email, name: email, widget: string, required: false, hint: "Leave blank to list the name and role only." }
+          - { label: Closing heading, name: cta_heading, widget: string }
+          - { label: Closing text, name: cta_text, widget: string }
           - { label: Contact email, name: contact_email, widget: string }
-          - { label: Join It — membership checkout URL, name: join_url, widget: string }
-          - { label: Join It — member login URL, name: login_url, widget: string }
-          - { label: Join It — member portal / events URL, name: portal_url, widget: string }
+          - label: Join It — membership signup URL
+            name: join_url
+            widget: string
+            hint: "Used by every Join and Become a Member button."
+          - label: Join It — member login URL
+            name: login_url
+            widget: string
+            hint: "Member Login in the header, hero, footer, and closing banner."
+          - label: Join It — member events URL
+            name: portal_url
+            widget: string
+            hint: "Events link in the header and footer. Can match the member login URL."
           - { label: Facebook URL, name: facebook_url, widget: string, required: false }
           - { label: Instagram URL, name: instagram_url, widget: string, required: false }
           - { label: Teens Instagram URL, name: teens_instagram_url, widget: string, required: false }
+          - label: Footer lines
+            name: footer_lines
+            widget: list
+            field: { label: Line, name: line, widget: string }
+          - label: Resource links
+            name: resources
+            widget: list
+            summary: "{{label}}"
+            fields:
+              - { label: Label, name: label, widget: string }
+              - { label: URL, name: url, widget: string }
           - label: Theme (colors & fonts)
             name: theme
             widget: object
             collapsed: true
-            hint: "Pick a preset, then optionally override single colors. Leave overrides empty to use the preset. Tip: preview presets instantly on the live site with ?palette=a, b, c or d (and &font=grotesk, sora, jakarta, archivo, barlow, redhat; &buttons=pill, rounded, square)."
+            hint: "Pick a preset, then optionally override single colors. Leave overrides empty to use the preset. Red Hat Display is the default heading font (body pairs with Red Hat Text). Preview presets on the live site with ?palette=a, b, c, d, or current (and &font=redhat, nunito, grotesk, sora, jakarta, archivo, barlow; &buttons=pill, rounded, square)."
             fields:
               - label: Color preset
                 name: preset
@@ -65,16 +140,16 @@ collections:
               - label: Heading font
                 name: heading_font
                 widget: select
-                default: nunito
-                hint: "Sharper, angular options per Alex's notes. Nunito is the original rounded font."
+                default: redhat
+                hint: "Red Hat Display is the default. Nunito is the original rounded font."
                 options:
+                  - { label: "Red Hat Display (default)", value: redhat }
                   - { label: "Nunito (original, rounded)", value: nunito }
                   - { label: "Space Grotesk", value: grotesk }
                   - { label: "Sora", value: sora }
                   - { label: "Plus Jakarta Sans", value: jakarta }
                   - { label: "Archivo", value: archivo }
                   - { label: "Barlow Semi Condensed", value: barlow }
-                  - { label: "Red Hat Display", value: redhat }
               - label: Body font
                 name: body_font
                 widget: select
@@ -96,7 +171,7 @@ collections:
                   - { label: "Square-ish", value: square }
               - { label: Primary color (headings, buttons), name: primary, widget: color, required: false }
               - { label: Secondary color, name: secondary, widget: color, required: false }
-              - { label: Accent color (green button, highlights), name: accent, widget: color, required: false }
+              - { label: Accent color (highlights), name: accent, widget: color, required: false }
               - { label: Header background, name: header_bg, widget: color, required: false }
               - { label: Header text, name: header_text, widget: color, required: false }
               - { label: Light background, name: light_bg, widget: color, required: false }

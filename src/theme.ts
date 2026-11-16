@@ -9,23 +9,35 @@ export const BUTTONS: Record<string, string> = T.buttons;
 const ROLES: Record<string, Vars> = T.roles;
 const g = (css: string) => `https://fonts.googleapis.com/css2?family=${css}&display=swap`;
 
-// Body font: explicit pick, else the heading font's recommended pairing, else Source Sans 3.
-export const bodyKey = (t: any = {}) => (BODY_FONTS[t.body_font] ? t.body_font : (FONTS[t.heading_font]?.body || 'source'));
+// CSS defaults in global.css. Anything else is emitted as an override.
+const DEFAULT_HEAD = 'redhat';
+const DEFAULT_BODY = 'redhat';
+
+// Body font: explicit pick, else the heading font's recommended pairing, else Red Hat Text.
+export const bodyKey = (t: any = {}) => {
+  if (BODY_FONTS[t.body_font]) return t.body_font;
+  const head = FONTS[t.heading_font] ? t.heading_font : DEFAULT_HEAD;
+  return FONTS[head]?.body || DEFAULT_BODY;
+};
 
 // Same logic as themeVars() in public/admin/preview.js. Keep them in sync (small, data-free).
 export function themeVars(t: any = {}): Vars {
   const out: Vars = { ...(PRESETS[t.preset] || {}) };
   for (const [k, m] of Object.entries(ROLES)) if (t[k] && /^#[0-9a-f]{3,8}$/i.test(t[k])) for (const [v, x] of Object.entries(m)) out[v] = x.split('$').join(t[k]);
-  if (t.heading_font && t.heading_font !== 'nunito' && FONTS[t.heading_font]) out.head = `'${FONTS[t.heading_font].family}',system-ui,sans-serif`;
-  const b = bodyKey(t); if (b !== 'source') out.body = `'${BODY_FONTS[b].family}',system-ui,sans-serif`;
+  const head = t.heading_font || DEFAULT_HEAD;
+  if (head !== DEFAULT_HEAD && FONTS[head]) out.head = `'${FONTS[head].family}',system-ui,sans-serif`;
+  const b = bodyKey(t);
+  if (b !== DEFAULT_BODY && BODY_FONTS[b]) out.body = `'${BODY_FONTS[b].family}',system-ui,sans-serif`;
   if (t.button_shape && t.button_shape !== 'rounded' && BUTTONS[t.button_shape]) out['btn-radius'] = BUTTONS[t.button_shape];
   return out;
 }
-// Extra font stylesheets needed beyond the default Nunito + Source Sans 3 link.
+// Extra font stylesheets needed beyond the default Red Hat Display + Red Hat Text link.
 export function fontLinks(t: any = {}): string[] {
   const l: string[] = [];
-  if (FONTS[t.heading_font] && t.heading_font !== 'nunito') l.push(g(FONTS[t.heading_font].css));
-  const b = bodyKey(t); if (b !== 'source') l.push(g(BODY_FONTS[b].css));
+  const head = t.heading_font || DEFAULT_HEAD;
+  if (FONTS[head] && head !== DEFAULT_HEAD) l.push(g(FONTS[head].css));
+  const b = bodyKey(t);
+  if (BODY_FONTS[b] && b !== DEFAULT_BODY) l.push(g(BODY_FONTS[b].css));
   return l;
 }
 export const toCss = (v: Vars) => Object.entries(v).map(([k, x]) => `--${k}:${x}`).join(';');

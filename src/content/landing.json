@@ -1,42 +1,130 @@
 {
-  "hero_headline": "Homeschool with confidence, together.",
-  "hero_subhead": "A warm, faith-based community where homeschooling families in North King and South Snohomish counties learn and thrive together.",
-  "hero_image": "/uploads/about-classroom-stem.webp",
-  "hero_alt": "Parents and students building a model together at a H.O.M.E. class",
-  "about_body": "Home Oriented Meaningful Education (H.O.M.E.) is here to support families on their homeschooling journey. We host activities, field trips, and events for all ages to create opportunities for kids and families to have unique experiences alongside their individual homeschooling journeys.\n\nWe also support homeschooling parents by providing resources, connections, and encouragement in a warm, faith-based community where families can learn and thrive together.\n\nSince 1986, H.O.M.E. has welcomed homeschool families across North King and South Snohomish counties. While our group is rooted in Christian values, everyone is welcome to join.",
-  "about_image": "/uploads/hero-tide-pools.webp",
-  "about_alt": "Families exploring tide pools together on a H.O.M.E. beach day",
-  "cards": [
+  "meta_title": "H.O.M.E. | Home Oriented Meaningful Education",
+  "meta_description": "H.O.M.E. supports homeschooling families in North King and South Snohomish counties with activities, field trips, and events. Nonprofit since 1986.",
+  "hero_badge": "Serving families since 1986",
+  "hero_headline": "Home Oriented Meaningful Education",
+  "hero_subhead": "Here to support families on their homeschooling journey.",
+  "hero_image": "",
+  "hero_alt": "",
+  "about_heading": "About H.O.M.E.",
+  "about_body": "Home Oriented Meaningful Education (H.O.M.E.) is here to support families on their homeschooling journey. We host activities, field trips, and events for all ages to create enriching experiences for homeschooling families.\n\nWe also support homeschooling parents by providing resources, connection, and encouragement in a warm, faith-based community where families can learn and thrive together.\n\nSince 1986, H.O.M.E. has welcomed hundreds of families across North King and South Snohomish counties. While our group is rooted in Christian values, everyone is welcome to join.\n\nWant to know more? Visit our [Member Benefits](#benefits) page to discover everything HOME has to offer.",
+  "nonprofit_line": "H.O.M.E. is a registered nonprofit organization committed to serving our community.",
+  "ein_line": "Federal Tax ID (EIN): 91-1731504.",
+  "about_image": "",
+  "about_alt": "",
+  "benefits_heading": "Member Benefits",
+  "benefits": [
     {
-      "title": "Parents",
-      "body": "Parent meetings are planned for the encouragement and support of homeschooling parents, and occasionally their middle school or high school students are invited too. Topics vary — check the events page for the next one."
+      "title": "Parent Meetings",
+      "body": "Parent meetings are planned for the encouragement and support of homeschooling parents. Come learn alongside wise and seasoned parents who guide each other through the joys and challenges of homeschooling kids of all ages."
     },
     {
-      "title": "Kids",
-      "body": "Fun, educational Kids’ Day events at least once a month — the pumpkin patch in October, The Nutcracker in December, Edmonds Beach at low tide in spring, plus museums, hikes, swimming, and skating, often with discounted entry. Parents attend with their kids."
+      "title": "Kids' Day Activities",
+      "body": "A mix of fun and educational events are planned at least once a month for kids to provide unique educational and social experiences. This is a great opportunity to get entry to discounted theatre arts events and access to field trips. H.O.M.E. makes these special activities possible for kids to share together with their parents and friends."
     },
     {
-      "title": "Teens",
-      "body": "Teen social events build the connection and community that make homeschooling easier to navigate. Events are fun and positive — and yes, homeschool teens get dances like Homecoming and Spring Formal too. For students ages 14 and up."
+      "title": "Teen Events",
+      "body": "Teen social events create the connection and community needed to navigate the unique journey of homeschooling. We provide events that are fun and facilitate positive experiences with peers. Homeschool teens love that they can get access to social dances like Homecoming and Spring Formal through H.O.M.E.!"
+    },
+    {
+      "title": "Woodland Park Zoo Membership",
+      "body": "H.O.M.E. members have access to a Woodland Park Zoo membership card that can be checked out for free admission to the zoo for two adults and their children. The value of this benefit alone is worth the annual H.O.M.E. membership!\n\nPlease email [membership@home-wa.org](mailto:membership@home-wa.org) to reserve the card. Allow 48 hours for a response. Include your name, two date & time choices, and the number of people in your party. We will email or text you a digital card to show for entry. Enter between 9:30 a.m. and 1:30 p.m. any day of the week."
+    },
+    {
+      "title": "Homeschool Graduation",
+      "body": "H.O.M.E. sponsors a graduation ceremony each year in June, personalized to the students who are in that particular graduating class. It is a special rite of passage and H.O.M.E. helps homeschooling families give this occasion the honor and significance it deserves!"
     }
   ],
-  "benefits_cost": "Open to any homeschooling family. Sign up anytime for $55 per family; each membership is active until September 1.",
-  "benefits_items": [
-    "Parent meetings for encouragement and support",
-    "Kids’ Day events at least once a month, with discounted entry to theatre and field trips",
-    "Teen social events, including dances like Homecoming and Spring Formal",
-    "Woodland Park Zoo membership card to check out — free admission for two adults and their children",
-    "A homeschool graduation ceremony each June"
+  "join_heading": "Join Us",
+  "join_body": "H.O.M.E. membership is open to any homeschooling family. We would love to have you as part of this great community!\n\nThe cost for an annual membership is $55 per family. Each membership is active throughout the school year, and expires Sep. 1. Membership dues are non-refundable, and there is no automatic renewal.\n\nYou can sign up anytime throughout the year for access to the events that would best support your family: parent meetings, kids and teen events, dances, and graduation.",
+  "kids_heading": "Kids' Day Events",
+  "kids_body": "A mix of fun and educational events are planned at least once a month for kids to provide enrichment and social experiences. This is a great opportunity to get access to discounted entry to theatre arts events and educational field trips.\n\nTraditional activities include low priced entry to a pumpkin patch and corn maze in October, matinee performance of The Nutcracker in December, as well as museums, ranger-led hikes, and play dates!\n\n**Please note:** Kids' Day events are not drop-off activities; we expect parents to attend with their children as a family event.",
+  "teens_heading": "Teens",
+  "teens_body": "Teen social events create the connection and community needed to navigate the unique journey of homeschooling. We provide events that are fun and facilitate positive experiences with peers. Homeschool teens love that they can get access to social dances like Homecoming and Spring Formal through H.O.M.E.!\n\nAge requirements: Teen events are for students ages 14 and up. If you have additional questions, contact [teens@home-wa.org](mailto:teens@home-wa.org).",
+  "leadership_heading": "Student Leadership Team",
+  "leadership_body": "The H.O.M.E. Student Leadership Team exists to encourage students to take an active role and increase responsibility in building a strong, connected, and supportive H.O.M.E. community. The team will:",
+  "leadership_points": [
+    "Provide support to the H.O.M.E. Board of Directors",
+    "Develop student leadership skills",
+    "Foster godly character traits within the students",
+    "Promote fellowship among students and families"
   ],
+  "leadership_status": "Applications are closed for the 2026-2027 school year.",
+  "leadership_links_heading": "More information and application links",
+  "leadership_links": [
+    {
+      "label": "H.O.M.E. Student Leadership Team Application Instruction",
+      "note": "",
+      "url": ""
+    },
+    {
+      "label": "HOME Student Leadership Mission Statement",
+      "note": "Read this mission statement to be sure you agree.",
+      "url": ""
+    },
+    {
+      "label": "HOME Student Leadership Cover Letter",
+      "note": "Please read and follow these instructions.",
+      "url": ""
+    },
+    {
+      "label": "HOME Student Leadership Job Descriptions",
+      "note": "",
+      "url": ""
+    },
+    {
+      "label": "HOME Student Leadership Expectations, Responsibilities, and Code of Conduct",
+      "note": "Print and turn in to HOME mailbox folder at Connections.",
+      "url": ""
+    },
+    {
+      "label": "HOME Student Leadership Application",
+      "note": "Click this link to complete the application.",
+      "url": ""
+    },
+    {
+      "label": "HOME Student Leadership Candidate Evaluation",
+      "note": "Copy this link and send it to one Christian mentor.",
+      "url": ""
+    }
+  ],
+  "graduation_heading": "Graduation",
+  "graduation_body": "H.O.M.E. sponsors a graduation ceremony each year in June, personalized to the students who are in that particular graduating class. It is a special rite of passage and H.O.M.E. helps homeschooling families give this occasion the honor and significance it deserves! Graduation this year is June 5, 2027.",
+  "graduation_link_label": "Find more information here",
+  "graduation_link_url": "",
+  "contact_heading": "Contact Us",
+  "contact_body": "H.O.M.E. is run by a board of dedicated homeschool moms who volunteer their time and energy to create community and experiences to enrich homeschool families.",
+  "board": [
+    { "name": "Annette Crossland", "role": "Chair", "email": "chair@home-wa.org" },
+    { "name": "Elizabeth Chaves", "role": "Vice Chair", "email": "parentmeetings@home-wa.org" },
+    { "name": "Kirsten Orn", "role": "Treasurer", "email": "treasurer@home-wa.org" },
+    { "name": "Kristin Wright", "role": "Secretary & Webmaster", "email": "webmaster@home-wa.org" },
+    { "name": "Nadine Sainfils", "role": "Membership", "email": "membership@home-wa.org" },
+    { "name": "Elina McNutt, Ashley Knox & Alex Gardner", "role": "Kids Day Coordinator", "email": "kidsday@home-wa.org" },
+    { "name": "Claudia Erisca & Jessica Salazar", "role": "Teen Advisors", "email": "teens@home-wa.org" },
+    { "name": "Lisa Bailey", "role": "Homeschool Liaison", "email": "" }
+  ],
+  "cta_heading": "Ready to join our community?",
+  "cta_text": "Membership signup takes just a few minutes.",
   "contact_email": "membership@home-wa.org",
-  "join_url": "#",
-  "login_url": "#",
-  "portal_url": "#",
+  "join_url": "https://app.joinit.com/o/home-wa/",
+  "login_url": "https://app.joinit.com/o/home-wa/members",
+  "portal_url": "https://app.joinit.com/o/home-wa/members",
   "facebook_url": "https://www.facebook.com/groups/785129662222053/",
   "instagram_url": "https://www.instagram.com/homeeducation2021/",
   "teens_instagram_url": "https://www.instagram.com/homestudentleadership/",
+  "footer_lines": [
+    "H.O.M.E. is a registered nonprofit organization committed to serving our community.",
+    "Federal Tax ID (EIN): 91‑1731504 · Serving North King and South Snohomish counties since 1986"
+  ],
+  "resources": [
+    { "label": "Washington Homeschool Organization", "url": "https://washhomeschool.org" },
+    { "label": "Home School Legal Defense Association", "url": "https://hslda.org" }
+  ],
   "theme": {
     "preset": "current",
-    "heading_font": "nunito"
+    "heading_font": "redhat",
+    "body_font": "paired",
+    "button_shape": "rounded"
   }
 }
