@@ -118,8 +118,8 @@ a.optional-link.is-pending:hover,a.optional-link:not([href]):hover{color:var(--i
 .tile-teal{background:var(--teal);color:var(--blue-bright)}
 
 /* Kids' Day and Teens */
-.pair{display:flex;flex-direction:column;gap:48px}
-.pair-col{display:flex;flex-direction:column;gap:14px;min-width:0}
+.pair{display:flex;flex-direction:column;gap:16px}
+.pair-col{display:flex;flex-direction:column;gap:14px;min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:24px 22px;box-shadow:0 8px 24px rgba(40,56,136,.04)}
 
 /* Leadership */
 .lead-intro{max-width:70ch}
@@ -129,10 +129,19 @@ a.optional-link.is-pending:hover,a.optional-link:not([href]):hover{color:var(--i
 .notice{background:none;color:var(--ink);padding:0;font-weight:600;max-width:70ch}
 .doc-block{display:flex;flex-direction:column;gap:12px}
 .doc-block h3{font-size:20px}
-.doc-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
-.doc-list li{background:none;padding:14px 0;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:4px}
-.doc-list li:last-child{border-bottom:none;padding-bottom:0}
-.doc-label{font-family:var(--body);font-weight:600;font-size:17px;color:var(--ink);line-height:1.4}
+.doc-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.doc-item{background:none;padding:0;border:none;display:block}
+.doc-group{margin:18px 0 4px;font-weight:600;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--green-text)}
+.doc-intro{margin:0 0 8px;color:var(--ink-soft);font-size:17px;line-height:1.5}
+.doc-row{display:flex;align-items:flex-start;gap:12px;padding:12px 2px;text-decoration:none;border-bottom:1px solid var(--line);color:var(--blue)}
+.doc-list li:last-child .doc-row{border-bottom:none}
+.doc-row:hover{color:var(--blue-dark)}
+.doc-row:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:8px}
+.doc-icon{width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;color:var(--blue)}
+.doc-icon svg{width:22px;height:22px}
+.doc-copy{display:flex;flex-direction:column;gap:2px;min-width:0}
+.doc-label{font-family:var(--body);font-weight:600;font-size:17px;color:inherit;line-height:1.4}
+.doc-intro .doc-label,.doc-intro span{font-weight:400;color:var(--ink-soft)}
 .link-note{color:var(--muted);font-size:15px}
 .link-note[hidden],.board-email[hidden]{display:none !important}
 
@@ -237,7 +246,8 @@ a.optional-link.is-pending:hover,a.optional-link:not([href]):hover{color:var(--i
   .already{flex:1 0 100%}
   .tile{width:52px;height:52px;border-radius:14px}
   .tile svg{width:26px;height:26px}
-  .pair{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+  .pair{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch}
+  .pair-col{height:100%;padding:32px}
   .pair-col h2{font-size:32px}
   .checklist.cols-2{display:grid;grid-template-columns:1fr 1fr;gap:10px 40px}
   .checklist li{padding:2px 0}

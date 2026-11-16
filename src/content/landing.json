@@ -55,37 +55,44 @@
     {
       "label": "H.O.M.E. Student Leadership Team Application Instruction",
       "note": "",
-      "url": ""
+      "url": "",
+      "group": ""
     },
     {
       "label": "HOME Student Leadership Mission Statement",
       "note": "Read this Mission Statement to be sure you agree.",
-      "url": "https://docs.google.com/document/d/1XDdXXzps9KPvX4GUxbZji6RZaUcIj5JXvD895Z7EjOc/edit"
-    },
-    {
-      "label": "HOME Student Leadership Cover Letter",
-      "note": "Please read and follow these instructions.",
-      "url": "https://docs.google.com/document/d/1Zvp-L1wLxXkjmyQRcugEbr5b1_K7fQRa/edit"
-    },
-    {
-      "label": "HOME Student Leadership Job Descriptions",
-      "note": "",
-      "url": "https://docs.google.com/document/d/1Vy0JYIaq3T6A7wMVSEOtIXEw4Jl4KIEcN0dG6SM0kXk/edit"
+      "url": "https://docs.google.com/document/d/1XDdXXzps9KPvX4GUxbZji6RZaUcIj5JXvD895Z7EjOc/edit",
+      "group": "Read first"
     },
     {
       "label": "HOME Student Leadership Expectations, Responsibilities, and Code of Conduct",
       "note": "Print and turn in to HOME mailbox folder at Connections.",
-      "url": "https://docs.google.com/document/d/1YRC0bx4CoWAt4cST2ftae_9pZN-TLVCRO4zN-RnjSOc/edit"
+      "url": "https://docs.google.com/document/d/1YRC0bx4CoWAt4cST2ftae_9pZN-TLVCRO4zN-RnjSOc/edit",
+      "group": "Read first"
+    },
+    {
+      "label": "View the Job Descriptions",
+      "note": "",
+      "url": "https://docs.google.com/document/d/1Vy0JYIaq3T6A7wMVSEOtIXEw4Jl4KIEcN0dG6SM0kXk/edit",
+      "group": "Read first"
     },
     {
       "label": "HOME Student Leadership Application",
       "note": "Click this link to complete the application.",
-      "url": "https://docs.google.com/forms/d/1H59dtdsJ-F9F5xEKtuFZsI4SsdwDNRuTUFGVzDOIaoU/viewform"
+      "url": "https://docs.google.com/forms/d/1H59dtdsJ-F9F5xEKtuFZsI4SsdwDNRuTUFGVzDOIaoU/viewform",
+      "group": "Complete and submit"
+    },
+    {
+      "label": "HOME Student Leadership Cover Letter",
+      "note": "Please read and follow these instructions.",
+      "url": "https://docs.google.com/document/d/1Zvp-L1wLxXkjmyQRcugEbr5b1_K7fQRa/edit",
+      "group": "Complete and submit"
     },
     {
       "label": "HOME Student Leadership Candidate Evaluation",
       "note": "Copy this link and send it to one Christian mentor.",
-      "url": "https://docs.google.com/forms/d/1yVz38iqfXeDS0mCU9ZTIDGCPQ64w-XSJOh9nGXCI4BM/viewform"
+      "url": "https://docs.google.com/forms/d/1yVz38iqfXeDS0mCU9ZTIDGCPQ64w-XSJOh9nGXCI4BM/viewform",
+      "group": "Complete and submit"
     }
   ],
   "graduation_heading": "Graduation",
