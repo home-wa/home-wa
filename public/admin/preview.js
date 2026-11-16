@@ -41,10 +41,21 @@
     if (!v || v === '#' || /^JOINIT_/.test(v)) return '';
     return v;
   }
-  function setOptionalHref(a, url) {
+  function applyLink(a, url) {
     var real = realUrl(url);
-    if (real) { a.setAttribute('href', real); a.classList.remove('is-pending'); }
-    else { a.removeAttribute('href'); a.classList.add('is-pending'); }
+    var plain = a.parentElement && a.parentElement.querySelector(':scope > [data-plain-fallback]');
+    if (real) {
+      a.setAttribute('href', real);
+      a.hidden = false;
+      a.classList.remove('is-pending');
+      if (/^https?:/i.test(real)) { a.setAttribute('target', '_blank'); a.setAttribute('rel', 'noopener'); }
+      else { a.removeAttribute('target'); a.removeAttribute('rel'); }
+    } else {
+      a.removeAttribute('href');
+      a.hidden = true;
+      a.classList.add('is-pending');
+    }
+    if (plain) plain.hidden = !!real;
   }
   function md(v) { return window.marked ? window.marked.parse(v || '') : (v || ''); }
 
@@ -115,7 +126,7 @@
               f.innerHTML = md(item[f.getAttribute('data-field-md')] || '');
             });
             n.querySelectorAll('[data-field-href]').forEach(function (a) {
-              setOptionalHref(a, item[a.getAttribute('data-field-href')]);
+              applyLink(a, item[a.getAttribute('data-field-href')]);
             });
             n.querySelectorAll('[data-field-mailto]').forEach(function (a) {
               var email = item[a.getAttribute('data-field-mailto')] || '';
@@ -137,7 +148,7 @@
         a.setAttribute('href', realUrl(get(data, a.getAttribute('data-cms-href'))) || '#');
       });
       node.querySelectorAll('[data-cms-optional-href]').forEach(function (a) {
-        setOptionalHref(a, get(data, a.getAttribute('data-cms-optional-href')));
+        applyLink(a, get(data, a.getAttribute('data-cms-optional-href')));
       });
       var root = d.documentElement, t = data.theme || {}, vars = themeVars(p.T, t);
       (this.set || []).forEach(function (k) { root.style.removeProperty('--' + k); });

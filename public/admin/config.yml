@@ -27,21 +27,21 @@ collections:
           - { label: Hero badge, name: hero_badge, widget: string }
           - { label: Hero headline, name: hero_headline, widget: string }
           - { label: Hero subhead, name: hero_subhead, widget: text }
-          - label: Photo 1 — home hero
+          - label: Photo 1 — hero
             name: hero_image
             widget: image
             required: false
-            hint: "Optional. The site shows nothing here until a photo is uploaded — no placeholder."
+            hint: "Shown beside the hero. A stock photo is the default until you upload a replacement. Clear the field to hide the photo."
           - { label: Photo 1 alt text, name: hero_alt, widget: string, required: false }
           - { label: About heading, name: about_heading, widget: string }
           - { label: About text, name: about_body, widget: markdown, buttons: [bold, italic, link], editor_components: [] }
           - { label: Nonprofit line, name: nonprofit_line, widget: string }
           - { label: EIN line, name: ein_line, widget: string }
-          - label: Photo 2 — above Kids' Day and Teens
+          - label: Photo 2 — about
             name: about_image
             widget: image
             required: false
-            hint: "Optional wide photo. Nothing is shown until a photo is uploaded. Landscape works best."
+            hint: "Shown beside the About text. A stock photo is the default until you upload a replacement. Clear the field to hide the photo."
           - { label: Photo 2 alt text, name: about_alt, widget: string, required: false }
           - { label: Benefits heading, name: benefits_heading, widget: string }
           - label: Member benefits

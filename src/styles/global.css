@@ -12,6 +12,7 @@
   --head:'Red Hat Display',system-ui,sans-serif;--body:'Red Hat Text',system-ui,sans-serif;
 }
 *{box-sizing:border-box}
+[hidden]{display:none !important}
 @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 body{margin:0;background:var(--surface);font-family:var(--body);color:var(--ink);font-size:17px;line-height:1.6}
 img{display:block;max-width:100%}
@@ -87,9 +88,9 @@ a.optional-link.is-pending:hover,a.optional-link:not([href]):hover{color:var(--i
 .photo-slot{margin:0}
 .photo-slot[hidden],.photo-slot:not(:has(img[src])){display:none !important}
 .photo{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:18px}
-.feature-photo{aspect-ratio:16/8;max-height:440px;border-radius:20px}
 
 /* About */
+.about-grid{display:flex;flex-direction:column;gap:28px}
 .about-copy{display:flex;flex-direction:column;gap:16px;max-width:72ch}
 .prose{display:flex;flex-direction:column;gap:14px;color:var(--ink-soft)}
 .prose p{margin:0}
@@ -97,14 +98,15 @@ a.optional-link.is-pending:hover,a.optional-link:not([href]):hover{color:var(--i
 .prose a{font-weight:600;text-decoration:none;border-bottom:2px solid transparent}
 .prose a:hover{border-bottom-color:currentColor}
 .prose a:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
-.facts{display:flex;flex-direction:column;gap:6px;margin-top:4px;padding:16px 18px;background:var(--cloud);border:1px solid var(--line);border-radius:14px}
+.facts{display:flex;flex-direction:column;gap:4px;margin-top:8px;padding:0;background:none;border:none}
 .facts p{color:var(--ink);font-size:16px}
 .ein{font-weight:700;color:var(--blue)}
 
 /* Benefits */
 .section-head{display:flex;flex-direction:column;gap:8px;max-width:40ch}
-.benefit-list{display:flex;flex-direction:column;gap:14px}
-.benefit{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:8px}
+.benefit-list{display:flex;flex-direction:column;gap:0}
+.benefit{background:none;border:none;border-top:1px solid var(--line);border-radius:0;padding:26px 0;display:flex;flex-direction:column;gap:8px}
+.benefit:first-child{border-top:none;padding-top:0}
 .benefit .prose{font-size:16.5px}
 .join-panel{background:var(--sky);border-radius:20px;padding:22px;display:flex;flex-direction:column;align-items:flex-start;gap:18px}
 .join-copy{display:flex;flex-direction:column;gap:12px}
@@ -116,23 +118,21 @@ a.optional-link.is-pending:hover,a.optional-link:not([href]):hover{color:var(--i
 .tile-teal{background:var(--teal);color:var(--blue-bright)}
 
 /* Kids' Day and Teens */
-.split-wrap{display:flex;flex-direction:column;gap:20px}
-.split-2{display:flex;flex-direction:column;gap:16px}
-.split-card{background:var(--cloud);border:1px solid var(--line);border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:14px}
-.split-head{display:flex;align-items:flex-start;gap:14px}
-.split-head h2{font-size:26px}
+.pair{display:flex;flex-direction:column;gap:48px}
+.pair-col{display:flex;flex-direction:column;gap:14px;min-width:0}
 
 /* Leadership */
 .lead-intro{max-width:70ch}
 .checklist{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
-.checklist li{display:flex;gap:12px;align-items:flex-start;background:var(--cloud);border-radius:12px;padding:14px 16px}
+.checklist li{display:flex;gap:10px;align-items:flex-start;background:none;padding:2px 0}
 .checklist svg{flex-shrink:0;margin-top:2px;width:22px;height:22px}
-.notice{background:var(--mint);color:var(--ink);border-radius:14px;padding:14px 18px;font-weight:600;max-width:70ch}
+.notice{background:none;color:var(--ink);padding:0;font-weight:600;max-width:70ch}
 .doc-block{display:flex;flex-direction:column;gap:12px}
 .doc-block h3{font-size:20px}
 .doc-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
-.doc-list li{background:var(--cloud);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:4px}
-.doc-label{font-family:var(--head);font-weight:700;font-size:17px;color:var(--ink);line-height:1.35}
+.doc-list li{background:none;padding:14px 0;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:4px}
+.doc-list li:last-child{border-bottom:none;padding-bottom:0}
+.doc-label{font-family:var(--body);font-weight:600;font-size:17px;color:var(--ink);line-height:1.4}
 .link-note{color:var(--muted);font-size:15px}
 .link-note[hidden],.board-email[hidden]{display:none !important}
 
@@ -141,12 +141,13 @@ a.optional-link.is-pending:hover,a.optional-link:not([href]):hover{color:var(--i
 .grad-row{display:flex;flex-direction:column;gap:16px}
 .grad-copy{display:flex;flex-direction:column;gap:12px}
 .grad-link{margin:0}
-.grad-link .optional-link{font-size:18px}
+.grad-link .textlink{font-size:18px}
+.grad-link .plain{color:var(--ink-soft);font-weight:400}
 
 /* Contact */
 .contact-intro{max-width:68ch}
 .board{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr;gap:12px}
-.board-card{background:var(--cloud);border-radius:18px;padding:18px 18px 16px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.board-card{background:none;border-top:2px solid var(--line);padding:16px 0 4px;display:flex;flex-direction:column;gap:4px;min-width:0}
 .board-card h3{font-size:18px;font-weight:700}
 .board-role{color:var(--muted);font-weight:600;font-size:15px}
 .board-email{margin-top:8px;align-self:flex-start;overflow-wrap:anywhere}
@@ -214,32 +215,35 @@ a.optional-link.is-pending:hover,a.optional-link:not([href]):hover{color:var(--i
   .hero-grid:not(:has(.photo-slot:not([hidden]))) .badge{align-self:center}
   .hero-grid:not(:has(.photo-slot:not([hidden]))) .btn-row{flex-direction:row;justify-content:center;width:auto;gap:16px}
   .hero-grid:has(.photo-slot:not([hidden])){display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:56px;align-items:center}
+  .hero-grid:has(.photo-slot:not([hidden])) .hero-photo{order:2}
   .hero-grid:has(.photo-slot:not([hidden])) .hero-text{align-items:flex-start;text-align:left;max-width:none;margin:0}
   .hero-grid:has(.photo-slot:not([hidden])) .btn-row{flex-direction:row;width:auto;gap:16px}
   .hero-photo .photo{aspect-ratio:5/4;border-radius:24px}
   .subhead{font-size:20px}
   .photo{border-radius:24px}
+  .about-grid:has(.photo-slot:not([hidden])){display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:64px;align-items:start}
+  .about-grid:has(.photo-slot:not([hidden])) .about-photo{order:-1}
+  .about-grid:has(.photo-slot:not([hidden])) .about-copy{max-width:none}
   .about-copy{gap:18px}
   .prose{gap:16px}
-  .facts{flex-direction:row;flex-wrap:wrap;gap:8px 28px;align-items:center;padding:18px 22px}
+  .facts{flex-direction:row;flex-wrap:wrap;gap:6px 28px;align-items:baseline;padding:4px 0 0}
   .section-head{gap:10px}
-  .benefit-list{gap:16px}
-  .benefit{display:grid;grid-template-columns:minmax(180px,250px) minmax(0,1fr);gap:12px 36px;align-items:start;padding:28px 32px;border-radius:20px}
+  .benefit-list{gap:0}
+  .benefit{display:grid;grid-template-columns:minmax(180px,240px) minmax(0,1fr);gap:8px 48px;align-items:start;padding:32px 0;border-radius:0}
+  .benefit:first-child{padding-top:0}
   .join-panel{flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px 36px;padding:32px 36px}
   .join-copy{flex:1 1 420px;max-width:68ch}
   .join-panel .btn{width:auto;flex-shrink:0}
   .already{flex:1 0 100%}
   .tile{width:52px;height:52px;border-radius:14px}
   .tile svg{width:26px;height:26px}
-  .split-wrap{gap:36px}
-  .split-2{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
-  .split-card{padding:32px;border-radius:22px}
-  .split-head h2{font-size:32px}
-  .checklist.cols-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-  .checklist li{padding:16px 18px}
+  .pair{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+  .pair-col h2{font-size:32px}
+  .checklist.cols-2{display:grid;grid-template-columns:1fr 1fr;gap:10px 40px}
+  .checklist li{padding:2px 0}
   .grad-copy{max-width:72ch}
   .board{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-  .board-card{padding:22px 22px 20px;border-radius:20px}
+  .board-card{padding:18px 0 4px;border-radius:0}
   .board-card h3{font-size:20px}
   .cta-inner{padding-top:80px;padding-bottom:80px;gap:16px}
   .cta h2{font-size:40px}

@@ -4,14 +4,14 @@
   "hero_badge": "Serving families since 1986",
   "hero_headline": "Home Oriented Meaningful Education",
   "hero_subhead": "Here to support families on their homeschooling journey.",
-  "hero_image": "",
-  "hero_alt": "",
+  "hero_image": "/uploads/about-classroom-stem.webp",
+  "hero_alt": "Parents and students building a model together at a H.O.M.E. class",
   "about_heading": "About H.O.M.E.",
   "about_body": "Home Oriented Meaningful Education (H.O.M.E.) is here to support families on their homeschooling journey. We host activities, field trips, and events for all ages to create enriching experiences for homeschooling families.\n\nWe also support homeschooling parents by providing resources, connection, and encouragement in a warm, faith-based community where families can learn and thrive together.\n\nSince 1986, H.O.M.E. has welcomed hundreds of families across North King and South Snohomish counties. While our group is rooted in Christian values, everyone is welcome to join.\n\nWant to know more? Visit our [Member Benefits](#benefits) page to discover everything HOME has to offer.",
   "nonprofit_line": "H.O.M.E. is a registered nonprofit organization committed to serving our community.",
   "ein_line": "Federal Tax ID (EIN): 91-1731504.",
-  "about_image": "",
-  "about_alt": "",
+  "about_image": "/uploads/hero-tide-pools.webp",
+  "about_alt": "Families exploring tide pools together on a H.O.M.E. beach day",
   "benefits_heading": "Member Benefits",
   "benefits": [
     {
@@ -59,33 +59,33 @@
     },
     {
       "label": "HOME Student Leadership Mission Statement",
-      "note": "Read this mission statement to be sure you agree.",
-      "url": ""
+      "note": "Read this Mission Statement to be sure you agree.",
+      "url": "https://docs.google.com/document/d/1XDdXXzps9KPvX4GUxbZji6RZaUcIj5JXvD895Z7EjOc/edit"
     },
     {
       "label": "HOME Student Leadership Cover Letter",
       "note": "Please read and follow these instructions.",
-      "url": ""
+      "url": "https://docs.google.com/document/d/1Zvp-L1wLxXkjmyQRcugEbr5b1_K7fQRa/edit"
     },
     {
       "label": "HOME Student Leadership Job Descriptions",
       "note": "",
-      "url": ""
+      "url": "https://docs.google.com/document/d/1Vy0JYIaq3T6A7wMVSEOtIXEw4Jl4KIEcN0dG6SM0kXk/edit"
     },
     {
       "label": "HOME Student Leadership Expectations, Responsibilities, and Code of Conduct",
       "note": "Print and turn in to HOME mailbox folder at Connections.",
-      "url": ""
+      "url": "https://docs.google.com/document/d/1YRC0bx4CoWAt4cST2ftae_9pZN-TLVCRO4zN-RnjSOc/edit"
     },
     {
       "label": "HOME Student Leadership Application",
       "note": "Click this link to complete the application.",
-      "url": ""
+      "url": "https://docs.google.com/forms/d/1H59dtdsJ-F9F5xEKtuFZsI4SsdwDNRuTUFGVzDOIaoU/viewform"
     },
     {
       "label": "HOME Student Leadership Candidate Evaluation",
       "note": "Copy this link and send it to one Christian mentor.",
-      "url": ""
+      "url": "https://docs.google.com/forms/d/1yVz38iqfXeDS0mCU9ZTIDGCPQ64w-XSJOh9nGXCI4BM/viewform"
     }
   ],
   "graduation_heading": "Graduation",

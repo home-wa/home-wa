@@ -52,8 +52,6 @@ const social = [
   [data.teens_instagram_url, '@homestudentleadership', 'Teens on Instagram', ig],
 ].filter(([u]) => u);
 const check = '<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" style="stroke:var(--green-text)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg>';
-const smile = '<circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><path d="M9 9h.01"></path><path d="M15 9h.01"></path>';
-const cap = '<path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path>';
 const logoAlt = 'H.O.M.E. — Home Oriented Meaningful Education';
 const logo = '/uploads/home-logo.png';
 const heroOn = showImg(data.hero_image);
@@ -104,6 +102,9 @@ const aboutOn = showImg(data.about_image);
 <main>
   <section id="top" class="hero" aria-labelledby="hero-h">
     <div class="wrap hero-grid">
+      <figure class="photo-slot hero-photo" data-cms-slot="hero_image" hidden={!heroOn}>
+        <img class="photo" src={heroOn ? data.hero_image : undefined} alt={data.hero_alt || ''} data-cms-img="hero_image" data-cms-alt="hero_alt" width="1168" height="784" fetchpriority={heroOn ? 'high' : undefined} />
+      </figure>
       <div class="hero-text">
         <span class="badge" data-cms="hero_badge">{data.hero_badge}</span>
         <h1 id="hero-h" data-cms="hero_headline">{data.hero_headline}</h1>
@@ -113,21 +114,23 @@ const aboutOn = showImg(data.about_image);
           <a href={login} class="btn btn-secondary btn-lg" data-cms-href="login_url">Member Login</a>
         </div>
       </div>
-      <figure class="photo-slot hero-photo" data-cms-slot="hero_image" hidden={!heroOn}>
-        <img class="photo" src={heroOn ? data.hero_image : undefined} alt={data.hero_alt || ''} data-cms-img="hero_image" data-cms-alt="hero_alt" width="1168" height="784" fetchpriority={heroOn ? 'high' : undefined} />
-      </figure>
     </div>
   </section>
 
   <section id="about" class="section" aria-labelledby="about-h">
-    <div class="wrap about-copy">
-      <span class="eyebrow">Who we are</span>
-      <h2 id="about-h" data-cms="about_heading">{data.about_heading}</h2>
-      <div class="prose" data-cms-md="about_body" set:html={md(data.about_body)} />
-      <div class="facts">
-        <p data-cms="nonprofit_line">{data.nonprofit_line}</p>
-        <p class="ein" data-cms="ein_line">{data.ein_line}</p>
+    <div class="wrap about-grid">
+      <div class="about-copy">
+        <span class="eyebrow">Who we are</span>
+        <h2 id="about-h" data-cms="about_heading">{data.about_heading}</h2>
+        <div class="prose" data-cms-md="about_body" set:html={md(data.about_body)} />
+        <div class="facts">
+          <p data-cms="nonprofit_line">{data.nonprofit_line}</p>
+          <p class="ein" data-cms="ein_line">{data.ein_line}</p>
+        </div>
       </div>
+      <figure class="photo-slot about-photo" data-cms-slot="about_image" hidden={!aboutOn}>
+        <img class="photo" src={aboutOn ? data.about_image : undefined} alt={data.about_alt || ''} data-cms-img="about_image" data-cms-alt="about_alt" width="1168" height="784" loading="lazy" decoding="async" />
+      </figure>
     </div>
   </section>
 
@@ -157,32 +160,17 @@ const aboutOn = showImg(data.about_image);
   </section>
 
   <section class="section" aria-label="Kids' Day and teens">
-    <div class="wrap split-wrap">
-      <figure class="photo-slot feature-slot" data-cms-slot="about_image" hidden={!aboutOn}>
-        <img class="photo feature-photo" src={aboutOn ? data.about_image : undefined} alt={data.about_alt || ''} data-cms-img="about_image" data-cms-alt="about_alt" width="1600" height="900" loading="lazy" decoding="async" />
-      </figure>
-      <div class="split-2">
-        <article id="kids-day" class="split-card" aria-labelledby="kids-h">
-          <div class="split-head">
-            <div aria-hidden="true" class="tile tile-mint"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" set:html={smile} /></div>
-            <div>
-              <span class="eyebrow">Family events</span>
-              <h2 id="kids-h" data-cms="kids_heading">{data.kids_heading}</h2>
-            </div>
-          </div>
-          <div class="prose" data-cms-md="kids_body" set:html={md(data.kids_body)} />
-        </article>
-        <article id="teens" class="split-card" aria-labelledby="teens-h">
-          <div class="split-head">
-            <div aria-hidden="true" class="tile tile-teal"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" set:html={cap} /></div>
-            <div>
-              <span class="eyebrow">Ages 14 and up</span>
-              <h2 id="teens-h" data-cms="teens_heading">{data.teens_heading}</h2>
-            </div>
-          </div>
-          <div class="prose" data-cms-md="teens_body" set:html={md(data.teens_body)} />
-        </article>
-      </div>
+    <div class="wrap pair">
+      <article id="kids-day" class="pair-col" aria-labelledby="kids-h">
+        <span class="eyebrow">Family events</span>
+        <h2 id="kids-h" data-cms="kids_heading">{data.kids_heading}</h2>
+        <div class="prose" data-cms-md="kids_body" set:html={md(data.kids_body)} />
+      </article>
+      <article id="teens" class="pair-col" aria-labelledby="teens-h">
+        <span class="eyebrow">Ages 14 and up</span>
+        <h2 id="teens-h" data-cms="teens_heading">{data.teens_heading}</h2>
+        <div class="prose" data-cms-md="teens_body" set:html={md(data.teens_body)} />
+      </article>
     </div>
   </section>
 
@@ -202,9 +190,11 @@ const aboutOn = showImg(data.about_image);
         <ul class="doc-list" data-cms-repeater="leadership_links">
           {data.leadership_links.map((item) => {
             const href = url(item.url);
+            const external = /^https?:/i.test(href);
             return (
               <li>
-                <a class:list={['doc-label', 'optional-link', { textlink: !!href, 'is-pending': !href }]} href={href || undefined} data-field="label" data-field-href="url">{item.label}</a>
+                <a class="doc-label textlink" href={href || undefined} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined} data-field="label" data-field-href="url" hidden={!href}>{item.label}</a>
+                <span class="doc-label" data-field="label" data-plain-fallback hidden={!!href}>{item.label}</span>
                 <p class="link-note" data-field="note" data-field-hide-empty="note" hidden={!item.note}>{item.note}</p>
               </li>
             );
@@ -221,7 +211,8 @@ const aboutOn = showImg(data.about_image);
         <h2 id="grad-h" data-cms="graduation_heading">{data.graduation_heading}</h2>
         <div class="prose" data-cms-md="graduation_body" set:html={md(data.graduation_body)} />
         <p class="grad-link">
-          <a class:list={['optional-link', { textlink: !!gradHref, 'is-pending': !gradHref }]} href={gradHref || undefined} data-cms="graduation_link_label" data-cms-optional-href="graduation_link_url">{data.graduation_link_label}</a>
+          <a class="textlink" href={gradHref || undefined} target={/^https?:/i.test(gradHref) ? '_blank' : undefined} rel={/^https?:/i.test(gradHref) ? 'noopener' : undefined} data-cms="graduation_link_label" data-cms-optional-href="graduation_link_url" hidden={!gradHref}>{data.graduation_link_label}</a>
+          <span class="plain" data-plain-fallback data-cms="graduation_link_label" hidden={!!gradHref}>{data.graduation_link_label}</span>
         </p>
       </div>
     </div>
