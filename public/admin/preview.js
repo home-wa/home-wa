@@ -139,23 +139,12 @@
           }
           el.appendChild(n);
         });
-        var lastGroup = '';
+        var step = 0;
         el.querySelectorAll(':scope > li.doc-item').forEach(function (li) {
           var link = li.querySelector('a.doc-row');
-          var groupEl = li.querySelector('.doc-group');
+          var num = li.querySelector('.doc-num');
           var hasLink = !!(link && !link.hidden && link.getAttribute('href'));
-          var name = groupEl ? groupEl.textContent.trim() : '';
-          if (groupEl) {
-            if (hasLink && name && name !== lastGroup) { groupEl.hidden = false; lastGroup = name; }
-            else groupEl.hidden = true;
-          }
-          if (link) {
-            var isForm = /docs\.google\.com\/forms\//.test(link.getAttribute('href') || '');
-            var file = link.querySelector('.doc-icon-file');
-            var form = link.querySelector('.doc-icon-form');
-            if (file) file.hidden = isForm;
-            if (form) form.hidden = !isForm;
-          }
+          if (num) num.textContent = hasLink ? String(++step) : '';
         });
       });
       node.querySelectorAll('[data-cms-mailto]').forEach(function (a) {

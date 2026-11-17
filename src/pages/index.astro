@@ -52,8 +52,7 @@ const social = [
   [data.teens_instagram_url, '@homestudentleadership', 'Teens on Instagram', ig],
 ].filter(([u]) => u);
 const check = '<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" style="stroke:var(--green-text)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg>';
-const docIcon = '<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M8 13h8M8 17h5"></path></svg>';
-const formIcon = '<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><path d="M9 12h6M9 16h4"></path></svg>';
+const docIcon = '<svg aria-hidden="true" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M8 13h8M8 17h5"></path></svg>';
 const logoAlt = 'H.O.M.E. — Home Oriented Meaningful Education';
 const logo = '/uploads/home-logo.png';
 const heroOn = showImg(data.hero_image);
@@ -189,30 +188,31 @@ const aboutOn = showImg(data.about_image);
       <p class="notice" data-cms="leadership_status">{data.leadership_status}</p>
       <div class="doc-block">
         <h3 data-cms="leadership_links_heading">{data.leadership_links_heading}</h3>
-        <ul class="doc-list" data-cms-repeater="leadership_links">
-          {data.leadership_links.map((item, i) => {
-            const href = url(item.url);
-            const external = /^https?:/i.test(href);
-            const isForm = /docs\.google\.com\/forms\//.test(href);
-            const group = (item.group || '').trim();
-            const prev = (data.leadership_links[i - 1]?.group || '').trim();
-            const showGroup = !!href && !!group && group !== prev;
-            return (
-              <li class="doc-item">
-                <p class="doc-group" data-field="group" hidden={!showGroup}>{group}</p>
-                <p class="doc-intro" data-plain-fallback hidden={!!href}><span data-field="label">{item.label}</span></p>
-                <a class="doc-row" href={href || undefined} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined} data-field-href="url" hidden={!href}>
-                  <span class="doc-icon doc-icon-file" hidden={isForm} set:html={docIcon} />
-                  <span class="doc-icon doc-icon-form" hidden={!isForm} set:html={formIcon} />
-                  <span class="doc-copy">
-                    <span class="doc-label" data-field="label">{item.label}</span>
-                    <span class="link-note" data-field="note" data-field-hide-empty="note" hidden={!item.note}>{item.note}</span>
-                  </span>
-                </a>
-              </li>
-            );
-          })}
-        </ul>
+        <div class="doc-layout">
+          <div class="doc-mark" aria-hidden="true" set:html={docIcon} />
+          <ul class="doc-list" data-cms-repeater="leadership_links">
+            {(() => {
+              let step = 0;
+              return data.leadership_links.map((item) => {
+                const href = url(item.url);
+                const external = /^https?:/i.test(href);
+                const n = href ? ++step : 0;
+                return (
+                  <li class="doc-item">
+                    <p class="doc-intro" data-plain-fallback hidden={!!href}><span data-field="label">{item.label}</span></p>
+                    <a class="doc-row" href={href || undefined} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined} data-field-href="url" hidden={!href}>
+                      <span class="doc-num">{n || ''}</span>
+                      <span class="doc-copy">
+                        <span class="doc-label" data-field="label">{item.label}</span>
+                        <span class="link-note" data-field="note" data-field-hide-empty="note" hidden={!item.note}>{item.note}</span>
+                      </span>
+                    </a>
+                  </li>
+                );
+              });
+            })()}
+          </ul>
+        </div>
       </div>
     </div>
   </section>

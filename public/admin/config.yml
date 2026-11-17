@@ -69,12 +69,11 @@ collections:
             name: leadership_links
             widget: list
             summary: "{{label}}"
-            hint: "Drag to reorder. A title with no URL is plain text, not a link. Group prints a small subheading when it changes from the item above (Read first, Complete and submit)."
+            hint: "Drag to reorder. Linked items are numbered automatically in this order. A title with no URL stays plain text above the steps."
             fields:
               - { label: Title, name: label, widget: string }
               - { label: Note, name: note, widget: string, required: false }
               - { label: URL, name: url, widget: string, required: false, hint: "Leave blank to show the title as plain text. Documents and forms open in a new tab." }
-              - { label: Group, name: group, widget: string, required: false, hint: "Optional subheading, such as Read first or Complete and submit." }
           - { label: Graduation heading, name: graduation_heading, widget: string }
           - { label: Graduation text, name: graduation_body, widget: markdown, buttons: [bold, italic, link], editor_components: [] }
           - { label: Graduation link text, name: graduation_link_label, widget: string }
