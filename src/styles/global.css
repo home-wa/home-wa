@@ -29,6 +29,7 @@ p{margin:0}
 .desk{display:none}
 .stack{display:flex;flex-direction:column;gap:20px}
 .contents{display:contents}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
 [id]{scroll-margin-top:16px}
 
 /* Buttons and links */
@@ -117,49 +118,61 @@ a.optional-link.is-pending:hover,a.optional-link:not([href]):hover{color:var(--i
 .tile-mint{background:var(--mint);color:var(--green-text)}
 .tile-teal{background:var(--teal);color:var(--blue-bright)}
 
-/* Kids' Day and Teens */
+/* Events: Kids' Day and Teens cards, with the member calendar panel directly beneath them. */
+.events-group{display:flex;flex-direction:column;gap:16px}
 .pair{display:flex;flex-direction:column;gap:16px}
 .pair-col{display:flex;flex-direction:column;gap:14px;min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:24px 22px;box-shadow:0 8px 24px rgba(40,56,136,.04)}
 
-/* Leadership */
+/* Leadership. Copy on the left, the application steps in a card on the right (stacked on mobile). */
+.lead-grid{display:flex;flex-direction:column;gap:28px}
+.lead-copy{display:flex;flex-direction:column;gap:20px;min-width:0}
 .lead-intro{max-width:70ch}
 .checklist{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
 .checklist li{display:flex;gap:10px;align-items:flex-start;background:none;padding:2px 0}
 .checklist svg{flex-shrink:0;margin-top:2px;width:22px;height:22px}
-.notice{background:none;color:var(--ink);padding:0;font-weight:600;max-width:70ch}
-.doc-block{display:flex;flex-direction:column;gap:14px}
-.doc-block h3{font-size:20px}
-.doc-layout{display:flex;flex-direction:column;align-items:flex-start;gap:16px}
+.notice{background:none;color:var(--ink);padding:0;font-weight:600;max-width:70ch;text-wrap:balance}
+.doc-block{display:flex;flex-direction:column;gap:10px;min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px 20px 8px;box-shadow:0 8px 24px rgba(40,56,136,.04)}
+.doc-head{display:flex;align-items:center;gap:14px}
+.doc-block h3{font-size:20px;min-width:0}
 .doc-mark{width:64px;height:64px;border-radius:18px;background:var(--sky);color:var(--blue);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .doc-mark svg{width:34px;height:34px}
+.doc-head .doc-mark{width:48px;height:48px;border-radius:12px}
+.doc-head .doc-mark svg{width:26px;height:26px}
 .doc-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;width:100%;min-width:0}
 .doc-item{background:none;padding:0;border:none;display:block}
-.doc-intro{margin:0 0 6px;color:var(--ink-soft);font-size:17px;line-height:1.5}
-.doc-row{display:flex;align-items:flex-start;gap:12px;padding:12px 0;text-decoration:none;border-bottom:1px solid var(--line);color:var(--blue)}
+.doc-intro{margin:4px 0;color:var(--muted);font-size:15px;line-height:1.5}
+.doc-row{display:flex;align-items:flex-start;gap:14px;padding:14px 0;text-decoration:none;border-bottom:1px solid var(--line);color:var(--blue)}
 .doc-list li:last-child .doc-row{border-bottom:none}
 .doc-row:hover{color:var(--blue-dark)}
 .doc-row:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:8px}
-.doc-num{flex:0 0 1.5em;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.4}
-.doc-copy{display:flex;flex-direction:column;gap:2px;min-width:0}
+.doc-num{flex:0 0 28px;height:28px;margin-top:-2px;border-radius:999px;background:var(--sky);color:var(--blue);font-weight:700;font-size:14px;font-variant-numeric:tabular-nums;line-height:1;display:flex;align-items:center;justify-content:center;transition:background .15s,color .15s}
+.doc-row:hover .doc-num{background:var(--blue);color:var(--on-primary)}
+.doc-copy{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1}
+/* Corner-arrow icon, only on links that open in a new tab. */
+.doc-ext{display:none;flex-shrink:0;margin-top:3px;color:var(--muted);transition:color .15s}
+.doc-row[target="_blank"] .doc-ext{display:inline-flex}
+.doc-row:hover .doc-ext{color:var(--blue)}
+.doc-ext svg{width:18px;height:18px}
 .doc-label{font-family:var(--body);font-weight:600;font-size:17px;color:inherit;line-height:1.4}
-.doc-intro span{font-weight:400;color:var(--ink-soft)}
+.doc-intro span{font-weight:400;color:inherit}
 .link-note{color:var(--muted);font-size:15px}
 .link-note[hidden],.board-email[hidden]{display:none !important}
 
 /* Graduation */
-.grad{background:var(--sky)}
 .grad-row{display:flex;flex-direction:column;gap:16px}
 .grad-copy{display:flex;flex-direction:column;gap:12px}
 .grad-link{margin:0}
 .grad-link .textlink{font-size:18px}
 .grad-link .plain{color:var(--ink-soft);font-weight:400}
 
-/* Events */
-.events-row{display:flex;flex-direction:column;align-items:flex-start;gap:18px}
-.events-copy{display:flex;flex-direction:column;gap:12px;max-width:68ch}
+/* Events and calendar panel (inside the events group) */
+.events-row{background:var(--sky);border-radius:20px;padding:22px;display:flex;flex-direction:column;align-items:flex-start;gap:18px}
+.events-row .doc-mark{background:var(--surface);width:52px;height:52px;border-radius:14px}
+.events-row .doc-mark svg{width:28px;height:28px}
+.events-row h2{font-size:24px}
+.events-copy{display:flex;flex-direction:column;gap:10px;max-width:68ch}
 .events-actions{display:flex;flex-direction:column;align-items:flex-start;gap:12px;width:100%}
 .events-actions .btn{width:100%}
-.events-actions .textlink{min-height:44px;display:inline-flex;align-items:center}
 
 /* FAQ */
 .faq-grid{display:flex;flex-direction:column;gap:28px}
@@ -183,13 +196,22 @@ a.optional-link.is-pending:hover,a.optional-link:not([href]):hover{color:var(--i
 .ask-card p{color:var(--ink-soft);font-size:16px}
 .ask-btn{align-self:flex-start}
 
-/* Contact */
+/* Contact. Heading and intro on the left, the board as a directory on the right (stacked on mobile).
+   One row per person, so any number of board members lays out cleanly. */
+.contact-grid{display:flex;flex-direction:column;gap:24px}
+.contact-copy{display:flex;flex-direction:column;gap:20px;min-width:0}
 .contact-intro{max-width:68ch}
-.board{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr;gap:12px}
-.board-card{background:none;border-top:2px solid var(--line);padding:16px 0 4px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.board{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;min-width:0}
+.board-card{background:none;border-top:1px solid var(--line);padding:16px 0;display:flex;flex-direction:column;gap:6px;min-width:0}
+.board-card:last-child{padding-bottom:0}
+.board-who{display:flex;flex-direction:column;gap:2px;min-width:0}
 .board-card h3{font-size:18px;font-weight:700}
 .board-role{color:var(--muted);font-weight:600;font-size:15px}
-.board-email{margin-top:8px;align-self:flex-start;overflow-wrap:anywhere}
+.board-email{align-self:flex-start;overflow-wrap:anywhere;font-size:16px}
+@media (min-width:600px){
+  .board-card{flex-direction:row;align-items:center;justify-content:space-between;gap:8px 24px}
+  .board-email{align-self:center;flex-shrink:0;overflow-wrap:normal}
+}
 
 /* Final CTA */
 .cta{background:var(--cta-bg)}
@@ -276,26 +298,32 @@ a.optional-link.is-pending:hover,a.optional-link:not([href]):hover{color:var(--i
   .already{flex:1 0 100%}
   .tile{width:52px;height:52px;border-radius:14px}
   .tile svg{width:26px;height:26px}
-  .doc-layout{flex-direction:row;align-items:flex-start;gap:28px}
-  .doc-list{flex:1}
+  .lead-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(40px,5vw,64px);align-items:start}
+  .lead-copy{gap:28px}
+  .doc-block{padding:30px 32px 14px;gap:12px}
+  .doc-block h3{font-size:22px}
   .pair{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch}
   .pair-col{height:100%;padding:32px}
   .pair-col h2{font-size:32px}
-  .checklist.cols-2{display:grid;grid-template-columns:1fr 1fr;gap:10px 40px}
   .checklist li{padding:2px 0}
   .grad-copy{max-width:72ch}
-  .events-row{flex-direction:row;align-items:flex-start;gap:32px}
+  .events-group{gap:24px}
+  .events-row{flex-direction:row;align-items:center;gap:28px;padding:32px 36px}
+  .events-row .doc-mark{align-self:flex-start}
+  .events-row h2{font-size:28px}
   .events-copy{flex:1;min-width:0}
-  .events-actions{width:auto;flex-shrink:0;padding-top:6px}
+  .events-actions{width:auto;flex-shrink:0;align-items:center}
   .events-actions .btn{width:auto}
   .faq-grid{display:grid;grid-template-columns:minmax(280px,.82fr) minmax(0,1.15fr);grid-template-areas:"head list" "card list";column-gap:64px;row-gap:28px;align-items:start}
   .faq-head{grid-area:head}
   .faq-list{grid-area:list}
   .ask-card{grid-area:card}
   .faq summary h3{font-size:20px}
-  .board{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-  .board-card{padding:18px 0 4px;border-radius:0}
-  .board-card h3{font-size:20px}
+  .contact-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(40px,5vw,64px);align-items:start}
+  .contact-copy{gap:28px}
+  .board-card{padding:18px 0}
+  .board-card:first-child{border-top:none;padding-top:0}
+  .board-card h3{font-size:19px}
   .cta-inner{padding-top:80px;padding-bottom:80px;gap:16px}
   .cta h2{font-size:40px}
   .cta p{font-size:19px;max-width:46ch}
@@ -312,7 +340,4 @@ a.optional-link.is-pending:hover,a.optional-link:not([href]):hover{color:var(--i
   .f-contact .f-row{min-height:36px;align-self:flex-end}
   .f-copy{grid-area:copy;text-align:right}
   .totop{display:none !important}
-}
-@media (min-width:1100px){
-  .board{grid-template-columns:repeat(3,minmax(0,1fr))}
 }

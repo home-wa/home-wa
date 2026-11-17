@@ -85,7 +85,6 @@ collections:
           - { label: Events heading, name: events_heading, widget: string }
           - { label: Events text, name: events_body, widget: markdown, buttons: [bold, italic, link], editor_components: [] }
           - { label: Events button, name: events_button, widget: string, hint: "Opens the Join It member events URL." }
-          - { label: Events email link, name: events_email_label, widget: string, hint: "Opens an email to the contact address." }
           - { label: FAQ eyebrow, name: faq_eyebrow, widget: string }
           - { label: FAQ heading, name: faq_heading, widget: string }
           - { label: FAQ intro, name: faq_intro, widget: text }

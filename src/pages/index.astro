@@ -38,11 +38,9 @@ if(s&&S[s])r.setProperty('--btn-radius',S[s]);})();`;
 const nav = [
   ['about', 'About'],
   ['benefits', 'Benefits'],
-  ['kids-day', "Kids' Day"],
-  ['teens', 'Teens'],
+  ['events', 'Events'],
   ['leadership', 'Leadership'],
   ['graduation', 'Graduation'],
-  ['events', 'Events'],
   ['faq', 'FAQ'],
   ['contact', 'Contact'],
 ];
@@ -58,6 +56,8 @@ const docIcon = '<svg aria-hidden="true" width="34" height="34" viewBox="0 0 24 
 const calIcon = '<svg aria-hidden="true" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>';
 const askIcon = '<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.6 8.6 0 0 1-3.6-.8L3 21l1.9-5.4A8.4 8.4 0 1 1 21 11.5z"></path></svg>';
 const chev = '<svg class="chev" aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg>';
+// Shown on step links that open in a new tab.
+const extIcon = '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg>';
 const logoAlt = 'H.O.M.E. — Home Oriented Meaningful Education';
 const logo = '/uploads/home-logo.png';
 const heroOn = showImg(data.hero_image);
@@ -165,64 +165,79 @@ const aboutOn = showImg(data.about_image);
     </div>
   </section>
 
-  <section class="section" aria-label="Kids' Day and teens">
-    <div class="wrap pair">
-      <article id="kids-day" class="pair-col" aria-labelledby="kids-h">
-        <span class="eyebrow">Family events</span>
-        <h2 id="kids-h" data-cms="kids_heading">{data.kids_heading}</h2>
-        <div class="prose" data-cms-md="kids_body" set:html={md(data.kids_body)} />
-      </article>
-      <article id="teens" class="pair-col" aria-labelledby="teens-h">
-        <span class="eyebrow">Ages 14 and up</span>
-        <h2 id="teens-h" data-cms="teens_heading">{data.teens_heading}</h2>
-        <div class="prose" data-cms-md="teens_body" set:html={md(data.teens_body)} />
-      </article>
-    </div>
-  </section>
-
-  <section id="leadership" class="section" aria-labelledby="lead-h">
-    <div class="wrap stack">
-      <div class="section-head">
-        <span class="eyebrow">Students</span>
-        <h2 id="lead-h" data-cms="leadership_heading">{data.leadership_heading}</h2>
+  <section id="events" class="section" aria-label="Events">
+    <div class="wrap events-group">
+      <div class="pair">
+        <article id="kids-day" class="pair-col" aria-labelledby="kids-h">
+          <span class="eyebrow">Family events</span>
+          <h2 id="kids-h" data-cms="kids_heading">{data.kids_heading}</h2>
+          <div class="prose" data-cms-md="kids_body" set:html={md(data.kids_body)} />
+        </article>
+        <article id="teens" class="pair-col" aria-labelledby="teens-h">
+          <span class="eyebrow">Ages 14 and up</span>
+          <h2 id="teens-h" data-cms="teens_heading">{data.teens_heading}</h2>
+          <div class="prose" data-cms-md="teens_body" set:html={md(data.teens_body)} />
+        </article>
       </div>
-      <div class="prose lead-intro" data-cms-md="leadership_body" set:html={md(data.leadership_body)} />
-      <ul class="checklist cols-2" data-cms-list="leadership_points">
-        {data.leadership_points.map((t) => <li><Fragment set:html={check} /><span>{t}</span></li>)}
-      </ul>
-      <p class="notice" data-cms="leadership_status">{data.leadership_status}</p>
-      <div class="doc-block">
-        <h3 data-cms="leadership_links_heading">{data.leadership_links_heading}</h3>
-        <div class="doc-layout">
-          <div class="doc-mark" aria-hidden="true" set:html={docIcon} />
-          <ul class="doc-list" data-cms-repeater="leadership_links">
-            {(() => {
-              let step = 0;
-              return data.leadership_links.map((item) => {
-                const href = url(item.url);
-                const external = /^https?:/i.test(href);
-                const n = href ? ++step : 0;
-                return (
-                  <li class="doc-item">
-                    <p class="doc-intro" data-plain-fallback hidden={!!href}><span data-field="label">{item.label}</span></p>
-                    <a class="doc-row" href={href || undefined} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined} data-field-href="url" hidden={!href}>
-                      <span class="doc-num">{n || ''}</span>
-                      <span class="doc-copy">
-                        <span class="doc-label" data-field="label">{item.label}</span>
-                        <span class="link-note" data-field="note" data-field-hide-empty="note" hidden={!item.note}>{item.note}</span>
-                      </span>
-                    </a>
-                  </li>
-                );
-              });
-            })()}
-          </ul>
+      <article id="calendar" class="events-row" aria-labelledby="events-h">
+        <div class="doc-mark" aria-hidden="true" set:html={calIcon} />
+        <div class="events-copy">
+          <h2 id="events-h" data-cms="events_heading">{data.events_heading}</h2>
+          <div class="prose" data-cms-md="events_body" set:html={md(data.events_body)} />
         </div>
+        <div class="events-actions">
+          <a href={portal} class="btn btn-primary btn-lg" data-cms="events_button" data-cms-href="portal_url">{data.events_button}</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="leadership" class="section bg-cloud" aria-labelledby="lead-h">
+    <div class="wrap lead-grid">
+      <div class="lead-copy">
+        <div class="section-head">
+          <span class="eyebrow">Students</span>
+          <h2 id="lead-h" data-cms="leadership_heading">{data.leadership_heading}</h2>
+        </div>
+        <div class="prose lead-intro" data-cms-md="leadership_body" set:html={md(data.leadership_body)} />
+        <ul class="checklist" data-cms-list="leadership_points">
+          {data.leadership_points.map((t) => <li><Fragment set:html={check} /><span>{t}</span></li>)}
+        </ul>
+        <p class="notice" data-cms="leadership_status">{data.leadership_status}</p>
+      </div>
+      <div class="doc-block">
+        <div class="doc-head">
+          <div class="doc-mark" aria-hidden="true" set:html={docIcon} />
+          <h3 data-cms="leadership_links_heading">{data.leadership_links_heading}</h3>
+        </div>
+        <ul class="doc-list" data-cms-repeater="leadership_links">
+          {(() => {
+            let step = 0;
+            return data.leadership_links.map((item) => {
+              const href = url(item.url);
+              const external = /^https?:/i.test(href);
+              const n = href ? ++step : 0;
+              return (
+                <li class="doc-item">
+                  <p class="doc-intro" data-plain-fallback hidden={!!href}><span data-field="label">{item.label}</span></p>
+                  <a class="doc-row" href={href || undefined} target={external ? '_blank' : undefined} rel={external ? 'noopener' : undefined} data-field-href="url" hidden={!href}>
+                    <span class="doc-num">{n || ''}</span>
+                    <span class="doc-copy">
+                      <span class="doc-label" data-field="label">{item.label}</span>
+                      <span class="link-note" data-field="note" data-field-hide-empty="note" hidden={!item.note}>{item.note}</span>
+                    </span>
+                    <span class="doc-ext"><Fragment set:html={extIcon} /><span class="sr-only">(opens in a new tab)</span></span>
+                  </a>
+                </li>
+              );
+            });
+          })()}
+        </ul>
       </div>
     </div>
   </section>
 
-  <section id="graduation" class="section grad" aria-labelledby="grad-h">
+  <section id="graduation" class="section" aria-labelledby="grad-h">
     <div class="wrap grad-row">
       <div class="grad-copy">
         <span class="eyebrow">Each June</span>
@@ -232,20 +247,6 @@ const aboutOn = showImg(data.about_image);
           <a class="textlink" href={gradHref || undefined} target={/^https?:/i.test(gradHref) ? '_blank' : undefined} rel={/^https?:/i.test(gradHref) ? 'noopener' : undefined} data-cms="graduation_link_label" data-cms-optional-href="graduation_link_url" hidden={!gradHref}>{data.graduation_link_label}</a>
           <span class="plain" data-plain-fallback data-cms="graduation_link_label" hidden={!!gradHref}>{data.graduation_link_label}</span>
         </p>
-      </div>
-    </div>
-  </section>
-
-  <section id="events" class="section" aria-labelledby="events-h">
-    <div class="wrap events-row">
-      <div class="doc-mark" aria-hidden="true" set:html={calIcon} />
-      <div class="events-copy">
-        <h2 id="events-h" data-cms="events_heading">{data.events_heading}</h2>
-        <div class="prose" data-cms-md="events_body" set:html={md(data.events_body)} />
-      </div>
-      <div class="events-actions">
-        <a href={portal} class="btn btn-primary btn-lg" data-cms="events_button" data-cms-href="portal_url">{data.events_button}</a>
-        <a href={mailto} class="textlink" data-cms="events_email_label" data-cms-mailto="contact_email">{data.events_email_label}</a>
       </div>
     </div>
   </section>
@@ -277,17 +278,21 @@ const aboutOn = showImg(data.about_image);
   </section>
 
   <section id="contact" class="section" aria-labelledby="contact-h">
-    <div class="wrap stack">
-      <div class="section-head">
-        <span class="eyebrow">The board</span>
-        <h2 id="contact-h" data-cms="contact_heading">{data.contact_heading}</h2>
+    <div class="wrap contact-grid">
+      <div class="contact-copy">
+        <div class="section-head">
+          <span class="eyebrow">The board</span>
+          <h2 id="contact-h" data-cms="contact_heading">{data.contact_heading}</h2>
+        </div>
+        <div class="prose contact-intro" data-cms-md="contact_body" set:html={md(data.contact_body)} />
       </div>
-      <div class="prose contact-intro" data-cms-md="contact_body" set:html={md(data.contact_body)} />
       <ul class="board" data-cms-repeater="board">
         {data.board.map((m) => (
           <li class="board-card">
-            <h3 data-field="name">{m.name}</h3>
-            <p class="board-role" data-field="role">{m.role}</p>
+            <div class="board-who">
+              <h3 data-field="name">{m.name}</h3>
+              <p class="board-role" data-field="role">{m.role}</p>
+            </div>
             <a class="textlink board-email" href={m.email ? `mailto:${m.email}` : undefined} data-field="email" data-field-mailto="email" hidden={!m.email}>{m.email}</a>
           </li>
         ))}
