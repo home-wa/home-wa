@@ -50,13 +50,19 @@ collections:
             summary: "{{title}}"
             fields:
               - { label: Title, name: title, widget: string }
+              - label: Icon
+                name: icon
+                widget: select
+                default: parents
+                options:
+                  - { label: Parents, value: parents }
+                  - { label: Kids, value: kids }
+                  - { label: Teens, value: teens }
+                  - { label: Zoo membership, value: zoo }
+                  - { label: Graduation, value: graduation }
               - { label: Text, name: body, widget: markdown, buttons: [bold, italic, link], editor_components: [] }
-          - { label: Join heading, name: join_heading, widget: string }
-          - { label: Join text, name: join_body, widget: markdown, buttons: [bold, italic, link], editor_components: [] }
-          - { label: Kids' Day heading, name: kids_heading, widget: string }
-          - { label: Kids' Day text, name: kids_body, widget: markdown, buttons: [bold, italic, link], editor_components: [] }
-          - { label: Teens heading, name: teens_heading, widget: string }
-          - { label: Teens text, name: teens_body, widget: markdown, buttons: [bold, italic, link], editor_components: [] }
+          - { label: Join heading, name: join_heading, widget: string, hint: "Shown only while enrollment is open." }
+          - { label: Join text, name: join_body, widget: markdown, buttons: [bold, italic, link], editor_components: [], hint: "Shown only while enrollment is open." }
           - { label: Student Leadership heading, name: leadership_heading, widget: string }
           - { label: Student Leadership intro, name: leadership_body, widget: markdown, buttons: [bold, italic, link], editor_components: [] }
           - label: Student Leadership goals
@@ -116,14 +122,15 @@ collections:
             name: enrollmentOpen
             widget: boolean
             default: false
-            hint: "Off: Join and Become a Member read Enrollment closed and do not link to Join It. On: they use the signup URL below."
-          - label: Closed enrollment message
+            hint: "Off: the Join Us block is replaced by the closed heading and text below. Header and hero buttons read Enrollment closed and do not link to Join It. On: Join Us returns."
+          - { label: Enrollment closed heading, name: enrollment_closed_heading, widget: string, hint: "Replaces the Join Us heading while enrollment is closed." }
+          - label: Enrollment closed text
             name: enrollment_closed_message
             widget: markdown
             required: false
             buttons: [bold, italic, link]
             editor_components: []
-            hint: "Shown in the membership section while enrollment is closed. Link contact us to #contact."
+            hint: "Replaces the Join Us text while enrollment is closed."
           - label: Join It — membership signup URL
             name: join_url
             widget: string

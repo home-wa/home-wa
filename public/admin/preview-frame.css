@@ -1,0 +1,3 @@
+/* Decap's preview pane. The page itself is styled by the built site CSS, injected from the live page. */
+.home-preview{background:#fff;min-height:100%;color:#2A2F38}
+.home-preview img{max-width:100%}

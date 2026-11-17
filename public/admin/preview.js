@@ -12,7 +12,8 @@
     var doc = new DOMParser().parseFromString(res[0], 'text/html');
     doc.querySelectorAll('script').forEach(function (s) { s.remove(); });
     var styles = [].map.call(doc.querySelectorAll('link[rel="stylesheet"]'), function (l) { return l.getAttribute('href'); });
-    return { body: doc.body.innerHTML, styles: styles, T: res[1] };
+    var inline = [].map.call(doc.querySelectorAll('head style'), function (s) { return s.textContent || ''; });
+    return { body: doc.body.innerHTML, styles: styles, inline: inline, T: res[1] };
   });
 
   function bodyKey(T, t) {
@@ -77,6 +78,10 @@
         p.styles.forEach(function (href) {
           if (!href || d.querySelector('link[data-home="' + href + '"]')) return;
           var l = d.createElement('link'); l.rel = 'stylesheet'; l.href = href; l.setAttribute('data-home', href); d.head.appendChild(l);
+        });
+        (p.inline || []).forEach(function (css) {
+          if (!css) return;
+          var s = d.createElement('style'); s.setAttribute('data-home', 'inline'); s.textContent = css; d.head.appendChild(s);
         });
         node.innerHTML = p.body;
         self.tpl = [];
@@ -151,6 +156,10 @@
             n.querySelectorAll('[data-field-hide-empty]').forEach(function (f) {
               f.hidden = !item[f.getAttribute('data-field-hide-empty')];
             });
+            var icon = item.icon || 'parents';
+            n.querySelectorAll('[data-benefit-icon]').forEach(function (el) {
+              el.hidden = el.getAttribute('data-benefit-icon') !== icon;
+            });
           }
           el.appendChild(n);
         });
@@ -178,17 +187,16 @@
       node.querySelectorAll('[data-cms-optional-href]').forEach(function (a) {
         applyLink(a, get(data, a.getAttribute('data-cms-optional-href')));
       });
-      node.querySelectorAll('[data-enrollment-note]').forEach(function (el) {
-        el.hidden = open || !String(el.textContent || '').trim();
-      });
       var signup = realUrl(data.join_url) || '#';
       node.querySelectorAll('[data-join-cta]').forEach(function (el) {
         var openHtml = el.getAttribute('data-open-html') || 'Become a Member';
         var cls = el.className.replace(/\bis-closed\b/g, '').replace(/\s+/g, ' ').trim();
+        var inJoin = el.hasAttribute('data-join-open');
         var next = d.createElement(open ? 'a' : 'span');
         next.className = open ? cls : cls + ' is-closed';
         next.setAttribute('data-join-cta', '');
         next.setAttribute('data-open-html', openHtml);
+        if (inJoin) next.setAttribute('data-join-open', '');
         if (open) {
           next.setAttribute('href', signup);
           next.setAttribute('data-cms-href', 'join_url');
@@ -199,6 +207,8 @@
         }
         el.replaceWith(next);
       });
+      node.querySelectorAll('[data-join-open]').forEach(function (el) { el.hidden = !open; });
+      node.querySelectorAll('[data-join-closed]').forEach(function (el) { el.hidden = open; });
       var root = d.documentElement, t = data.theme || {}, vars = themeVars(p.T, t);
       (this.set || []).forEach(function (k) { root.style.removeProperty('--' + k); });
       this.set = Object.keys(vars);
@@ -213,4 +223,5 @@
     render: function () { var self = this; return h('div', { ref: function (el) { self.el = el; }, className: 'home-preview' }); },
   });
   CMS.registerPreviewTemplate('landing', Preview);
+  if (typeof CMS.registerPreviewStyle === 'function') CMS.registerPreviewStyle('/admin/preview-frame.css');
 })();

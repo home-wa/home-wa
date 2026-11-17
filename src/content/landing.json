@@ -16,31 +16,32 @@
   "benefits": [
     {
       "title": "Parent Meetings",
+      "icon": "parents",
       "body": "Parent meetings are planned for the encouragement and support of homeschooling parents. Come learn alongside wise and seasoned parents who guide each other through the joys and challenges of homeschooling kids of all ages."
     },
     {
       "title": "Kids' Day Activities",
+      "icon": "kids",
       "body": "A mix of fun and educational events are planned at least once a month for kids to provide unique educational and social experiences. This is a great opportunity to get entry to discounted theatre arts events and access to field trips. H.O.M.E. makes these special activities possible for kids to share together with their parents and friends."
     },
     {
       "title": "Teen Events",
+      "icon": "teens",
       "body": "Teen social events create the connection and community needed to navigate the unique journey of homeschooling. We provide events that are fun and facilitate positive experiences with peers. Homeschool teens love that they can get access to social dances like Homecoming and Spring Formal through H.O.M.E.!"
     },
     {
       "title": "Woodland Park Zoo Membership",
+      "icon": "zoo",
       "body": "H.O.M.E. members have access to a Woodland Park Zoo membership card that can be checked out for free admission to the zoo for two adults and their children. The value of this benefit alone is worth the annual H.O.M.E. membership!\n\nPlease email [membership@home-wa.org](mailto:membership@home-wa.org) to reserve the card. Allow 48 hours for a response. Include your name, two date & time choices, and the number of people in your party. We will email or text you a digital card to show for entry. Enter between 9:30 a.m. and 1:30 p.m. any day of the week."
     },
     {
       "title": "Homeschool Graduation",
+      "icon": "graduation",
       "body": "H.O.M.E. sponsors a graduation ceremony each year in June, personalized to the students who are in that particular graduating class. It is a special rite of passage and H.O.M.E. helps homeschooling families give this occasion the honor and significance it deserves!"
     }
   ],
   "join_heading": "Join Us",
   "join_body": "H.O.M.E. membership is open to any homeschooling family. We would love to have you as part of this great community!\n\nThe cost for an annual membership is $55 per family. Each membership is active throughout the school year, and expires Sep. 1. Membership dues are non-refundable, and there is no automatic renewal.\n\nYou can sign up anytime throughout the year for access to the events that would best support your family: parent meetings, kids and teen events, dances, and graduation.",
-  "kids_heading": "Kids' Day Events",
-  "kids_body": "A mix of fun and educational events are planned at least once a month for kids to provide enrichment and social experiences. This is a great opportunity to get access to discounted entry to theatre arts events and educational field trips.\n\nTraditional activities include low priced entry to a pumpkin patch and corn maze in October, matinee performance of The Nutcracker in December, as well as museums, ranger-led hikes, and play dates!\n\n**Please note:** Kids' Day events are not drop-off activities; we expect parents to attend with their children as a family event.",
-  "teens_heading": "Teens",
-  "teens_body": "Teen social events create the connection and community needed to navigate the unique journey of homeschooling. We provide events that are fun and facilitate positive experiences with peers. Homeschool teens love that they can get access to social dances like Homecoming and Spring Formal through H.O.M.E.!\n\nAge requirements: Teen events are for students ages 14 and up. If you have additional questions, contact [teens@home-wa.org](mailto:teens@home-wa.org).",
   "leadership_heading": "Student Leadership Team",
   "leadership_body": "The H.O.M.E. Student Leadership Team exists to encourage students to take an active role and increase responsibility in building a strong, connected, and supportive H.O.M.E. community. The team will:",
   "leadership_points": [
@@ -146,7 +147,8 @@
   "cta_text": "Membership signup takes just a few minutes.",
   "contact_email": "membership@home-wa.org",
   "enrollmentOpen": false,
-  "enrollment_closed_message": "Enrollment is currently closed. Check back soon, or [contact us](#contact) to be notified when it opens.",
+  "enrollment_closed_heading": "H.O.M.E. ENROLLMENT CLOSED",
+  "enrollment_closed_message": "H.O.M.E. memberships are at an all time high for the history of this wonderful group of homeschooling families. The Board is taking time to consider the best plan moving forward to make sure our current families have access to high quality event experiences while considering how to manage the size and demand of this growth of our group. For now, membership is closed, but stay tuned for updates.",
   "join_url": "https://app.joinit.com/o/home-wa/",
   "login_url": "https://app.joinit.com/o/home-wa/members",
   "portal_url": "https://app.joinit.com/o/home-wa/members",

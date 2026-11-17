@@ -67,6 +67,14 @@ const docIcon = '<svg aria-hidden="true" width="34" height="34" viewBox="0 0 24 
 const calIcon = '<svg aria-hidden="true" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>';
 const askIcon = '<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.6 8.6 0 0 1-3.6-.8L3 21l1.9-5.4A8.4 8.4 0 1 1 21 11.5z"></path></svg>';
 const chev = '<svg class="chev" aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg>';
+const lineIcon = (body: string) => `<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${body}</svg>`;
+const benefitIcons: Record<string, string> = {
+  parents: lineIcon('<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path>'),
+  kids: lineIcon('<circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><path d="M9 9h.01"></path><path d="M15 9h.01"></path>'),
+  teens: lineIcon('<path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle>'),
+  zoo: lineIcon('<path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"></path><path d="M13 5v2"></path><path d="M13 17v2"></path><path d="M13 11v2"></path>'),
+  graduation: lineIcon('<path d="M22 10 12 5 2 10l10 5 10-5z"></path><path d="M6 12v5c3 2 9 2 12 0v-5"></path><path d="M22 10v6"></path>'),
+};
 // Shown on step links that open in a new tab.
 const extIcon = '<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"></path><path d="M10 14L21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg>';
 const logoAlt = 'H.O.M.E. — Home Oriented Meaningful Education';
@@ -180,41 +188,39 @@ const aboutOn = showImg(data.about_image);
       <div class="benefit-list" data-cms-repeater="benefits">
         {data.benefits.map((b) => (
           <article class="benefit">
-            <h3 data-field="title">{b.title}</h3>
+            <div class="benefit-head">
+              <h3 data-field="title">{b.title}</h3>
+              <span class="benefit-icon" aria-hidden="true">
+                {Object.entries(benefitIcons).map(([key, svg]) => (
+                  <span data-benefit-icon={key} hidden={(b.icon || 'parents') !== key} set:html={svg} />
+                ))}
+              </span>
+            </div>
             <div class="prose" data-field-md="body" set:html={md(b.body)} />
           </article>
         ))}
       </div>
       <div class="join-panel">
-        <div class="join-copy">
+        <div class="join-copy" data-join-open hidden={!enrollmentOpen}>
           <h3 data-cms="join_heading">{data.join_heading}</h3>
           <div class="prose" data-cms-md="join_body" set:html={md(data.join_body)} />
-          <div class="prose closed-note" data-enrollment-note data-cms-md="enrollment_closed_message" hidden={enrollmentOpen || !data.enrollment_closed_message} set:html={md(data.enrollment_closed_message)} />
         </div>
         {enrollmentOpen ? (
-          <a href={join} class="btn btn-primary btn-lg" data-join-cta data-open-html="Become a Member" data-cms-href="join_url">Become a Member</a>
+          <a href={join} class="btn btn-primary btn-lg" data-join-cta data-join-open data-open-html="Become a Member" data-cms-href="join_url">Become a Member</a>
         ) : (
-          <span class="btn btn-primary btn-lg is-closed" data-join-cta data-open-html="Become a Member" aria-disabled="true">Enrollment closed</span>
+          <span class="btn btn-primary btn-lg is-closed" data-join-cta data-join-open data-open-html="Become a Member" hidden aria-disabled="true">Enrollment closed</span>
         )}
-        <p class="already">Already a member? <a href={login} class="textlink" data-cms-href="login_url">Log in</a> to see <a href={portal} class="textlink" data-cms-href="portal_url">events</a>.</p>
+        <p class="already" data-join-open hidden={!enrollmentOpen}>Already a member? <a href={login} class="textlink" data-cms-href="login_url">Log in</a> to see <a href={portal} class="textlink" data-cms-href="portal_url">events</a>.</p>
+        <div class="join-copy join-closed" data-join-closed hidden={enrollmentOpen}>
+          <h3 data-cms="enrollment_closed_heading">{data.enrollment_closed_heading}</h3>
+          <div class="prose" data-cms-md="enrollment_closed_message" set:html={md(data.enrollment_closed_message)} />
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="events" class="section" aria-label="Events">
+  <section id="events" class="section" aria-labelledby="events-h">
     <div class="wrap events-group">
-      <div class="pair">
-        <article id="kids-day" class="pair-col" aria-labelledby="kids-h">
-          <span class="eyebrow">Family events</span>
-          <h2 id="kids-h" data-cms="kids_heading">{data.kids_heading}</h2>
-          <div class="prose" data-cms-md="kids_body" set:html={md(data.kids_body)} />
-        </article>
-        <article id="teens" class="pair-col" aria-labelledby="teens-h">
-          <span class="eyebrow">Ages 14 and up</span>
-          <h2 id="teens-h" data-cms="teens_heading">{data.teens_heading}</h2>
-          <div class="prose" data-cms-md="teens_body" set:html={md(data.teens_body)} />
-        </article>
-      </div>
       <article id="calendar" class="events-row" aria-labelledby="events-h">
         <div class="doc-mark" aria-hidden="true" set:html={calIcon} />
         <div class="events-copy">

@@ -46,8 +46,6 @@ p{margin:0}
 .btn-on-dark:focus-visible{outline:3px solid #fff;outline-offset:3px}
 .btn.is-closed{opacity:.62;cursor:default;pointer-events:none;box-shadow:none}
 .site-header .btn-join.is-closed:hover{background:var(--join-bg);border-color:var(--join-bg);color:var(--on-primary)}
-.closed-note{color:var(--ink);font-weight:600}
-.closed-note a{font-weight:700}
 .textlink{text-decoration:none;font-weight:600;border-bottom:2px solid transparent;transition:border-color .15s}
 .textlink:hover{border-bottom-color:var(--blue)}
 .textlink:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
@@ -112,7 +110,12 @@ a.optional-link.is-pending:hover,a.optional-link:not([href]):hover{color:var(--i
 .benefit-list{display:flex;flex-direction:column;gap:0}
 .benefit{background:none;border:none;border-top:1px solid var(--line);border-radius:0;padding:26px 0;display:flex;flex-direction:column;gap:8px}
 .benefit:first-child{border-top:none;padding-top:0}
+.benefit-head{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.benefit-icon{width:40px;height:40px;border-radius:12px;background:var(--sky);color:var(--blue);display:flex;align-items:center;justify-content:center}
+.benefit-icon svg{width:22px;height:22px}
 .benefit .prose{font-size:16.5px}
+.join-panel:has([data-join-closed]:not([hidden])){flex-direction:column;align-items:flex-start}
+.join-closed{display:flex;flex-direction:column;gap:12px;max-width:68ch}
 .join-panel{background:var(--sky);border-radius:20px;padding:22px;display:flex;flex-direction:column;align-items:flex-start;gap:18px}
 .join-copy{display:flex;flex-direction:column;gap:12px}
 .join-panel .btn{width:100%}
@@ -122,7 +125,7 @@ a.optional-link.is-pending:hover,a.optional-link:not([href]):hover{color:var(--i
 .tile-mint{background:var(--mint);color:var(--green-text)}
 .tile-teal{background:var(--teal);color:var(--blue-bright)}
 
-/* Events: Kids' Day and Teens cards, with the member calendar panel directly beneath them. */
+/* Events: members-only calendar. */
 .events-group{display:flex;flex-direction:column;gap:16px}
 .pair{display:flex;flex-direction:column;gap:16px}
 .pair-col{display:flex;flex-direction:column;gap:14px;min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:24px 22px;box-shadow:0 8px 24px rgba(40,56,136,.04)}
