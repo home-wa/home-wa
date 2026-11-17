@@ -145,6 +145,8 @@
   "cta_heading": "Ready to join our community?",
   "cta_text": "Membership signup takes just a few minutes.",
   "contact_email": "membership@home-wa.org",
+  "enrollmentOpen": false,
+  "enrollment_closed_message": "Enrollment is currently closed. Check back soon, or [contact us](#contact) to be notified when it opens.",
   "join_url": "https://app.joinit.com/o/home-wa/",
   "login_url": "https://app.joinit.com/o/home-wa/members",
   "portal_url": "https://app.joinit.com/o/home-wa/members",

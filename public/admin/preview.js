@@ -58,6 +58,16 @@
     if (plain) plain.hidden = !!real;
   }
   function md(v) { return window.marked ? window.marked.parse(v || '') : (v || ''); }
+  function enrollmentOn(v) { return v === true || v === 'true'; }
+  function stripSignup(html, signup) {
+    if (!signup) return html;
+    var base = String(signup).replace(/\/$/, '');
+    return String(html).replace(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi, function (full, href, text) {
+      var h = String(href).trim().replace(/\/$/, '');
+      if (h === base || /^https?:\/\/app\.joinit\.com\/o\/home-wa$/i.test(h)) return text;
+      return full;
+    });
+  }
 
   var Preview = createClass({
     componentDidMount: function () {
@@ -83,12 +93,17 @@
     fill: function () {
       var p = this.p, node = this.el; if (!p) return;
       var props = this.props, data = props.entry.getIn(['data']).toJS(), d = node.ownerDocument;
+      var open = enrollmentOn(data.enrollmentOpen);
+      function renderMd(v) {
+        var html = md(v);
+        return open ? html : stripSignup(html, realUrl(data.join_url));
+      }
       node.querySelectorAll('[data-cms]').forEach(function (el) {
         var v = get(data, el.getAttribute('data-cms'));
         el.textContent = v == null ? '' : v;
       });
       node.querySelectorAll('[data-cms-md]').forEach(function (el) {
-        el.innerHTML = md(data[el.getAttribute('data-cms-md')] || '');
+        el.innerHTML = renderMd(data[el.getAttribute('data-cms-md')] || '');
       });
       node.querySelectorAll('[data-cms-img]').forEach(function (el) {
         var key = el.getAttribute('data-cms-img');
@@ -123,7 +138,7 @@
               f.textContent = val == null ? '' : val;
             });
             n.querySelectorAll('[data-field-md]').forEach(function (f) {
-              f.innerHTML = md(item[f.getAttribute('data-field-md')] || '');
+              f.innerHTML = renderMd(item[f.getAttribute('data-field-md')] || '');
             });
             n.querySelectorAll('[data-field-href]').forEach(function (a) {
               applyLink(a, item[a.getAttribute('data-field-href')]);
@@ -162,6 +177,27 @@
       });
       node.querySelectorAll('[data-cms-optional-href]').forEach(function (a) {
         applyLink(a, get(data, a.getAttribute('data-cms-optional-href')));
+      });
+      node.querySelectorAll('[data-enrollment-note]').forEach(function (el) {
+        el.hidden = open || !String(el.textContent || '').trim();
+      });
+      var signup = realUrl(data.join_url) || '#';
+      node.querySelectorAll('[data-join-cta]').forEach(function (el) {
+        var openHtml = el.getAttribute('data-open-html') || 'Become a Member';
+        var cls = el.className.replace(/\bis-closed\b/g, '').replace(/\s+/g, ' ').trim();
+        var next = d.createElement(open ? 'a' : 'span');
+        next.className = open ? cls : cls + ' is-closed';
+        next.setAttribute('data-join-cta', '');
+        next.setAttribute('data-open-html', openHtml);
+        if (open) {
+          next.setAttribute('href', signup);
+          next.setAttribute('data-cms-href', 'join_url');
+          next.innerHTML = openHtml;
+        } else {
+          next.setAttribute('aria-disabled', 'true');
+          next.textContent = 'Enrollment closed';
+        }
+        el.replaceWith(next);
       });
       var root = d.documentElement, t = data.theme || {}, vars = themeVars(p.T, t);
       (this.set || []).forEach(function (k) { root.style.removeProperty('--' + k); });

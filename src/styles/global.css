@@ -44,6 +44,10 @@ p{margin:0}
 .btn-on-dark:hover{background:#d4dff6;border-color:#d4dff6;color:var(--blue-dark);box-shadow:0 10px 24px rgba(16,24,64,.22)}
 .btn-primary:focus-visible,.btn-secondary:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
 .btn-on-dark:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.btn.is-closed{opacity:.62;cursor:default;pointer-events:none;box-shadow:none}
+.site-header .btn-join.is-closed:hover{background:var(--join-bg);border-color:var(--join-bg);color:var(--on-primary)}
+.closed-note{color:var(--ink);font-weight:600}
+.closed-note a{font-weight:700}
 .textlink{text-decoration:none;font-weight:600;border-bottom:2px solid transparent;transition:border-color .15s}
 .textlink:hover{border-bottom-color:var(--blue)}
 .textlink:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}

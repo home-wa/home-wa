@@ -5,7 +5,6 @@ import { marked } from 'marked';
 import '../styles/global.css';
 import { PRESETS, FONTS, BODY_FONTS, BUTTONS, fontLinks, themeVars, toCss } from '../theme';
 
-const md = (s?: string) => marked.parse(s || '') as string;
 // Real links only. Empty values and unfinished JOINIT_ placeholders stay unlinked.
 const url = (u?: string) => {
   const v = (u || '').trim();
@@ -14,6 +13,18 @@ const url = (u?: string) => {
 };
 const hrefOrHash = (u?: string) => url(u) || '#';
 const join = hrefOrHash(data.join_url);
+const enrollmentOpen = (data as { enrollmentOpen?: boolean }).enrollmentOpen === true;
+const signupHref = url(data.join_url).replace(/\/$/, '');
+const isSignupHref = (href: string) => {
+  const h = href.trim().replace(/\/$/, '');
+  if (signupHref && h === signupHref) return true;
+  return /^https?:\/\/app\.joinit\.com\/o\/home-wa$/i.test(h);
+};
+const md = (s?: string) => {
+  const html = marked.parse(s || '') as string;
+  if (enrollmentOpen) return html;
+  return html.replace(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi, (full, href, text) => (isSignupHref(href) ? text : full));
+};
 const login = hrefOrHash(data.login_url);
 const portal = hrefOrHash(data.portal_url);
 const gradHref = url(data.graduation_link_url);
@@ -103,7 +114,11 @@ const aboutOn = showImg(data.about_image);
     <nav aria-label="Member actions" class="member-actions">
       <a href={login} class="textlink util-desktop" data-cms-href="login_url">Member Login</a>
       <a href={portal} class="textlink util-desktop" data-cms-href="portal_url">Member events</a>
-      <a href={join} class="btn btn-primary btn-join" data-cms-href="join_url"><span class="desk">Join H.O.M.E.</span><span class="mob">Join</span></a>
+      {enrollmentOpen ? (
+        <a href={join} class="btn btn-primary btn-join" data-join-cta data-open-html={'<span class="desk">Join H.O.M.E.</span><span class="mob">Join</span>'} data-cms-href="join_url"><span class="desk">Join H.O.M.E.</span><span class="mob">Join</span></a>
+      ) : (
+        <span class="btn btn-primary btn-join is-closed" data-join-cta data-open-html={'<span class="desk">Join H.O.M.E.</span><span class="mob">Join</span>'} aria-disabled="true">Enrollment closed</span>
+      )}
       <button type="button" class="menubtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
         <svg class="i-open" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
         <svg class="i-close" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg>
@@ -128,7 +143,11 @@ const aboutOn = showImg(data.about_image);
         <h1 id="hero-h" data-cms="hero_headline">{data.hero_headline}</h1>
         <p class="subhead" data-cms="hero_subhead">{data.hero_subhead}</p>
         <div class="btn-row">
-          <a href={join} class="btn btn-primary btn-lg" data-cms-href="join_url">Become a Member</a>
+          {enrollmentOpen ? (
+            <a href={join} class="btn btn-primary btn-lg" data-join-cta data-open-html="Become a Member" data-cms-href="join_url">Become a Member</a>
+          ) : (
+            <span class="btn btn-primary btn-lg is-closed" data-join-cta data-open-html="Become a Member" aria-disabled="true">Enrollment closed</span>
+          )}
           <a href={login} class="btn btn-secondary btn-lg" data-cms-href="login_url">Member Login</a>
         </div>
       </div>
@@ -170,8 +189,13 @@ const aboutOn = showImg(data.about_image);
         <div class="join-copy">
           <h3 data-cms="join_heading">{data.join_heading}</h3>
           <div class="prose" data-cms-md="join_body" set:html={md(data.join_body)} />
+          <div class="prose closed-note" data-enrollment-note data-cms-md="enrollment_closed_message" hidden={enrollmentOpen || !data.enrollment_closed_message} set:html={md(data.enrollment_closed_message)} />
         </div>
-        <a href={join} class="btn btn-primary btn-lg" data-cms-href="join_url">Become a Member</a>
+        {enrollmentOpen ? (
+          <a href={join} class="btn btn-primary btn-lg" data-join-cta data-open-html="Become a Member" data-cms-href="join_url">Become a Member</a>
+        ) : (
+          <span class="btn btn-primary btn-lg is-closed" data-join-cta data-open-html="Become a Member" aria-disabled="true">Enrollment closed</span>
+        )}
         <p class="already">Already a member? <a href={login} class="textlink" data-cms-href="login_url">Log in</a> to see <a href={portal} class="textlink" data-cms-href="portal_url">events</a>.</p>
       </div>
     </div>
@@ -316,7 +340,11 @@ const aboutOn = showImg(data.about_image);
     <div class="wrap cta-inner">
       <h2 id="cta-h" data-cms="cta_heading">{data.cta_heading}</h2>
       <p data-cms="cta_text">{data.cta_text}</p>
-      <a href={join} class="btn btn-on-dark btn-lg" data-cms-href="join_url">Become a Member</a>
+      {enrollmentOpen ? (
+        <a href={join} class="btn btn-on-dark btn-lg" data-join-cta data-open-html="Become a Member" data-cms-href="join_url">Become a Member</a>
+      ) : (
+        <span class="btn btn-on-dark btn-lg is-closed" data-join-cta data-open-html="Become a Member" aria-disabled="true">Enrollment closed</span>
+      )}
       <p class="cta-alt">Already a member? <a href={login} data-cms-href="login_url">Log in to see events</a></p>
     </div>
   </section>

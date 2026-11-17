@@ -112,10 +112,22 @@ collections:
           - { label: Closing heading, name: cta_heading, widget: string }
           - { label: Closing text, name: cta_text, widget: string }
           - { label: Contact email, name: contact_email, widget: string }
+          - label: Enrollment open
+            name: enrollmentOpen
+            widget: boolean
+            default: false
+            hint: "Off: Join and Become a Member read Enrollment closed and do not link to Join It. On: they use the signup URL below."
+          - label: Closed enrollment message
+            name: enrollment_closed_message
+            widget: markdown
+            required: false
+            buttons: [bold, italic, link]
+            editor_components: []
+            hint: "Shown in the membership section while enrollment is closed. Link contact us to #contact."
           - label: Join It — membership signup URL
             name: join_url
             widget: string
-            hint: "Used by every Join and Become a Member button."
+            hint: "Used by every Join and Become a Member button while enrollment is open."
           - label: Join It — member login URL
             name: login_url
             widget: string
