@@ -109,7 +109,7 @@ const aboutOn = showImg(data.about_image);
   <section id="top" class="hero" aria-labelledby="hero-h">
     <div class="wrap hero-grid">
       <figure class="photo-slot hero-photo" data-cms-slot="hero_image" hidden={!heroOn}>
-        <img class="photo" src={heroOn ? data.hero_image : undefined} alt={data.hero_alt || ''} data-cms-img="hero_image" data-cms-alt="hero_alt" width="1168" height="784" fetchpriority={heroOn ? 'high' : undefined} />
+        <img class="photo" src={heroOn ? data.hero_image : undefined} alt={data.hero_alt || ''} data-cms-img="hero_image" data-cms-alt="hero_alt" width="2000" height="1333" fetchpriority={heroOn ? 'high' : undefined} />
       </figure>
       <div class="hero-text">
         <span class="badge" data-cms="hero_badge">{data.hero_badge}</span>
@@ -135,7 +135,7 @@ const aboutOn = showImg(data.about_image);
         </div>
       </div>
       <figure class="photo-slot about-photo" data-cms-slot="about_image" hidden={!aboutOn}>
-        <img class="photo" src={aboutOn ? data.about_image : undefined} alt={data.about_alt || ''} data-cms-img="about_image" data-cms-alt="about_alt" width="1168" height="784" loading="lazy" decoding="async" />
+        <img class="photo" src={aboutOn ? data.about_image : undefined} alt={data.about_alt || ''} data-cms-img="about_image" data-cms-alt="about_alt" width="2000" height="1333" loading="lazy" decoding="async" />
       </figure>
     </div>
   </section>

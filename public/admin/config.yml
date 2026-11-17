@@ -31,7 +31,7 @@ collections:
             name: hero_image
             widget: image
             required: false
-            hint: "Shown beside the hero. A stock photo is the default until you upload a replacement. Clear the field to hide the photo."
+            hint: "Shown beside the hero. The greenhouse photo is the current default. Replace it here, or clear the field to hide the photo."
           - { label: Photo 1 alt text, name: hero_alt, widget: string, required: false }
           - { label: About heading, name: about_heading, widget: string }
           - { label: About text, name: about_body, widget: markdown, buttons: [bold, italic, link], editor_components: [] }
@@ -41,7 +41,7 @@ collections:
             name: about_image
             widget: image
             required: false
-            hint: "Shown beside the About text. A stock photo is the default until you upload a replacement. Clear the field to hide the photo."
+            hint: "Shown beside the About text. The gathering photo is the current default. Replace it here, or clear the field to hide the photo."
           - { label: Photo 2 alt text, name: about_alt, widget: string, required: false }
           - { label: Benefits heading, name: benefits_heading, widget: string }
           - label: Member benefits
