@@ -42,6 +42,8 @@ const nav = [
   ['teens', 'Teens'],
   ['leadership', 'Leadership'],
   ['graduation', 'Graduation'],
+  ['events', 'Events'],
+  ['faq', 'FAQ'],
   ['contact', 'Contact'],
 ];
 const ig = '<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><path d="M17.5 6.5h.01"></path></svg>';
@@ -53,6 +55,9 @@ const social = [
 ].filter(([u]) => u);
 const check = '<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" style="stroke:var(--green-text)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg>';
 const docIcon = '<svg aria-hidden="true" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path><path d="M8 13h8M8 17h5"></path></svg>';
+const calIcon = '<svg aria-hidden="true" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>';
+const askIcon = '<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.6 8.6 0 0 1-3.6-.8L3 21l1.9-5.4A8.4 8.4 0 1 1 21 11.5z"></path></svg>';
+const chev = '<svg class="chev" aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg>';
 const logoAlt = 'H.O.M.E. — Home Oriented Meaningful Education';
 const logo = '/uploads/home-logo.png';
 const heroOn = showImg(data.hero_image);
@@ -85,7 +90,7 @@ const aboutOn = showImg(data.about_image);
     </nav>
     <nav aria-label="Member actions" class="member-actions">
       <a href={login} class="textlink util-desktop" data-cms-href="login_url">Member Login</a>
-      <a href={portal} class="textlink util-desktop" data-cms-href="portal_url">Events</a>
+      <a href={portal} class="textlink util-desktop" data-cms-href="portal_url">Member events</a>
       <a href={join} class="btn btn-primary btn-join" data-cms-href="join_url"><span class="desk">Join H.O.M.E.</span><span class="mob">Join</span></a>
       <button type="button" class="menubtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
         <svg class="i-open" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
@@ -95,7 +100,7 @@ const aboutOn = showImg(data.about_image);
   </div>
   <nav id="mobile-menu" aria-label="Page sections (mobile)" class="mobile-menu" hidden>
     {nav.map(([id, label]) => <a href={`#${id}`} class="mlink">{label}</a>)}
-    <a href={portal} class="mlink" data-cms-href="portal_url">Events</a>
+    <a href={portal} class="mlink" data-cms-href="portal_url">Member events</a>
     <a href={login} class="mlink mlink-login" data-cms-href="login_url">Member Login</a>
   </nav>
 </header>
@@ -231,6 +236,46 @@ const aboutOn = showImg(data.about_image);
     </div>
   </section>
 
+  <section id="events" class="section" aria-labelledby="events-h">
+    <div class="wrap events-row">
+      <div class="doc-mark" aria-hidden="true" set:html={calIcon} />
+      <div class="events-copy">
+        <h2 id="events-h" data-cms="events_heading">{data.events_heading}</h2>
+        <div class="prose" data-cms-md="events_body" set:html={md(data.events_body)} />
+      </div>
+      <div class="events-actions">
+        <a href={portal} class="btn btn-primary btn-lg" data-cms="events_button" data-cms-href="portal_url">{data.events_button}</a>
+        <a href={mailto} class="textlink" data-cms="events_email_label" data-cms-mailto="contact_email">{data.events_email_label}</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="section bg-cloud" aria-labelledby="faq-h">
+    <div class="wrap faq-grid">
+      <div class="faq-head">
+        <span class="eyebrow" data-cms="faq_eyebrow">{data.faq_eyebrow}</span>
+        <h2 id="faq-h" data-cms="faq_heading">{data.faq_heading}</h2>
+        <p class="faq-intro" data-cms="faq_intro">{data.faq_intro}</p>
+      </div>
+      <div class="faq-list" data-cms-repeater="faqs">
+        {data.faqs.map((item, i) => (
+          <details class="faq" open={i === 0}>
+            <summary><h3 data-field="question">{item.question}</h3><Fragment set:html={chev} /></summary>
+            <div class="prose faq-answer" data-field-md="answer" set:html={md(item.answer)} />
+          </details>
+        ))}
+      </div>
+      <div class="ask-card">
+        <div class="ask-mark" aria-hidden="true" set:html={askIcon} />
+        <div class="ask-copy">
+          <h3 data-cms="faq_card_heading">{data.faq_card_heading}</h3>
+          <p data-cms="faq_card_body">{data.faq_card_body}</p>
+        </div>
+        <a href={mailto} class="btn btn-secondary ask-btn" data-cms="faq_card_button" data-cms-mailto="contact_email">{data.faq_card_button}</a>
+      </div>
+    </div>
+  </section>
+
   <section id="contact" class="section" aria-labelledby="contact-h">
     <div class="wrap stack">
       <div class="section-head">
@@ -283,7 +328,7 @@ const aboutOn = showImg(data.about_image);
     <div class="f-contact">
       <a href={mailto} class="textlink f-row" data-cms="contact_email" data-cms-mailto="contact_email">{email}</a>
       <a href={login} class="textlink f-row" data-cms-href="login_url">Member Login</a>
-      <a href={portal} class="textlink f-row" data-cms-href="portal_url">Events</a>
+      <a href={portal} class="textlink f-row" data-cms-href="portal_url">Member events</a>
       <a href="#contact" class="textlink f-row">Contact the board</a>
     </div>
     <span class="f-copy">© {year} H.O.M.E. All rights reserved.</span>

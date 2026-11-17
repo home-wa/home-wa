@@ -154,6 +154,35 @@ a.optional-link.is-pending:hover,a.optional-link:not([href]):hover{color:var(--i
 .grad-link .textlink{font-size:18px}
 .grad-link .plain{color:var(--ink-soft);font-weight:400}
 
+/* Events */
+.events-row{display:flex;flex-direction:column;align-items:flex-start;gap:18px}
+.events-copy{display:flex;flex-direction:column;gap:12px;max-width:68ch}
+.events-actions{display:flex;flex-direction:column;align-items:flex-start;gap:12px;width:100%}
+.events-actions .btn{width:100%}
+.events-actions .textlink{min-height:44px;display:inline-flex;align-items:center}
+
+/* FAQ */
+.faq-grid{display:flex;flex-direction:column;gap:28px}
+.faq-head{display:flex;flex-direction:column;gap:10px}
+.faq-intro{color:var(--ink-soft);max-width:42ch}
+.faq-list{display:flex;flex-direction:column;border-bottom:1px solid var(--line)}
+.faq{border-top:1px solid var(--line);padding:2px 0}
+.faq summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:52px;padding:10px 0}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary h3{font-size:18px;font-weight:700}
+.faq summary:hover h3{color:var(--blue-dark)}
+.faq summary:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:8px}
+.faq .chev{flex-shrink:0;color:var(--blue);transition:transform .2s}
+.faq[open] .chev{transform:rotate(180deg)}
+.faq-answer{padding:0 40px 12px 0}
+.faq-answer p{color:var(--ink-soft)}
+.ask-card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px;display:flex;flex-direction:column;align-items:flex-start;gap:12px;box-shadow:0 8px 24px rgba(40,56,136,.04)}
+.ask-mark{width:48px;height:48px;border-radius:14px;background:var(--mint);color:var(--green-text);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ask-mark svg{width:24px;height:24px}
+.ask-copy{display:flex;flex-direction:column;gap:6px}
+.ask-card p{color:var(--ink-soft);font-size:16px}
+.ask-btn{align-self:flex-start}
+
 /* Contact */
 .contact-intro{max-width:68ch}
 .board{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr;gap:12px}
@@ -255,6 +284,15 @@ a.optional-link.is-pending:hover,a.optional-link:not([href]):hover{color:var(--i
   .checklist.cols-2{display:grid;grid-template-columns:1fr 1fr;gap:10px 40px}
   .checklist li{padding:2px 0}
   .grad-copy{max-width:72ch}
+  .events-row{flex-direction:row;align-items:flex-start;gap:32px}
+  .events-copy{flex:1;min-width:0}
+  .events-actions{width:auto;flex-shrink:0;padding-top:6px}
+  .events-actions .btn{width:auto}
+  .faq-grid{display:grid;grid-template-columns:minmax(280px,.82fr) minmax(0,1.15fr);grid-template-areas:"head list" "card list";column-gap:64px;row-gap:28px;align-items:start}
+  .faq-head{grid-area:head}
+  .faq-list{grid-area:list}
+  .ask-card{grid-area:card}
+  .faq summary h3{font-size:20px}
   .board{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
   .board-card{padding:18px 0 4px;border-radius:0}
   .board-card h3{font-size:20px}

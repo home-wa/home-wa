@@ -82,6 +82,24 @@ collections:
             widget: string
             required: false
             hint: "Leave blank to show the link text without a link. Do not invent a URL."
+          - { label: Events heading, name: events_heading, widget: string }
+          - { label: Events text, name: events_body, widget: markdown, buttons: [bold, italic, link], editor_components: [] }
+          - { label: Events button, name: events_button, widget: string, hint: "Opens the Join It member events URL." }
+          - { label: Events email link, name: events_email_label, widget: string, hint: "Opens an email to the contact address." }
+          - { label: FAQ eyebrow, name: faq_eyebrow, widget: string }
+          - { label: FAQ heading, name: faq_heading, widget: string }
+          - { label: FAQ intro, name: faq_intro, widget: text }
+          - label: FAQ
+            name: faqs
+            widget: list
+            summary: "{{question}}"
+            hint: "Drag to reorder. Answers can include links. The first question starts open."
+            fields:
+              - { label: Question, name: question, widget: string }
+              - { label: Answer, name: answer, widget: markdown, buttons: [bold, italic, link], editor_components: [] }
+          - { label: FAQ card heading, name: faq_card_heading, widget: string }
+          - { label: FAQ card text, name: faq_card_body, widget: text }
+          - { label: FAQ card button, name: faq_card_button, widget: string, hint: "Opens an email to the contact address." }
           - { label: Contact heading, name: contact_heading, widget: string }
           - { label: Contact intro, name: contact_body, widget: markdown, buttons: [bold, italic, link], editor_components: [] }
           - label: Board
@@ -106,7 +124,7 @@ collections:
           - label: Join It — member events URL
             name: portal_url
             widget: string
-            hint: "Events link in the header and footer. Can match the member login URL."
+            hint: "The See Events button, plus Member events in the header and footer."
           - { label: Facebook URL, name: facebook_url, widget: string, required: false }
           - { label: Instagram URL, name: instagram_url, widget: string, required: false }
           - { label: Teens Instagram URL, name: teens_instagram_url, widget: string, required: false }

@@ -99,6 +99,38 @@
   "graduation_body": "H.O.M.E. sponsors a graduation ceremony each year in June, personalized to the students who are in that particular graduating class. It is a special rite of passage and H.O.M.E. helps homeschooling families give this occasion the honor and significance it deserves! Graduation this year is June 5, 2027.",
   "graduation_link_label": "Find more information here",
   "graduation_link_url": "",
+  "events_heading": "Events and calendar",
+  "events_body": "Our event calendar is for members, and events are hidden for safety and security reasons. Members can see and register for events through our member portal. Not a member yet but curious? Email us and we'll tell you what's coming up.",
+  "events_button": "See Events (members)",
+  "events_email_label": "Email us for info",
+  "faq_eyebrow": "Good to know",
+  "faq_heading": "Questions families ask before joining",
+  "faq_intro": "Whether you're just starting to think about homeschooling or have been at it for years, here's what most families want to know first.",
+  "faqs": [
+    {
+      "question": "Do I have to be a Christian to join?",
+      "answer": "While our group is rooted in Christian values, everyone is welcome to join."
+    },
+    {
+      "question": "Who can join, and what does it cost?",
+      "answer": "Any homeschooling family. The annual membership is $55 per family. Each membership is active throughout the school year and expires September 1. Membership dues are non-refundable, and there is no automatic renewal."
+    },
+    {
+      "question": "Are Kids' Days drop-off events?",
+      "answer": "No. Kids' Day events are not drop-off activities. We expect parents to attend with their children as a family event."
+    },
+    {
+      "question": "Can I join partway through the year?",
+      "answer": "Yes. You can [join anytime](https://app.joinit.com/o/home-wa/) for access to the events that best support your family: parent meetings, kids and teen events, dances, and graduation."
+    },
+    {
+      "question": "I'm new to homeschooling in Washington. Where do I start?",
+      "answer": "File a Declaration of Intent with your local school district by September 15 each year. The [Washington Homeschool Organization](https://washhomeschool.org) walks through the state requirements, and [HSLDA](https://hslda.org) covers legal questions. Our parent meetings are a great place to ask the rest."
+    }
+  ],
+  "faq_card_heading": "Still have a question?",
+  "faq_card_body": "Send us a note and a board member will get back to you. Or come to your first parent meeting — it's free, and it's the easiest way to meet us.",
+  "faq_card_button": "Email us",
   "contact_heading": "Contact Us",
   "contact_body": "H.O.M.E. is run by a board of dedicated homeschool moms who volunteer their time and energy to create community and experiences to enrich homeschool families.",
   "board": [

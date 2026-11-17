@@ -139,6 +139,12 @@
           }
           el.appendChild(n);
         });
+        if (el.classList.contains('faq-list')) {
+          el.querySelectorAll(':scope > details.faq').forEach(function (d, i) {
+            if (i === 0) d.setAttribute('open', '');
+            else d.removeAttribute('open');
+          });
+        }
         var step = 0;
         el.querySelectorAll(':scope > li.doc-item').forEach(function (li) {
           var link = li.querySelector('a.doc-row');

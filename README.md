@@ -13,7 +13,7 @@ npm run preview    # serve dist/ locally
 
 ## Editing content
 
-All client-editable content is in **`src/content/landing.json`**: page copy (home intro, member benefits, Kids' Day, teens, Student Leadership, graduation, contact and board), the two optional photos, contact email, the Join It links, social and resource links, footer lines, and the theme. In `/admin` it shows up as a single **Landing page** collection. Styles are in `src/styles/global.css`. Section nav labels and button labels live in `src/pages/index.astro`.
+All client-editable content is in **`src/content/landing.json`**: page copy (home intro, member benefits, Kids' Day, teens, Student Leadership, graduation, events, FAQ, contact and board), the two optional photos, contact email, the Join It links, social and resource links, footer lines, and the theme. In `/admin` it shows up as a single **Landing page** collection. Styles are in `src/styles/global.css`. Section nav labels and button labels live in `src/pages/index.astro`.
 
 - **In the browser:** go to `https://home-wa.web.app/admin`, log in with GitHub, open **Landing page**, edit, and Publish. Decap commits to `main`, which triggers a deploy (about 2 minutes).
 - **Locally without GitHub login:** run `npm run dev` and `npx decap-server`, then open http://localhost:4321/admin/index.html.
